@@ -221,6 +221,25 @@
     });
   }
 
+  // ---------- Mapa en dos pasos: Google solo carga cuando el visitante lo pide ----------
+  function initMapa() {
+    var marco = $("[data-mapa]");
+    if (!marco) return;
+    var boton = $("[data-mapa-cargar]", marco);
+    var src = marco.getAttribute("data-mapa-src");
+    if (!boton || !src) return;
+    boton.addEventListener("click", function () {
+      var iframe = document.createElement("iframe");
+      iframe.src = src;
+      iframe.title = "Mapa de Google Maps con la ubicación de Vibra Street Food";
+      iframe.setAttribute("allowfullscreen", "");
+      iframe.referrerPolicy = "no-referrer-when-downgrade";
+      iframe.loading = "lazy";
+      marco.innerHTML = "";
+      marco.appendChild(iframe);
+    });
+  }
+
   // ---------- Re-salto al ancla tras cargar (las imágenes desplazan el destino) ----------
   function initAnclaCarga() {
     if (!location.hash) return;
@@ -250,6 +269,7 @@
     safe(initReveals, "initReveals");
     safe(initCartaNav, "initCartaNav");
     safe(initBurgerModal, "initBurgerModal");
+    safe(initMapa, "initMapa");
     safe(initAnclaCarga, "initAnclaCarga");
     safe(initAnio, "initAnio");
 

@@ -1028,3 +1028,98 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
   .burger-modal-foto { min-height: 220px; }
   .burger-modal-texto { padding: 1.6rem 1.4rem 1.6rem; }
 }
+
+/* =============================================================
+   15. Página de contacto
+   ============================================================= */
+.contacto-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 960px) {
+  .contacto-grid { grid-template-columns: 5fr 7fr; align-items: stretch; }
+}
+.contacto-tarjetas { display: grid; gap: 1.25rem; align-content: start; }
+.contacto-tarjeta {
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem 1.4rem;
+}
+.contacto-tarjeta h3 { font-size: 1.2rem; letter-spacing: 0.06em; margin-bottom: 0.55rem; }
+.contacto-tarjeta p { color: var(--texto-2); }
+.contacto-tarjeta strong { color: var(--texto); font-weight: 600; }
+.contacto-dato {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: clamp(1.5rem, 3.4vw, 1.9rem);
+  letter-spacing: 0.03em;
+  color: var(--texto);
+  transition: color 0.3s;
+}
+a.contacto-dato:hover { color: var(--rosa); }
+.contacto-acciones { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* Mapa en dos pasos (privacidad: Google solo carga si se pide) */
+.mapa-marco {
+  position: relative;
+  min-height: 420px;
+  height: 100%;
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--negro-3);
+}
+.mapa-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  text-align: center;
+  padding: 2rem;
+}
+.mapa-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("imagenes/web/patron.png") repeat;
+  background-size: 150px;
+  opacity: 0.03;
+  pointer-events: none;
+}
+.mapa-pin {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--degradado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  box-shadow: 0 12px 32px rgba(232, 48, 133, 0.4);
+}
+.mapa-placeholder p { position: relative; color: var(--texto-2); max-width: 36ch; }
+.mapa-placeholder .mapa-nota { font-size: 0.74rem; color: var(--texto-3); max-width: 44ch; }
+.mapa-marco iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+@media (max-width: 959px) { .mapa-marco { min-height: 320px; } }
+
+/* Horario en tarjetas */
+.horario-tarjetas { display: grid; gap: 1.25rem; }
+@media (min-width: 720px) { .horario-tarjetas { grid-template-columns: 1fr 1fr; } }
+.horario-tarjeta {
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  padding: 1.7rem 1.6rem;
+}
+.horario-tarjeta h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+.horario-tarjeta ul { list-style: none; padding: 0; display: grid; gap: 0.55rem; color: var(--texto-2); }
+.horario-tarjeta li strong { color: var(--texto); font-weight: 600; }
+.horario-cerrado { margin-top: 1.4rem; color: var(--texto-3); }
