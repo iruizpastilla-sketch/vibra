@@ -27,6 +27,7 @@
     if (!boton || !menu) return;
 
     var cerrar = function () {
+      if (!menu.classList.contains("is-abierto")) return;
       boton.setAttribute("aria-expanded", "false");
       menu.classList.remove("is-abierto");
       document.body.classList.remove("sin-scroll");
@@ -137,6 +138,103 @@
     });
   }
 
+  // ---------- Carta: chip activa según la sección visible ----------
+  function initCartaNav() {
+    var nav = $("[data-carta-nav]");
+    if (!nav) return;
+    var chips = $$("a.chip", nav);
+    var mapa = {};
+    chips.forEach(function (c) {
+      var id = (c.getAttribute("href") || "").split("#")[1];
+      if (id) mapa[id] = c;
+    });
+    var secciones = Object.keys(mapa)
+      .map(function (id) { return document.getElementById(id); })
+      .filter(Boolean);
+    if (!secciones.length || !("IntersectionObserver" in window)) return;
+
+    var activa = null;
+    var marcar = function (chip) {
+      if (!chip || chip === activa) return;
+      if (activa) activa.classList.remove("is-activa");
+      chip.classList.add("is-activa");
+      activa = chip;
+      var destino = chip.offsetLeft - nav.clientWidth / 2 + chip.clientWidth / 2;
+      nav.scrollTo({ left: destino, behavior: "smooth" });
+    };
+    var obs = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        if (en.isIntersecting) marcar(mapa[en.target.id]);
+      });
+    }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 });
+    secciones.forEach(function (s) { obs.observe(s); });
+  }
+
+  // ---------- Burgers: modal que se rellena leyendo la tarjeta pulsada ----------
+  function initBurgerModal() {
+    var modal = $("[data-burger-modal]");
+    if (!modal || typeof modal.showModal !== "function") return;
+    var tarjetas = $$(".burger-shot");
+    if (!tarjetas.length) return;
+
+    var mImg = $("[data-modal-img]", modal);
+    var mTitulo = $("[data-modal-titulo]", modal);
+    var mDesc = $("[data-modal-desc]", modal);
+    var mPrecio = $("[data-modal-precio]", modal);
+
+    tarjetas.forEach(function (tarjeta) {
+      var abrir = $(".burger-shot-abrir", tarjeta);
+      if (!abrir) return;
+      abrir.addEventListener("click", function () {
+        var img = $(".burger-shot-media img", tarjeta);
+        var titulo = $("h3", tarjeta);
+        var desc = $(".burger-shot-desc", tarjeta);
+        var precio = $(".precio-cifra", tarjeta);
+        if (mImg && img) { mImg.src = img.src; mImg.alt = img.alt; }
+        if (mTitulo && titulo) { mTitulo.innerHTML = titulo.innerHTML; }
+        if (mDesc && desc) { mDesc.textContent = desc.textContent; }
+        if (mPrecio && precio) { mPrecio.textContent = precio.textContent; }
+        modal.showModal();
+        document.body.classList.add("sin-scroll");
+      });
+    });
+
+    // Cierre robusto: desbloquea el scroll SIEMPRE, sin depender del evento "close"
+    var cerrarModal = function () {
+      if (modal.open) modal.close();
+      document.body.classList.remove("sin-scroll");
+    };
+    $$("[data-modal-cerrar]", modal).forEach(function (boton) {
+      boton.addEventListener("click", cerrarModal);
+    });
+    // Clic fuera del contenido (el propio dialog) cierra
+    modal.addEventListener("click", function (e) {
+      if (e.target === modal) cerrarModal();
+    });
+    // Cierre nativo (Esc del navegador): también desbloquea
+    modal.addEventListener("close", function () {
+      document.body.classList.remove("sin-scroll");
+    });
+    // Red extra por si el cierre nativo no dispara eventos
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.open) cerrarModal();
+    });
+  }
+
+  // ---------- Re-salto al ancla tras cargar (las imágenes desplazan el destino) ----------
+  function initAnclaCarga() {
+    if (!location.hash) return;
+    window.addEventListener("load", function () {
+      var el = document.querySelector(location.hash);
+      if (!el) return;
+      var raiz = document.documentElement;
+      var suave = raiz.style.scrollBehavior;
+      raiz.style.scrollBehavior = "auto";
+      el.scrollIntoView();
+      raiz.style.scrollBehavior = suave;
+    });
+  }
+
   // ---------- Año del pie ----------
   function initAnio() {
     var el = $("[data-anio]");
@@ -150,6 +248,9 @@
     safe(initNavActiva, "initNavActiva");
     safe(initGlow, "initGlow");
     safe(initReveals, "initReveals");
+    safe(initCartaNav, "initCartaNav");
+    safe(initBurgerModal, "initBurgerModal");
+    safe(initAnclaCarga, "initAnclaCarga");
     safe(initAnio, "initAnio");
 
     if (window.gsap && window.ScrollTrigger) {

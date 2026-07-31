@@ -1,17 +1,17 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
   <title>La carta — Vibra Street Food</title>
-  <meta name="description" content="La carta de Vibra Street Food en Lleida. Muy pronto.">
+  <meta name="description" content="La carta de Vibra Street Food en Lleida: burgers con carne 100% de vaca nacional madurada, bocadillos, milanesas, dips y postres caseros. Todas las burgers incluyen patatas.">
   <meta name="theme-color" content="#000000">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260730">
+  <link rel="stylesheet" href="styles.css?v=20260731">
 </head>
 <body>
   <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
@@ -52,14 +52,417 @@
   <!-- ============================= /CABECERA ======================== -->
 
   <main id="contenido">
-    <section class="obra">
-      <div class="contenedor obra-int">
+
+    <!-- ===== CABECERA DE LA CARTA ===== -->
+    <section class="carta-hero">
+      <div class="contenedor">
         <p class="kicker">La carta</p>
-        <h1>Aquí se está cocinando algo.</h1>
-        <p class="obra-sub">La carta se está emplatando: burgers, dips, bocadillos, milanesas y postres con fotos que darán hambre de verdad. Muy pronto.</p>
-        <div class="obra-acciones"><a class="btn btn-degradado" href="reservar.html">Reservar mesa</a><a class="btn btn-fantasma" href="index.html">Volver al inicio</a></div>
+        <h1>El motivo por el que has <span class="txt-degradado">venido</span>.</h1>
+        <div class="carta-notas">
+          <span class="carta-nota-chip">🍟 <strong>Todas las burgers incluyen patatas</strong></span>
+          <span class="carta-nota-chip">🥩 Carne 100% vaca nacional madurada</span>
+          <span class="carta-nota-chip">🌾 Opciones para celíacos</span>
+        </div>
       </div>
     </section>
+
+    <!-- ===== SUBNAV DE CATEGORÍAS ===== -->
+    <nav class="carta-nav" aria-label="Categorías de la carta">
+      <div class="carta-nav-int" data-carta-nav>
+        <a class="chip" href="#compartir">Compartir</a>
+        <a class="chip" href="#dips">Dips</a>
+        <a class="chip" href="#burgers">Burgers</a>
+        <a class="chip" href="#bocadillos">Bocadillos</a>
+        <a class="chip" href="#milanesas">Milanesas</a>
+        <a class="chip" href="#ensalada">Ensalada</a>
+        <a class="chip" href="#postres">Postres</a>
+        <a class="chip" href="#salsas">Salsas</a>
+        <a class="chip" href="#extras">Extras</a>
+      </div>
+    </nav>
+
+    <!-- ===== 01 COMPARTIR ===== -->
+    <section class="carta-seccion" id="compartir">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">01.</p>
+          <h2>Compartir</h2>
+          <p class="carta-frase">Aquí se viene a compartir… o eso dicen</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="imagenes/web/bravas-clasicas.png" alt="Bravas Clásicas" loading="lazy" decoding="async">
+            <h3>Bravas Clásicas <span class="badge badge-pica">Pica</span></h3>
+            <p class="plato-desc">Patatas bravas con lactonesa casera de ajo y salsa de chipotle.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/bravas-tremola.png" alt="Bravas Tremola" loading="lazy" decoding="async">
+            <h3>Bravas Tremola</h3>
+            <p class="plato-desc">Patatas bravas con salsa especial, un tributo al bar Tremola.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/patatas-queso-bacon.png" alt="Patatas CBF — Cheese Bacon Fries" loading="lazy" decoding="async">
+            <h3>Patatas CBF</h3>
+            <p class="plato-desc">Cheese Bacon Fries: patatas fritas, salsa de queso cheddar, salsa de queso fresco, bacon crujiente y cebollino.</p>
+            <p class="plato-precio"><span class="precio-cifra">7,90 €</span><span class="precio-nota">9,90 € con pulled pork casero</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/patatas-carbonara.png" alt="Patatas Carbonara" loading="lazy" decoding="async">
+            <h3>Patatas Carbonara</h3>
+            <p class="plato-desc">Patatas fritas, crema de shiitake, pecorino romano en polvo, yema de huevo y panceta curada crujiente.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/nachos.png" alt="Nachos" loading="lazy" decoding="async">
+            <h3>Nachos</h3>
+            <p class="plato-desc">Totopos, chili con carne, guacamole, salsa de queso, mayo de lima, mermelada de tomate y pico de gallo.</p>
+            <p class="plato-precio"><span class="precio-cifra">12,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 DIPS ===== -->
+    <section class="carta-seccion alterna" id="dips">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">02.</p>
+          <h2>Dips</h2>
+          <p class="carta-frase">Dipea como si nadie te estuviera mirando</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="imagenes/web/croquetas.png" alt="Croquetas variadas" loading="lazy" decoding="async">
+            <h3>Croquetas</h3>
+            <p class="plato-desc">De cocido, setas y trufa, jamón, sepia en su tinta y quesos catalanes. 5 unidades.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/gyozas.png" alt="Gyozas" loading="lazy" decoding="async">
+            <h3>Gyozas</h3>
+            <p class="plato-desc">De buey a la parrilla, papada ibérica y langostino con su coral, con mayo kimchi. 6 unidades.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,00 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/fingers.png" alt="Fingers de pollo" loading="lazy" decoding="async">
+            <h3>Fingers</h3>
+            <p class="plato-desc">Tiras de solomillo de pollo rebozadas con salsa Chick Addiction. 9 unidades.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,00 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/tequenos.png" alt="Tequeños" loading="lazy" decoding="async">
+            <h3>Tequeños</h3>
+            <p class="plato-desc">De queso llanero con mermelada de tomate. 5 unidades.</p>
+            <p class="plato-precio"><span class="precio-cifra">8,00 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 BURGERS ===== -->
+    <section class="carta-seccion" id="burgers">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">03.</p>
+          <h2>Burgers</h2>
+          <p class="carta-frase">El motivo por el que has venido</p>
+          <div class="carta-avisos">
+            <span class="carta-nota-chip"><strong>Todas incluyen patatas fritas</strong></span>
+            <span class="carta-nota-chip">Carne 100% vaca nacional madurada</span>
+          </div>
+        </div>
+        <div class="burger-shots reveal">
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/jack-dream-neon.jpg" alt="Burger La Jack Dream" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carne, queso cheddar ahumado, emulsión de Jack Daniel's, pulled pork casero y cebolla crispy marinada en cerveza.</span>
+            </span>
+            <h3>La Jack Dream</h3>
+            <p class="plato-precio"><span class="precio-cifra">17,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Jack Dream en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/influencer-neon.jpg" alt="Burger La Influencer" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carne, doble queso monterrey, salsa Emmy, mermelada de bacon y pulled pork casero.</span>
+            </span>
+            <h3>La Influencer <span class="badge badge-pica">Pica</span></h3>
+            <p class="plato-precio"><span class="precio-cifra">16,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Influencer en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/kimchi-crunch-neon.jpg" alt="Burger La Kimchi Crunch" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Contramuslo de pollo rebozado, lechuga, tomate, mayo de lima, mayo kimchi y pepinillos.</span>
+            </span>
+            <h3>La Kimchi Crunch</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Kimchi Crunch en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/goat-neon.jpg" alt="Burger La Goat" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carne, queso monterrey, coronada con un medallón de queso de cabra y mermelada de pimientos asados.</span>
+            </span>
+            <h3>La Goat</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Goat en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/truffled-neon.jpg" alt="Burger La Truffled" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carne, doble queso monterrey, mayo trufada y coronada con un huevo frito.</span>
+            </span>
+            <h3>La Truffled</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Truffled en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/smokey-neon.jpg" alt="Burger La Smokey" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carne, queso cheddar ahumado, bacon ahumado, pepinillos y salsa BBQ Bull's Eye.</span>
+            </span>
+            <h3>La Smokey</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Smokey en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/cbd-neon.jpg" alt="Burger La CBD — Chicken Bacon Deluxe" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Chicken Bacon Deluxe: contramuslo de pollo rebozado, lechuga, tomate, queso monterrey, bacon crujiente, salsa Chick Addiction y cebolla crispy.</span>
+            </span>
+            <h3>La CBD</h3>
+            <p class="plato-precio"><span class="precio-cifra">14,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La CBD en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/veggie-neon.jpg" alt="Burger La Veggie" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Pan brioche vegano, crunchy de Heura, lechuga, tomate, guacamole y pepinillos.</span>
+            </span>
+            <h3>La Veggie <span class="badge badge-vegana">Vegana</span></h3>
+            <p class="plato-precio"><span class="precio-cifra">14,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Veggie en detalle</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="imagenes/web/original-neon.jpg" alt="Burger La Original" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carne, doble queso monterrey, pepinillos y salsa Hannibal.</span>
+            </span>
+            <h3>La Original</h3>
+            <p class="plato-precio"><span class="precio-cifra">13,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca para ver</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Ver La Original en detalle</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 BOCADILLOS ===== -->
+    <section class="carta-seccion alterna" id="bocadillos">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">04.</p>
+          <h2>Bocadillos</h2>
+          <p class="carta-frase">Tienen muy pocos modales</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="imagenes/web/bocadillo-jefecito.png" alt="Bocadillo El Jefecito" loading="lazy" decoding="async">
+            <h3>El Jefecito</h3>
+            <p class="plato-desc">Lechuga, tomate, solomillo de pollo rebozado, bacon crujiente y mayo kimchi.</p>
+            <p class="plato-precio"><span class="precio-cifra">10,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/texmex.png" alt="Bocadillo El Tex-Mex" loading="lazy" decoding="async">
+            <h3>El Tex-Mex <span class="badge badge-pica">Pica</span></h3>
+            <p class="plato-desc">Pechuga de pollo, verduras salteadas, guacamole y crumble de totopos.</p>
+            <p class="plato-precio"><span class="precio-cifra">10,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/bocadillo-serranito.png" alt="Bocadillo El Shiitake" loading="lazy" decoding="async">
+            <h3>El Shiitake</h3>
+            <p class="plato-desc">Lomo de dos colores, crema de shiitake y queso brie.</p>
+            <p class="plato-precio"><span class="precio-cifra">11,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/bocadillo-pollo.png" alt="Bocadillo El Caprisito" loading="lazy" decoding="async">
+            <h3>El Caprisito</h3>
+            <p class="plato-desc">Pollo, tomate seco, queso mozzarella fresca y pesto italiano.</p>
+            <p class="plato-precio"><span class="precio-cifra">12,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/jamon-i-brie.png" alt="Bocadillo El Briebérico" loading="lazy" decoding="async">
+            <h3>El Briebérico</h3>
+            <p class="plato-desc">Jamón ibérico, queso brie y una capa de mermelada de tomate.</p>
+            <p class="plato-precio"><span class="precio-cifra">13,50 €</span></p>
+          </article>
+          <article class="plato plato--sin-foto">
+            <h3>El Philly Cheese</h3>
+            <p class="plato-desc">Bistec de primera sobre una base de cebolla salteada y salsa de queso ahumado.</p>
+            <p class="plato-precio"><span class="precio-cifra">13,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 MILANESAS ===== -->
+    <section class="carta-seccion" id="milanesas">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">05.</p>
+          <h2>Milanesas</h2>
+          <p class="carta-frase">Las que no necesitan presentación</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="imagenes/web/cachopo-jamon.png" alt="Milanesa La Napolitana" loading="lazy" decoding="async">
+            <h3>La Napolitana</h3>
+            <p class="plato-desc">Milanesa de ternera marinada, salsa de tomate con albahaca, mozzarella fundida y jamón dulce.</p>
+            <p class="plato-precio"><span class="precio-cifra">15,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/milanesa-a-caballo.png" alt="Milanesa La A Caballo" loading="lazy" decoding="async">
+            <h3>La A Caballo</h3>
+            <p class="plato-desc">Milanesa de ternera marinada, salsa de tomate con albahaca, mozzarella fundida, 2 huevos fritos y bacon crujiente.</p>
+            <p class="plato-precio"><span class="precio-cifra">16,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/milanesa-carbonara.png" alt="Milanesa La de Cabra" loading="lazy" decoding="async">
+            <h3>La de Cabra</h3>
+            <p class="plato-desc">Milanesa de ternera marinada, salsa de tomate con albahaca, mozzarella fundida, queso de cabra, cebolla caramelizada y nueces.</p>
+            <p class="plato-precio"><span class="precio-cifra">16,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 06 ENSALADA ===== -->
+    <section class="carta-seccion alterna" id="ensalada">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">06.</p>
+          <h2>Ensalada</h2>
+          <p class="carta-frase">Cruje distinto, pero cruje</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="imagenes/web/ensalada.png" alt="Ensalada La César" loading="lazy" decoding="async">
+            <h3>La César</h3>
+            <p class="plato-desc">Lechuga, pollo rebozado, picatostes, salsa césar y pecorino en polvo.</p>
+            <p class="plato-precio"><span class="precio-cifra">11,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07 POSTRES ===== -->
+    <section class="carta-seccion" id="postres">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">07.</p>
+          <h2>Postres</h2>
+          <p class="carta-frase">Caseros y con final dulce</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="imagenes/web/carrot-cake.png" alt="Carrot Cake" loading="lazy" decoding="async">
+            <h3>Carrot Cake</h3>
+            <p class="plato-desc">Tarta de zanahoria con frosting de queso crema.</p>
+            <p class="plato-precio"><span class="precio-cifra">6,00 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/brownie.png" alt="Warm Brownie" loading="lazy" decoding="async">
+            <h3>Warm Brownie</h3>
+            <p class="plato-desc">Brownie de chocolate con helado de caramelo salado.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="imagenes/web/cheesecake.png" alt="Cheesecake" loading="lazy" decoding="async">
+            <h3>Cheesecake</h3>
+            <p class="plato-desc">¿Con qué topping te gusta más? Lotus, pistacho o Kinder Bueno.</p>
+            <p class="plato-precio"><span class="precio-cifra">6,50 €</span></p>
+          </article>
+          <article class="plato plato--sin-foto">
+            <h3>Torrija Caramelizada</h3>
+            <p class="plato-desc">Torrija caramelizada con canela y helado de vainilla.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 08 SALSAS ===== -->
+    <section class="carta-seccion alterna" id="salsas">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">08.</p>
+          <h2>Salsas</h2>
+          <p class="carta-frase">Lo difícil no es elegir burger. Es elegir salsa</p>
+        </div>
+        <div class="salsas-lista reveal">
+          <span class="salsa-chip">Mayo Kimchi</span>
+          <span class="salsa-chip">Mayo de lima</span>
+          <span class="salsa-chip">Mayo trufada</span>
+          <span class="salsa-chip">Jack Daniel's</span>
+          <span class="salsa-chip">Barbacoa</span>
+          <span class="salsa-chip">Emmy <span class="badge badge-pica">Pica</span></span>
+          <span class="salsa-chip">Chick</span>
+          <span class="salsa-chip">Cheddar</span>
+        </div>
+        <p class="salsas-nota reveal">Todas las salsas tienen un suplemento de <span class="precio-cifra">1 €</span></p>
+      </div>
+    </section>
+
+    <!-- ===== 09 EXTRAS ===== -->
+    <section class="carta-seccion" id="extras">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">09.</p>
+          <h2>Extras</h2>
+          <p class="carta-frase">Hazlo tuyo</p>
+        </div>
+        <div class="extras-lista reveal">
+          <div class="extras-fila">
+            <span>Queso monterrey · Cebolla caramelizada · Pepinillo</span>
+            <span class="precio-cifra">1 €</span>
+          </div>
+          <div class="extras-fila">
+            <span>Bacon · Huevo · Brie</span>
+            <span class="precio-cifra">1,50 €</span>
+          </div>
+          <div class="extras-fila">
+            <span>Queso de cabra · Queso cheddar ahumado · Pulled pork</span>
+            <span class="precio-cifra">2 €</span>
+          </div>
+        </div>
+        <div class="carta-alergenos reveal">
+          <strong>Alergias e intolerancias:</strong> si tienes alergias o necesidades especiales, consulta a nuestro personal. <strong>Tenemos opciones para celíacos.</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BANDA RESERVAR ===== -->
+    <section class="banda-reservar seccion">
+      <div class="contenedor banda-reservar-int">
+        <div>
+          <h2 class="reveal">¿Ya sabes cuál vas a pedir?</h2>
+          <p class="reveal" data-retraso="1">Pues reserva mesa antes de que se te adelanten. Aquí las burgers no esperan a nadie.</p>
+        </div>
+        <a class="btn btn-negro btn-grande reveal" data-retraso="2" href="reservar.html">Reservar mesa</a>
+      </div>
+    </section>
+
   </main>
 
   <!-- ================================================================
@@ -116,9 +519,29 @@
   </footer>
   <!-- ============================== /PIE ============================ -->
 
+  <!-- ===== MODAL DE BURGER (se rellena leyendo la tarjeta pulsada) ===== -->
+  <dialog class="burger-modal" data-burger-modal aria-labelledby="burger-modal-titulo">
+    <button class="burger-modal-cerrar" type="button" data-modal-cerrar aria-label="Cerrar">✕</button>
+    <div class="burger-modal-int">
+      <div class="burger-modal-foto">
+        <img src="imagenes/web/jack-dream-neon.jpg" alt="" data-modal-img>
+      </div>
+      <div class="burger-modal-texto">
+        <h3 id="burger-modal-titulo" data-modal-titulo>Burger</h3>
+        <p class="burger-modal-desc" data-modal-desc></p>
+        <p class="burger-modal-precio"><span class="precio-cifra" data-modal-precio></span></p>
+        <p class="burger-modal-nota">Incluye patatas fritas · Carne 100% vaca nacional madurada</p>
+        <div class="burger-modal-acciones">
+          <a class="btn btn-degradado" href="reservar.html">Reservar mesa</a>
+          <button class="btn btn-fantasma" type="button" data-modal-cerrar>Seguir mirando</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260730"></script>
+  <script defer src="main.js?v=20260731"></script>
 </body>
 </html>
