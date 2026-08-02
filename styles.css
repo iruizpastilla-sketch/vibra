@@ -848,6 +848,42 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
 .extras-fila span:first-child { color: var(--texto-2); }
 .extras-fila .precio-cifra { font-size: 1.2rem; white-space: nowrap; }
 
+/* =============================================================
+   16. Página de reservas (módulo CoverManager)
+   ============================================================= */
+.reserva-seccion { padding-top: 0; }
+.reserva-marco {
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 22px;
+  padding: clamp(0.8rem, 2vw, 1.4rem);
+  overflow: hidden;
+}
+.reserva-marco iframe {
+  display: block;
+  width: 100%;
+  min-height: 550px;
+  border: 0;
+  border-radius: 12px;
+  /* El modulo de CoverManager esta tematizado en oscuro: fondo a juego para cargar sin destello */
+  background: var(--negro-3);
+}
+.reserva-red {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--negro-2);
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  padding: 1.3rem 1.5rem;
+}
+.reserva-red p { color: var(--texto-2); max-width: 46ch; }
+.reserva-red strong { color: var(--texto); }
+.reserva-acciones { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
 /* Aviso de alérgenos */
 .carta-alergenos {
   margin-top: clamp(3rem, 6vw, 4.5rem);

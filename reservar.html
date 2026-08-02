@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
   <title>Reservar mesa — Vibra Street Food</title>
-  <meta name="description" content="Reserva tu mesa en Vibra Street Food, Lleida.">
+  <meta name="description" content="Reserva tu mesa en Vibra Street Food (Vibra by Tremola), Carrer Jaume II 77, Lleida. Reserva online al momento o llama al 973 208 727.">
   <meta name="theme-color" content="#000000">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260730">
+  <link rel="stylesheet" href="styles.css?v=20260731">
 </head>
 <body>
   <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
@@ -52,14 +52,37 @@
   <!-- ============================= /CABECERA ======================== -->
 
   <main id="contenido">
-    <section class="obra">
-      <div class="contenedor obra-int">
+
+    <!-- ===== CABECERA DE RESERVAS ===== -->
+    <section class="carta-hero">
+      <div class="contenedor">
         <p class="kicker">Reservas</p>
-        <h1>Esto va a llenarse.</h1>
-        <p class="obra-sub">El sistema de reservas está al caer. Mientras tanto, escríbenos por Instagram y te guardamos sitio.</p>
-        <div class="obra-acciones"><a class="btn btn-degradado" href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Escríbenos en Instagram</a><a class="btn btn-fantasma" href="index.html">Volver al inicio</a></div>
+        <h1>Esto va a <span class="txt-degradado">llenarse</span>.</h1>
+        <div class="carta-notas">
+          <span class="carta-nota-chip">⚡ Confirmación al momento</span>
+          <span class="carta-nota-chip">🍔 Todas las burgers incluyen patatas</span>
+        </div>
       </div>
     </section>
+
+    <!-- ===== MÓDULO DE RESERVAS (CoverManager) =====
+         Carga directa SOLO en esta página: quien entra aquí está pidiendo
+         el servicio de reserva. Ninguna otra página carga CoverManager. -->
+    <section class="reserva-seccion seccion">
+      <div class="contenedor">
+        <div class="reserva-marco reveal">
+          <script type="text/javascript" src="https://www.covermanager.com/js/iframeResizer/iframeResizer.min.js"></script><iframe id="restaurante-vibra" title="Reservas" src="https://www.covermanager.com/reservation/module_restaurant/restaurante-vibra/spanish" allow="payment" frameborder="0" height="550" width="100%" onload="iFrameResize();"></iframe>
+        </div>
+        <div class="reserva-red reveal" data-retraso="1">
+          <p><strong>¿Grupo grande, evento o algo especial?</strong> Mejor nos lo cuentas de viva voz y te lo montamos.</p>
+          <div class="reserva-acciones">
+            <a class="btn btn-degradado" href="tel:+34973208727">Llamar al 973 208 727</a>
+            <a class="btn btn-fantasma" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-vibra/spanish" target="_blank" rel="noopener">Abrir el módulo aparte</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ================================================================
@@ -120,6 +143,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260730"></script>
+  <script defer src="main.js?v=20260731"></script>
 </body>
 </html>
