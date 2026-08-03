@@ -53,34 +53,92 @@
     });
   }
 
-  // ---------- Glow reactivo del hero (firma visual) ----------
-  function initGlow() {
-    var hero = $("[data-hero]");
-    var glow = $(".hero-glow", hero);
-    if (!hero || !glow || !finePointer) return;
+  // ---------- Portada: carrusel con autoplay y control manual ----------
+  function initPortada() {
+    var portada = $("[data-portada]");
+    if (!portada) return;
+    var pista = $(".portada-pista", portada);
+    var slides = $$(".portada-slide", portada);
+    if (!pista || slides.length < 2) return;
 
-    var objetivoX = 70, objetivoY = 42;
-    var actualX = objetivoX, actualY = objetivoY;
-    var animando = false;
+    // Puntos generados según el número de slides (añadir slide = cero cambios aquí)
+    var caja = $(".portada-puntos", portada);
+    var puntos = [];
+    var actual = 0;
+    if (caja) {
+      slides.forEach(function (ignorado, i) {
+        var punto = document.createElement("button");
+        punto.type = "button";
+        punto.className = "portada-punto" + (i === 0 ? " is-activo" : "");
+        punto.setAttribute("aria-label", "Ir a la foto " + (i + 1) + " de " + slides.length);
+        punto.addEventListener("click", function () { manual(); irA(i); });
+        caja.appendChild(punto);
+        puntos.push(punto);
+      });
+    }
 
-    hero.addEventListener("pointermove", function (e) {
-      var caja = hero.getBoundingClientRect();
-      objetivoX = ((e.clientX - caja.left) / caja.width) * 100;
-      objetivoY = ((e.clientY - caja.top) / caja.height) * 100;
-      if (!animando) { animando = true; requestAnimationFrame(paso); }
+    var reloj = null;
+    // Sin puerta de prefers-reduced-motion: muchos Windows lo traen activado
+    // y el carrusel parecería muerto (guía de la skill). Las flechas y puntos
+    // visibles son el mecanismo de control/parada.
+    var autoOn = true;
+
+    // Índice real leído del scroll: inmune a estados obsoletos (bfcache, atrás/adelante)
+    function indiceVivo() {
+      return Math.round(pista.scrollLeft / pista.clientWidth);
+    }
+    function irA(i) {
+      actual = (i + slides.length) % slides.length;
+      pista.scrollTo({ left: actual * pista.clientWidth, behavior: "smooth" });
+    }
+    function marcar() {
+      puntos.forEach(function (p, j) { p.classList.toggle("is-activo", j === actual); });
+    }
+    function arranca() {
+      if (!autoOn || reloj) return;
+      reloj = setInterval(function () { irA(indiceVivo() + 1); }, 5000);
+    }
+    function para() {
+      if (reloj) { clearInterval(reloj); reloj = null; }
+    }
+    // Quien toma el control manual, lo conserva: el autoplay se apaga
+    function manual() { autoOn = false; para(); }
+
+    // Sincronizar punto activo con el scroll real (swipe incluido)
+    var pendiente = false;
+    pista.addEventListener("scroll", function () {
+      if (pendiente) return;
+      pendiente = true;
+      requestAnimationFrame(function () {
+        pendiente = false;
+        var i = Math.round(pista.scrollLeft / pista.clientWidth);
+        if (i !== actual && i >= 0 && i < slides.length) { actual = i; }
+        marcar();
+      });
+    }, { passive: true });
+
+    var prev = $("[data-portada-prev]", portada);
+    var next = $("[data-portada-next]", portada);
+    if (prev) prev.addEventListener("click", function () { manual(); irA(indiceVivo() - 1); });
+    if (next) next.addEventListener("click", function () { manual(); irA(indiceVivo() + 1); });
+
+    pista.addEventListener("pointerdown", manual, { passive: true });
+    // Solo el gesto HORIZONTAL sobre el carrusel es interacción con él;
+    // el scroll vertical de página que pasa por encima no lo apaga
+    pista.addEventListener("wheel", function (e) {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) manual();
+    }, { passive: true });
+
+    // Sin pausa por hover: con un carrusel a casi pantalla completa, el cursor
+    // siempre está encima y el autoplay no arrancaría nunca en escritorio
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { para(); } else { arranca(); }
+    });
+    window.addEventListener("resize", function () {
+      pista.scrollTo({ left: actual * pista.clientWidth });
     });
 
-    function paso() {
-      actualX += (objetivoX - actualX) * 0.08;
-      actualY += (objetivoY - actualY) * 0.08;
-      glow.style.setProperty("--mx", actualX.toFixed(2) + "%");
-      glow.style.setProperty("--my", actualY.toFixed(2) + "%");
-      if (Math.abs(objetivoX - actualX) + Math.abs(objetivoY - actualY) > 0.05) {
-        requestAnimationFrame(paso);
-      } else {
-        animando = false;
-      }
-    }
+    arranca();
   }
 
   // ---------- Apariciones al hacer scroll (con red de seguridad) ----------
@@ -106,36 +164,6 @@
     setTimeout(function () {
       $$(".reveal:not(.is-in)").forEach(function (el) { el.classList.add("is-in"); });
     }, 6000);
-  }
-
-  // ---------- Entrada del hero (GSAP) ----------
-  function initHeroIntro() {
-    var hero = $("[data-hero]");
-    if (!hero || !window.gsap) return;
-    var lineas = $$(".hero-titulo .linea > span", hero);
-    var tl = gsap.timeline({ defaults: { ease: "expo.out" } });
-    tl.from($(".kicker", hero), { y: 18, opacity: 0, duration: 0.7 })
-      .from(lineas, { yPercent: 112, duration: 1.05, stagger: 0.1 }, 0.1)
-      .from($(".hero-sub", hero), { y: 22, opacity: 0, duration: 0.8 }, 0.55)
-      .from($(".hero-acciones", hero), { y: 22, opacity: 0, duration: 0.8 }, 0.68)
-      .from($(".hero-burger", hero), { y: 40, opacity: 0, scale: 0.94, duration: 1.1 }, 0.35)
-      .from($(".hero-pista", hero), { opacity: 0, duration: 0.9 }, 1.0);
-  }
-
-  // ---------- Parallax suave de la burger ----------
-  function initParallax() {
-    var burger = $(".hero-burger");
-    if (!burger || !window.gsap || !window.ScrollTrigger) return;
-    gsap.to(burger, {
-      yPercent: -13,
-      ease: "none",
-      scrollTrigger: {
-        trigger: "[data-hero]",
-        start: "top top",
-        end: "bottom top",
-        scrub: 0.6
-      }
-    });
   }
 
   // ---------- Carta: chip activa según la sección visible ----------
@@ -265,21 +293,13 @@
     safe(initCabecera, "initCabecera");
     safe(initMenuMovil, "initMenuMovil");
     safe(initNavActiva, "initNavActiva");
-    safe(initGlow, "initGlow");
+    safe(initPortada, "initPortada");
     safe(initReveals, "initReveals");
     safe(initCartaNav, "initCartaNav");
     safe(initBurgerModal, "initBurgerModal");
     safe(initMapa, "initMapa");
     safe(initAnclaCarga, "initAnclaCarga");
     safe(initAnio, "initAnio");
-
-    if (window.gsap && window.ScrollTrigger) {
-      try { gsap.registerPlugin(ScrollTrigger); } catch (_) {}
-      safe(initHeroIntro, "initHeroIntro");
-      safe(initParallax, "initParallax");
-    } else if (window.gsap) {
-      safe(initHeroIntro, "initHeroIntro");
-    }
 
     document.documentElement.classList.add("is-ready");
   }

@@ -334,108 +334,134 @@ body.sin-scroll { overflow: hidden; }
 }
 
 /* =============================================================
-   7. Hero
+   7. Portada — carrusel de fotos
    ============================================================= */
-.hero {
+.portada {
   position: relative;
-  min-height: 100svh;
+  height: 86svh;
+  min-height: 560px;
+  overflow: hidden;
+  background: var(--negro);
+}
+.portada-pista {
   display: flex;
-  align-items: center;
-  overflow: clip;
-  padding-top: var(--nav-h);
+  height: 100%;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
-
-/* Glow reactivo (firma visual). --mx / --my las mueve main.js */
-.hero-glow {
-  position: absolute; inset: -10%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle 34vw at var(--mx, 70%) var(--my, 42%), rgba(243, 143, 28, 0.34), transparent 62%),
-    radial-gradient(circle 44vw at calc(var(--mx, 70%) + 10%) calc(var(--my, 42%) + 14%), rgba(232, 48, 133, 0.30), transparent 62%);
-  filter: blur(70px) saturate(135%);
-}
-/* En pantallas táctiles el glow respira solo */
-@media (hover: none) {
-  .hero-glow { animation: glow-deriva 16s var(--ease-soft) infinite alternate; }
-}
-@keyframes glow-deriva {
-  from { transform: translate(-4%, -3%) scale(1); }
-  to   { transform: translate(5%, 6%) scale(1.12); }
-}
-
-/* Textura oficial de doodles, casi invisible */
-.hero::after {
-  content: "";
-  position: absolute; inset: 0;
-  z-index: 0;
-  background: url("imagenes/web/patron.png") repeat;
-  background-size: 150px;
-  opacity: 0.02;
-  pointer-events: none;
-}
-
-.hero-int {
+.portada-pista::-webkit-scrollbar { display: none; }
+.portada-slide {
   position: relative;
-  z-index: 1;
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: block;
+}
+.portada-slide img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 3.5rem var(--pad) 4.5rem;
-  display: grid;
-  gap: 2.5rem;
-  align-items: center;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--foco, center);
 }
-.hero-titulo {
-  margin-top: 1.1rem;
-  font-size: clamp(4.2rem, 15.5vw, 10.5rem);
+.portada-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.45) 0%, transparent 32%, transparent 52%, rgba(0, 0, 0, 0.8) 100%),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent 55%);
+  pointer-events: none;
 }
-.hero-titulo .linea { display: block; overflow: hidden; }
-.hero-titulo .linea > span { display: inline-block; }
-.hero-sub {
-  margin-top: 1.4rem;
-  max-width: 46ch;
-  font-size: clamp(1.02rem, 1.6vw, 1.2rem);
-  color: var(--texto-2);
-}
-.hero-acciones {
-  margin-top: 2.2rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-.hero-burger { position: relative; }
-.hero-burger img {
-  width: min(76vw, 420px);
-  margin: 0 auto;
-  filter: drop-shadow(0 34px 70px rgba(232, 48, 133, 0.36)) drop-shadow(0 12px 30px rgba(243, 143, 28, 0.22));
-  animation: burger-flota 5.5s ease-in-out infinite alternate;
-  will-change: transform;
-}
-@keyframes burger-flota {
-  from { transform: translateY(-8px) rotate(-2deg); }
-  to   { transform: translateY(10px) rotate(1.5deg); }
-}
-.hero-pista {
+.portada-slide-texto {
   position: absolute;
   left: 50%;
-  bottom: 1.4rem;
+  bottom: 0;
   transform: translateX(-50%);
-  z-index: 1;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.28em;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--max);
+  padding: 0 var(--pad) clamp(4.4rem, 9vh, 5.8rem);
+}
+.portada-slide-texto h2 {
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  max-width: 15ch;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.65);
+}
+.portada-slide-texto .btn { margin-top: 1.1rem; }
+
+/* Claim fijo de marca sobre el carrusel */
+.portada-marca {
+  position: absolute;
+  top: calc(var(--nav-h) + clamp(1.2rem, 4vh, 2.6rem));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 100%;
+  max-width: var(--max);
+  padding-inline: var(--pad);
+  pointer-events: none;
+}
+.portada-claim {
+  margin-top: 0.5rem;
+  font-family: var(--display);
+  font-size: clamp(2rem, 4.8vw, 3.6rem);
   text-transform: uppercase;
-  color: var(--texto-3);
-  white-space: nowrap;
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 26px rgba(0, 0, 0, 0.7);
 }
 
-@media (min-width: 960px) {
-  .hero-int {
-    grid-template-columns: 7fr 5fr;
-    gap: 2rem;
-  }
-  .hero-burger img { width: min(38vw, 520px); }
+/* Controles */
+.portada-controles {
+  position: absolute;
+  right: var(--pad);
+  bottom: 1.5rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.6rem;
+}
+.portada-flecha {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--blanco);
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+.portada-flecha:hover { border-color: var(--rosa); background: rgba(0, 0, 0, 0.7); }
+.portada-puntos {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.9rem;
+  z-index: 3;
+  display: flex;
+  gap: 0.5rem;
+}
+.portada-punto {
+  width: 26px;
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.32);
+  transition: background-color 0.3s, width 0.3s;
+  padding: 0;
+}
+.portada-punto.is-activo { background: var(--degradado); width: 42px; }
+
+@media (max-width: 719px) {
+  .portada { height: 74svh; min-height: 500px; }
+  .portada-flecha { width: 40px; height: 40px; }
+  .portada-puntos { left: var(--pad); transform: none; }
 }
 
 /* =============================================================
@@ -666,12 +692,10 @@ html.js .reveal[data-retraso="2"] { transition-delay: 0.16s; }
 html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
 
 /* =============================================================
-   12. Movimiento reducido — solo efectos intrusivos
+   12. Movimiento reducido — sin reglas: los micro-efectos no se
+   bloquean (Windows trae reduce activado en muchos equipos) y el
+   carrusel tiene controles manuales visibles como mecanismo de parada
    ============================================================= */
-@media (prefers-reduced-motion: reduce) {
-  .hero-glow { animation: none; }
-  .hero-burger img { animation: none; }
-}
 
 /* =============================================================
    13. Página de la carta
@@ -847,6 +871,64 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
 }
 .extras-fila span:first-child { color: var(--texto-2); }
 .extras-fila .precio-cifra { font-size: 1.2rem; white-space: nowrap; }
+
+/* =============================================================
+   17. La banda sonora (Spotify en dos pasos)
+   ============================================================= */
+.musica { background: var(--negro-2); border-block: 1px solid var(--linea); }
+.musica-nota { margin-top: 0.8rem; color: var(--texto-2); max-width: 52ch; }
+.musica-grid { margin-top: 2.2rem; display: grid; gap: 1.25rem; }
+@media (min-width: 860px) { .musica-grid { grid-template-columns: 1fr 1fr; } }
+.musica-tarjeta {
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  padding: 1.4rem 1.4rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.musica-tarjeta h3 {
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.musica-titulo-onda { height: 24px; width: auto; }
+.musica-marco {
+  position: relative;
+  min-height: 352px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--negro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.musica-marco iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.musica-pie-tarjeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+.musica-pie-tarjeta a { font-weight: 600; border-bottom: 1px solid var(--rosa); transition: color 0.3s; }
+.musica-pie-tarjeta a:hover { color: var(--rosa); }
+.musica-estado {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--texto-3);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
 
 /* =============================================================
    16. Página de reservas (módulo CoverManager)

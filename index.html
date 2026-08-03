@@ -17,7 +17,7 @@
 
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="preload" as="image" href="imagenes/web/jack-dream.png" fetchpriority="high">
+  <link rel="preload" as="image" href="imagenes/web/jack-dream-hero.jpg" fetchpriority="high">
 
   <link rel="stylesheet" href="styles.css?v=20260730">
 </head>
@@ -61,27 +61,44 @@
 
   <main id="contenido">
 
-    <!-- ===== HERO ===== -->
-    <section class="hero" data-hero>
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-int">
-        <div>
-          <p class="kicker">Street food · Lleida</p>
-          <h1 class="hero-titulo">
-            <span class="linea"><span>Siente</span></span>
-            <span class="linea"><span class="txt-degradado">la Vibra</span></span>
-          </h1>
-          <p class="hero-sub">El motivo por el que has venido son las burgers. Luego te quedas por todo lo demás.</p>
-          <div class="hero-acciones">
-            <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar mesa</a>
-            <a class="btn btn-fantasma btn-grande" href="carta.html">Ver la carta</a>
-          </div>
-        </div>
-        <div class="hero-burger">
-          <img src="imagenes/web/jack-dream.png" alt="Burger La Jack Dream de Vibra" fetchpriority="high">
-        </div>
+    <!-- ===== PORTADA: CARRUSEL =====
+         Para añadir un slide: copia un bloque <a class="portada-slide"> con
+         su foto de 1920px en imagenes/web/, su título y su botón. Los puntos
+         y las flechas se adaptan solos. Si la foto necesita otro encuadre en
+         móvil, ajusta su style="--foco: X% Y%;" (por defecto, centrado). -->
+    <section class="portada" data-portada aria-roledescription="carrusel" aria-label="Lo mejor de Vibra">
+      <div class="portada-pista">
+        <a class="portada-slide" href="carta.html" aria-label="Ver la carta">
+          <img src="imagenes/web/jack-dream-hero.jpg" alt="Burger La Jack Dream con los neones del local" fetchpriority="high">
+          <span class="portada-slide-texto">
+            <h2>El motivo por el que has venido.</h2>
+            <span class="btn btn-degradado">Ver la carta</span>
+          </span>
+        </a>
+        <a class="portada-slide" href="reservar.html" aria-label="Reservar mesa">
+          <img src="imagenes/web/terraza-hero.jpg" alt="La terraza de Vibra llena de gente" loading="lazy">
+          <span class="portada-slide-texto">
+            <h2>La terraza ya está vibrando.</h2>
+            <span class="btn btn-degradado">Reservar mesa</span>
+          </span>
+        </a>
+        <a class="portada-slide" href="nosotros.html" aria-label="Conócenos" style="--foco: 42% 45%;">
+          <img src="imagenes/web/cartel-hero.jpg" alt="El cartel iluminado de Vibra by Tremola" loading="lazy">
+          <span class="portada-slide-texto">
+            <h2>Esto es Vibra.</h2>
+            <span class="btn btn-degradado">Conócenos</span>
+          </span>
+        </a>
       </div>
-      <p class="hero-pista" aria-hidden="true">Baja, que hay más ↓</p>
+      <div class="portada-marca">
+        <p class="kicker">Street food · Lleida</p>
+        <h1 class="portada-claim">Siente <span class="txt-degradado">la Vibra</span></h1>
+      </div>
+      <div class="portada-puntos"></div>
+      <div class="portada-controles">
+        <button class="portada-flecha" type="button" data-portada-prev aria-label="Foto anterior">←</button>
+        <button class="portada-flecha" type="button" data-portada-next aria-label="Foto siguiente">→</button>
+      </div>
     </section>
 
     <!-- ===== MANIFIESTO ===== -->
@@ -126,6 +143,35 @@
             <h3>Postres</h3>
             <p>El final feliz que no habías pedido pero necesitas.</p>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LA BANDA SONORA (Spotify en dos pasos) ===== -->
+    <section class="musica seccion" id="musica">
+      <div class="contenedor">
+        <p class="kicker reveal">La banda sonora</p>
+        <h2 class="reveal" data-retraso="1" style="font-size: clamp(2.2rem, 5.4vw, 3.8rem); margin-top: 0.4rem;">El logo es una onda por algo.</h2>
+        <p class="musica-nota reveal" data-retraso="2">Estas son las playlists que suenan en el local. Dale al play y que la vibra te siga a casa.</p>
+        <div class="musica-grid">
+          <article class="musica-tarjeta reveal">
+            <h3><img class="musica-titulo-onda" src="imagenes/onda-naranja.png" alt="" aria-hidden="true"> Vibra Rumbeo</h3>
+            <div class="musica-marco">
+              <iframe src="https://open.spotify.com/embed/playlist/6oaw4KtT0CgVAW5fAzOBH1?theme=0" title="Reproductor de Spotify: Vibra Rumbeo" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            </div>
+            <div class="musica-pie-tarjeta">
+              <a href="https://open.spotify.com/playlist/6oaw4KtT0CgVAW5fAzOBH1" target="_blank" rel="noopener">Abrir en Spotify</a>
+            </div>
+          </article>
+          <article class="musica-tarjeta reveal" data-retraso="1">
+            <h3><img class="musica-titulo-onda" src="imagenes/onda-rosa.png" alt="" aria-hidden="true"> Lista Vibra</h3>
+            <div class="musica-marco">
+              <iframe src="https://open.spotify.com/embed/playlist/3stxpFi4hbrxezvpgwJnvX?theme=0" title="Reproductor de Spotify: Lista Vibra" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+            </div>
+            <div class="musica-pie-tarjeta">
+              <a href="https://open.spotify.com/playlist/3stxpFi4hbrxezvpgwJnvX" target="_blank" rel="noopener">Abrir en Spotify</a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -207,6 +253,7 @@
             <li><a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram</a></li>
             <li><a href="reservar.html">Reservar mesa</a></li>
             <li><a href="carta.html">La carta</a></li>
+            <li><a href="index.html#musica">La banda sonora</a></li>
           </ul>
         </div>
       </div>
