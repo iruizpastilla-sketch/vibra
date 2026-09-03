@@ -931,6 +931,53 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
 }
 
 /* =============================================================
+   18. Reseñas de Google (carril horizontal, sin autoplay)
+   ============================================================= */
+.resenas-carril {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+.resenas-carril::-webkit-scrollbar { display: none; }
+.resena {
+  flex: 0 0 min(360px, 84vw);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  padding: 1.5rem 1.5rem 1.4rem;
+}
+.resena-estrellas {
+  color: var(--amarillo);
+  font-size: 1.05rem;
+  letter-spacing: 0.14em;
+}
+.resena-estrellas .apagada { color: var(--texto-3); }
+.resena p { color: var(--texto-2); font-size: 0.95rem; line-height: 1.6; }
+.resena-pie {
+  margin-top: auto;
+  padding-top: 0.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.45rem;
+}
+.resena-pie strong { color: var(--texto); font-weight: 600; }
+.resena-pie span { color: var(--texto-3); font-size: 0.8rem; }
+.resenas-controles {
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+/* =============================================================
    16. Página de reservas (módulo CoverManager)
    ============================================================= */
 .reserva-seccion { padding-top: 0; }

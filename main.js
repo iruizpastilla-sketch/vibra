@@ -282,6 +282,20 @@
     });
   }
 
+  // ---------- Reseñas: flechas del carril (sin autoplay: el texto se lee) ----------
+  function initResenas() {
+    var carril = $("[data-resenas]");
+    if (!carril) return;
+    var paso = function () {
+      var tarjeta = carril.querySelector(".resena");
+      return tarjeta ? tarjeta.getBoundingClientRect().width + 20 : 380;
+    };
+    var prev = $("[data-resenas-prev]");
+    var next = $("[data-resenas-next]");
+    if (prev) prev.addEventListener("click", function () { carril.scrollBy({ left: -paso(), behavior: "smooth" }); });
+    if (next) next.addEventListener("click", function () { carril.scrollBy({ left: paso(), behavior: "smooth" }); });
+  }
+
   // ---------- Año del pie ----------
   function initAnio() {
     var el = $("[data-anio]");
@@ -298,6 +312,7 @@
     safe(initCartaNav, "initCartaNav");
     safe(initBurgerModal, "initBurgerModal");
     safe(initMapa, "initMapa");
+    safe(initResenas, "initResenas");
     safe(initAnclaCarga, "initAnclaCarga");
     safe(initAnio, "initAnio");
 
