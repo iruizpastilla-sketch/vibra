@@ -38,7 +38,7 @@
       menu.classList.toggle("is-abierto", !abierto);
       document.body.classList.toggle("sin-scroll", !abierto);
     });
-    $$("a", menu).forEach(function (a) { a.addEventListener("click", cerrar); });
+    $$("a, button", menu).forEach(function (a) { a.addEventListener("click", cerrar); });
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") cerrar();
     });
@@ -249,23 +249,54 @@
     });
   }
 
-  // ---------- Mapa en dos pasos: Google solo carga cuando el visitante lo pide ----------
-  function initMapa() {
-    var marco = $("[data-mapa]");
-    if (!marco) return;
-    var boton = $("[data-mapa-cargar]", marco);
-    var src = marco.getAttribute("data-mapa-src");
-    if (!boton || !src) return;
-    boton.addEventListener("click", function () {
-      var iframe = document.createElement("iframe");
-      iframe.src = src;
-      iframe.title = "Mapa de Google Maps con la ubicación de Vibra Street Food";
-      iframe.setAttribute("allowfullscreen", "");
-      iframe.referrerPolicy = "no-referrer-when-downgrade";
-      iframe.loading = "lazy";
-      marco.innerHTML = "";
-      marco.appendChild(iframe);
+  // ---------- Embeds en dos pasos: Google Maps y Spotify solo cargan cuando el visitante lo pide ----------
+  function initEmbeds() {
+    $$("[data-embed]").forEach(function (marco) {
+      var boton = $("[data-embed-cargar]", marco);
+      var src = marco.getAttribute("data-embed-src");
+      if (!boton || !src) return;
+      boton.addEventListener("click", function () {
+        var iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.title = marco.getAttribute("data-embed-title") || "";
+        var allow = marco.getAttribute("data-embed-allow");
+        if (allow) iframe.setAttribute("allow", allow);
+        if (marco.hasAttribute("data-embed-fullscreen")) iframe.setAttribute("allowfullscreen", "");
+        iframe.referrerPolicy = "no-referrer-when-downgrade";
+        iframe.loading = "lazy";
+        marco.innerHTML = "";
+        marco.appendChild(iframe);
+        marco.classList.add("is-cargado");
+      });
     });
+  }
+
+  // ---------- Pedir a domicilio: un modal, varios disparadores (cabecera, menú, barra) ----------
+  function initPedir() {
+    var modal = $("[data-pedir-modal]");
+    if (!modal || typeof modal.showModal !== "function") return;
+    var abrir = function (e) {
+      e.preventDefault();
+      modal.showModal();
+      document.body.classList.add("sin-scroll");
+    };
+    var cerrar = function () {
+      if (modal.open) modal.close();
+      document.body.classList.remove("sin-scroll");
+    };
+    $$("[data-pedir-abrir]").forEach(function (b) { b.addEventListener("click", abrir); });
+    $$("[data-pedir-cerrar]", modal).forEach(function (b) { b.addEventListener("click", cerrar); });
+    modal.addEventListener("click", function (e) { if (e.target === modal) cerrar(); });
+    modal.addEventListener("close", function () { document.body.classList.remove("sin-scroll"); });
+  }
+
+  // ---------- Barra de acciones móvil: aparece cuando la portada ya ha pasado ----------
+  function initBarraAcciones() {
+    var barra = $("[data-barra-acciones]");
+    if (!barra) return;
+    var marcar = function () { barra.classList.toggle("is-visible", window.scrollY > 360); };
+    marcar();
+    window.addEventListener("scroll", marcar, { passive: true });
   }
 
   // ---------- Re-salto al ancla tras cargar (las imágenes desplazan el destino) ----------
@@ -311,7 +342,9 @@
     safe(initReveals, "initReveals");
     safe(initCartaNav, "initCartaNav");
     safe(initBurgerModal, "initBurgerModal");
-    safe(initMapa, "initMapa");
+    safe(initEmbeds, "initEmbeds");
+    safe(initPedir, "initPedir");
+    safe(initBarraAcciones, "initBarraAcciones");
     safe(initResenas, "initResenas");
     safe(initAnclaCarga, "initAnclaCarga");
     safe(initAnio, "initAnio");
