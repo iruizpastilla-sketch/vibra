@@ -71,6 +71,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} !=on [OR]
-  RewriteCond %{HTTP_HOST} ^www.vibrastreetfood.com$ [NC]
+  RewriteCond %{HTTP_HOST} ^www\.vibrastreetfood\.com$ [NC]
   RewriteRule ^(.*)$ https://vibrastreetfood.com/$1 [R=301,L]
 </IfModule>
