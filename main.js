@@ -429,6 +429,26 @@
     if (next) next.addEventListener("click", function () { carril.scrollBy({ left: paso(), behavior: "smooth" }); });
   }
 
+  // ---------- Analítica sin cookies: nombres de evento para Umami ----------
+  // Umami lee data-umami-event en el momento del clic, así que basta con marcar los elementos.
+  function initAnalitica() {
+    var marcar = function (sel, evento, extra) {
+      $$(sel).forEach(function (el) {
+        if (el.hasAttribute("data-umami-event")) return;
+        el.setAttribute("data-umami-event", evento);
+        if (extra) el.setAttribute("data-umami-event-" + extra.nombre, extra.valor(el));
+      });
+    };
+    marcar('a[href$="reservar.html"]', "reservar");
+    marcar("[data-pedir-abrir]", "pedir-abrir");
+    marcar(".pedir-opcion", "pedir-app", { nombre: "app", valor: function (el) { return /glovo/i.test(el.href) ? "glovo" : "uber"; } });
+    marcar('a[href*="squareup.com"]', "puntos");
+    marcar('a[href^="tel:"]', "llamar");
+    marcar('a[href*="instagram.com"]', "instagram");
+    marcar('a[href*="open.spotify.com"]', "spotify");
+    marcar("[data-embed-cargar]", "embed-cargar");
+  }
+
   // ---------- Año del pie ----------
   function initAnio() {
     var el = $("[data-anio]");
@@ -454,6 +474,7 @@
     safe(initBarraAcciones, "initBarraAcciones");
     safe(initResenas, "initResenas");
     safe(initAnclaCarga, "initAnclaCarga");
+    safe(initAnalitica, "initAnalitica");
     safe(initAnio, "initAnio");
 
     document.documentElement.classList.add("is-ready");
