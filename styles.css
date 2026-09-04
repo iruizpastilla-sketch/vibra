@@ -1977,3 +1977,30 @@ body::after {
 .club-tarjeta-texto { margin-top: 0.3rem; font-family: var(--display); text-transform: uppercase; font-size: clamp(1.1rem, 2.6vw, 1.5rem); line-height: 1; }
 .club-tarjeta-pie { margin-top: 1rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.7; }
 @media (hover: hover) { .club:hover .club-tarjeta { transform: rotate(-2deg) translateY(-6px); } }
+
+/* =============================================================
+   24. Paginas legales (aviso legal, privacidad, cookies)
+   ============================================================= */
+.legal { max-width: 52rem; padding-block: clamp(1rem, 3vw, 2rem) clamp(4rem, 8vw, 6rem); }
+.legal .actualizado { color: var(--texto-3); font-size: 0.88rem; margin-bottom: 2.2rem; }
+.legal h2 {
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  margin: 2.6em 0 0.7em;
+  padding-top: 1.1em;
+  border-top: 1px solid var(--linea);
+}
+.legal h3 { font-size: 1.15rem; letter-spacing: 0.04em; margin: 1.8em 0 0.5em; }
+.legal p, .legal li { color: var(--texto-2); margin: 0 0 1em; }
+.legal strong { color: var(--texto); font-weight: 600; }
+.legal ul, .legal ol { padding-left: 1.3em; }
+.legal ul.datos { list-style: none; padding: 0; }
+.legal ul.datos li { margin-bottom: 0.45em; }
+.legal a { color: var(--texto); border-bottom: 1px solid var(--rosa); transition: color 0.3s; }
+.legal a:hover { color: var(--rosa); }
+.legal .tabla-scroll { overflow-x: auto; margin: 0 0 1.5em; }
+.legal table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.legal th, .legal td { border: 1px solid var(--linea); padding: 0.6em 0.75em; text-align: left; vertical-align: top; color: var(--texto-2); }
+.legal th { background: var(--negro-3); color: var(--texto); font-weight: 600; }
+.legal mark.pendiente { background: var(--amarillo); color: var(--negro); padding: 0.1em 0.4em; border-radius: 4px; font-weight: 600; }
+.legal-pie { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--linea); font-size: 0.88rem; color: var(--texto-3); }
+.legal-pie a { display: inline-block; margin: 0 1.2em 0.4em 0; }

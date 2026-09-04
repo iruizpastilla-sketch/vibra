@@ -67,9 +67,10 @@
   AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml font/woff font/woff2
 </IfModule>
 
-# ----- Redireccion HTTPS (descomentar cuando el dominio tenga SSL) -----
-# <IfModule mod_rewrite.c>
-#   RewriteEngine On
-#   RewriteCond %{HTTPS} !=on
-#   RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
-# </IfModule>
+# ----- Redireccion a HTTPS y a vibrastreetfood.com sin www -----
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on [OR]
+  RewriteCond %{HTTP_HOST} ^www.vibrastreetfood.com$ [NC]
+  RewriteRule ^(.*)$ https://vibrastreetfood.com/$1 [R=301,L]
+</IfModule>
