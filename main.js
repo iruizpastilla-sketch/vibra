@@ -5,6 +5,9 @@
   var $ = function (sel, scope) { return (scope || document).querySelector(sel); };
   var $$ = function (sel, scope) { return Array.prototype.slice.call((scope || document).querySelectorAll(sel)); };
   var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  // GSAP y ScrollTrigger son opcionales: si no cargan, la web funciona igual, sin los efectos de scroll
+  var gsapOk = !!(window.gsap && window.ScrollTrigger);
+  if (gsapOk) { window.gsap.registerPlugin(window.ScrollTrigger); }
   function safe(fn, nombre) {
     try { fn(); } catch (e) { console.warn("[" + nombre + "]", e); }
   }
@@ -53,92 +56,175 @@
     });
   }
 
-  // ---------- Portada: carrusel con autoplay y control manual ----------
-  function initPortada() {
-    var portada = $("[data-portada]");
-    if (!portada) return;
-    var pista = $(".portada-pista", portada);
-    var slides = $$(".portada-slide", portada);
-    if (!pista || slides.length < 2) return;
+  // ---------- Vídeo opcional: si el archivo existe se reproduce; si no, queda la foto ----------
+  // <div data-media-slot data-video-h="..." data-video-v="..."><img ...></div>
+  // En vertical (móvil) se prefiere data-video-v. Sin vídeo -> clase "sin-video" (Ken Burns en la portada).
+  function initMediaSlots() {
+    var vertical = window.matchMedia("(orientation: portrait)").matches;
+    $$("[data-media-slot]").forEach(function (slot) {
+      var h = slot.getAttribute("data-video-h");
+      var v = slot.getAttribute("data-video-v");
+      var src = (vertical && v) ? v : (h || v);
+      if (!src) { slot.classList.add("sin-video"); return; }
 
-    // Puntos generados según el número de slides (añadir slide = cero cambios aquí)
-    var caja = $(".portada-puntos", portada);
-    var puntos = [];
-    var actual = 0;
-    if (caja) {
-      slides.forEach(function (ignorado, i) {
-        var punto = document.createElement("button");
-        punto.type = "button";
-        punto.className = "portada-punto" + (i === 0 ? " is-activo" : "");
-        punto.setAttribute("aria-label", "Ir a la foto " + (i + 1) + " de " + slides.length);
-        punto.addEventListener("click", function () { manual(); irA(i); });
-        caja.appendChild(punto);
-        puntos.push(punto);
+      var video = document.createElement("video");
+      video.muted = true;
+      video.loop = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      video.preload = "metadata";
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("aria-hidden", "true");
+      var foto = $("img", slot);
+      if (foto) video.poster = foto.currentSrc || foto.src;
+
+      video.addEventListener("error", function () {
+        slot.classList.add("sin-video");
+        if (video.parentNode) video.parentNode.removeChild(video);
       });
-    }
+      video.addEventListener("playing", function () { slot.classList.add("con-video"); });
+      video.src = src;
+      slot.appendChild(video);
+      var intento = video.play();
+      if (intento && intento.catch) intento.catch(function () { /* autoplay bloqueado: se queda la foto */ });
+    });
+  }
 
-    var reloj = null;
-    // Sin puerta de prefers-reduced-motion: muchos Windows lo traen activado
-    // y el carrusel parecería muerto (guía de la skill). Las flechas y puntos
-    // visibles son el mecanismo de control/parada.
-    var autoOn = true;
+  // ---------- "Abierto ahora / Hoy abrimos a las..." a partir de los tramos de manifest.js ----------
+  function initHorarioHoy() {
+    var el = $("[data-horario-hoy]");
+    var marca = window.__BRAND__;
+    if (!el || !marca || !marca.horarios) return;
 
-    // Índice real leído del scroll: inmune a estados obsoletos (bfcache, atrás/adelante)
-    function indiceVivo() {
-      return Math.round(pista.scrollLeft / pista.clientWidth);
-    }
-    function irA(i) {
-      actual = (i + slides.length) % slides.length;
-      pista.scrollTo({ left: actual * pista.clientWidth, behavior: "smooth" });
-    }
-    function marcar() {
-      puntos.forEach(function (p, j) { p.classList.toggle("is-activo", j === actual); });
-    }
-    function arranca() {
-      if (!autoOn || reloj) return;
-      reloj = setInterval(function () { irA(indiceVivo() + 1); }, 5000);
-    }
-    function para() {
-      if (reloj) { clearInterval(reloj); reloj = null; }
-    }
-    // Quien toma el control manual, lo conserva: el autoplay se apaga
-    function manual() { autoOn = false; para(); }
+    var ahora = new Date();
+    var dos = function (n) { return (n < 10 ? "0" : "") + n; };
+    var mmdd = dos(ahora.getMonth() + 1) + "-" + dos(ahora.getDate());
+    var verano = marca.horarios.verano;
+    var enVerano = verano && verano.fechas && mmdd >= verano.fechas.desde && mmdd <= verano.fechas.hasta;
+    var temporada = enVerano ? verano : marca.horarios.normal;
+    var tramos = (temporada && temporada.tramos) || [];
 
-    // Sincronizar punto activo con el scroll real (swipe incluido)
-    var pendiente = false;
-    pista.addEventListener("scroll", function () {
-      if (pendiente) return;
-      pendiente = true;
-      requestAnimationFrame(function () {
-        pendiente = false;
-        var i = Math.round(pista.scrollLeft / pista.clientWidth);
-        if (i !== actual && i >= 0 && i < slides.length) { actual = i; }
-        marcar();
+    var tramoDe = function (dia) {
+      return tramos.filter(function (t) { return t.dias.indexOf(dia) !== -1; })[0];
+    };
+    var aMinutos = function (hhmm) {
+      var p = hhmm.split(":");
+      return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+    };
+
+    var hoy = tramoDe(ahora.getDay());
+    var minutos = ahora.getHours() * 60 + ahora.getMinutes();
+    var texto = "";
+    var abierto = false;
+
+    if (!hoy) {
+      var manana = tramoDe((ahora.getDay() + 1) % 7);
+      texto = manana ? "Hoy cerrado · Mañana abrimos a las " + manana.abre : "Hoy cerrado";
+    } else if (minutos < aMinutos(hoy.abre)) {
+      texto = "Hoy abrimos a las " + hoy.abre + " · hasta las " + hoy.cierra;
+    } else {
+      abierto = true;
+      texto = "Abierto ahora · hasta las " + hoy.cierra;
+    }
+    el.textContent = texto;
+    el.classList.toggle("is-abierto", abierto);
+    el.hidden = false;
+  }
+
+  // ---------- Manifiesto: cada palabra se enciende al hacer scroll ----------
+  function initManifiesto() {
+    var el = $("[data-palabras]");
+    if (!el) return;
+
+    // Envolver cada palabra en un span sin romper los spans de degradado existentes
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodos = [];
+    while (walker.nextNode()) nodos.push(walker.currentNode);
+    nodos.forEach(function (nodo) {
+      if (!nodo.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      nodo.nodeValue.split(/(\s+)/).forEach(function (trozo) {
+        if (!trozo) return;
+        if (/^\s+$/.test(trozo)) { frag.appendChild(document.createTextNode(" ")); return; }
+        var s = document.createElement("span");
+        s.className = "palabra";
+        s.textContent = trozo;
+        frag.appendChild(s);
       });
-    }, { passive: true });
-
-    var prev = $("[data-portada-prev]", portada);
-    var next = $("[data-portada-next]", portada);
-    if (prev) prev.addEventListener("click", function () { manual(); irA(indiceVivo() - 1); });
-    if (next) next.addEventListener("click", function () { manual(); irA(indiceVivo() + 1); });
-
-    pista.addEventListener("pointerdown", manual, { passive: true });
-    // Solo el gesto HORIZONTAL sobre el carrusel es interacción con él;
-    // el scroll vertical de página que pasa por encima no lo apaga
-    pista.addEventListener("wheel", function (e) {
-      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) manual();
-    }, { passive: true });
-
-    // Sin pausa por hover: con un carrusel a casi pantalla completa, el cursor
-    // siempre está encima y el autoplay no arrancaría nunca en escritorio
-    document.addEventListener("visibilitychange", function () {
-      if (document.hidden) { para(); } else { arranca(); }
-    });
-    window.addEventListener("resize", function () {
-      pista.scrollTo({ left: actual * pista.clientWidth });
+      nodo.parentNode.replaceChild(frag, nodo);
     });
 
-    arranca();
+    if (!gsapOk) return;
+    window.gsap.fromTo($$(".palabra", el), { opacity: 0.16 }, {
+      opacity: 1,
+      stagger: 0.06,
+      ease: "none",
+      scrollTrigger: { trigger: el, start: "top 82%", end: "bottom 48%", scrub: true }
+    });
+  }
+
+  // ---------- Burgers: carril horizontal. En escritorio con GSAP se fija y avanza con el scroll ----------
+  function initShots() {
+    var seccion = $("[data-shots]");
+    if (!seccion) return;
+    var pista = $("[data-shots-pista]", seccion);
+    if (!pista || !gsapOk) return;
+    // Móvil y táctil: scroll horizontal nativo (CSS). Solo se fija en escritorio con puntero fino.
+    var escritorio = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
+    var fijado = false;
+    var fijar = function () {
+      if (fijado || !escritorio.matches) return;
+      fijado = true;
+      seccion.classList.add("is-pin");
+      var distancia = function () { return Math.max(0, pista.scrollWidth - window.innerWidth); };
+      window.gsap.to(pista, {
+        x: function () { return -distancia(); },
+        ease: "none",
+        scrollTrigger: {
+          trigger: seccion,
+          start: "top top",
+          end: function () { return "+=" + distancia(); },
+          pin: true,
+          scrub: 0.5,
+          anticipatePin: 1,
+          invalidateOnRefresh: true
+        }
+      });
+    };
+    fijar();
+    // Si la ventana pasa a tamaño escritorio después de cargar, se fija entonces
+    if (escritorio.addEventListener) escritorio.addEventListener("change", fijar);
+  }
+
+  // ---------- Lista de la carta: la foto sigue al cursor (solo puntero fino) ----------
+  function initListaCarta() {
+    var lista = $("[data-lista-carta]");
+    if (!lista || !finePointer) return;
+    $$("a", lista).forEach(function (fila) {
+      var img = $(".lista-img", fila);
+      if (!img) return;
+      fila.addEventListener("mousemove", function (e) {
+        var r = fila.getBoundingClientRect();
+        var x = e.clientX - r.left - img.offsetWidth / 2;
+        var y = e.clientY - r.top - img.offsetHeight / 2;
+        img.style.transform = "translate(" + x + "px, " + y + "px) rotate(-6deg)";
+      });
+    });
+  }
+
+  // ---------- Parallax suave en bloques con foto/vídeo a sangre ----------
+  function initParallax() {
+    if (!gsapOk) return;
+    $$("[data-parallax]").forEach(function (seccion) {
+      var media = $("[data-parallax-media]", seccion);
+      if (!media) return;
+      window.gsap.fromTo(media, { yPercent: -10 }, {
+        yPercent: 10,
+        ease: "none",
+        scrollTrigger: { trigger: seccion, start: "top bottom", end: "bottom top", scrub: true }
+      });
+    });
   }
 
   // ---------- Apariciones al hacer scroll (con red de seguridad) ----------
@@ -338,7 +424,12 @@
     safe(initCabecera, "initCabecera");
     safe(initMenuMovil, "initMenuMovil");
     safe(initNavActiva, "initNavActiva");
-    safe(initPortada, "initPortada");
+    safe(initMediaSlots, "initMediaSlots");
+    safe(initHorarioHoy, "initHorarioHoy");
+    safe(initManifiesto, "initManifiesto");
+    safe(initShots, "initShots");
+    safe(initListaCarta, "initListaCarta");
+    safe(initParallax, "initParallax");
     safe(initReveals, "initReveals");
     safe(initCartaNav, "initCartaNav");
     safe(initBurgerModal, "initBurgerModal");

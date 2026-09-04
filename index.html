@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
   <title>Vibra Street Food — Burgers y street food en Lleida</title>
-  <meta name="description" content="Street food en Lleida: burgers con carne 100% de vaca nacional madurada, bocadillos, milanesas y postres. Siente la Vibra. Reserva tu mesa.">
+  <meta name="description" content="Street food en Lleida: burgers con carne 100% de vaca nacional madurada, bocadillos, milanesas y postres. Siente la Vibra. Reserva tu mesa o pide a domicilio.">
   <meta name="theme-color" content="#000000">
   <meta property="og:title" content="Vibra Street Food — Siente la Vibra">
   <meta property="og:description" content="Burgers y street food en Lleida. Reserva tu mesa.">
@@ -19,7 +19,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
   <link rel="preload" as="image" href="imagenes/web/jack-dream-hero.webp" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=20260903">
+  <link rel="stylesheet" href="styles.css?v=20260904">
 </head>
 <body>
   <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
@@ -63,88 +63,251 @@
 
   <main id="contenido">
 
-    <!-- ===== PORTADA: CARRUSEL =====
-         Para añadir un slide: copia un bloque <a class="portada-slide"> con
-         su foto de 1920px en imagenes/web/, su título y su botón. Los puntos
-         y las flechas se adaptan solos. Si la foto necesita otro encuadre en
-         móvil, ajusta su style="--foco: X% Y%;" (por defecto, centrado). -->
-    <section class="portada" data-portada aria-roledescription="carrusel" aria-label="Lo mejor de Vibra">
-      <div class="portada-pista">
-        <a class="portada-slide" href="carta.html" aria-label="Ver la carta">
-          <img src="imagenes/web/jack-dream-hero.webp" alt="Burger La Jack Dream con los neones del local" fetchpriority="high">
-          <span class="portada-slide-texto">
-            <h2>El motivo por el que has venido.</h2>
-            <span class="btn btn-degradado">Ver la carta</span>
-          </span>
-        </a>
-        <a class="portada-slide" href="reservar.html" aria-label="Reservar mesa">
-          <img src="imagenes/web/terraza-hero.webp" alt="La terraza de Vibra llena de gente" loading="lazy">
-          <span class="portada-slide-texto">
-            <h2>La terraza ya está vibrando.</h2>
-            <span class="btn btn-degradado">Reservar mesa</span>
-          </span>
-        </a>
-        <a class="portada-slide" href="nosotros.html" aria-label="Conócenos" style="--foco: 42% 45%;">
-          <img src="imagenes/web/cartel-hero.webp" alt="El cartel iluminado de Vibra by Tremola" loading="lazy">
-          <span class="portada-slide-texto">
-            <h2>Esto es Vibra.</h2>
-            <span class="btn btn-degradado">Conócenos</span>
-          </span>
-        </a>
+    <!-- ===== PORTADA BRAND FILM =====
+         El vídeo entra solo: deja los archivos en imagenes/video/ con estos
+         nombres y main.js los detecta al cargar. Mientras no existan, se ve
+         la foto con un movimiento lento.
+           imagenes/video/portada.mp4           horizontal 1920x1080, 8-15 s en bucle, H.264, sin audio, menos de 4 MB
+           imagenes/video/portada-vertical.mp4  vertical 1080x1920 para móvil (si falta, se usa el horizontal)
+         La foto de respaldo es la <img> de dentro de .hero-media. -->
+    <section class="hero" id="portada">
+      <div class="hero-media" data-media-slot data-video-h="imagenes/video/portada.mp4" data-video-v="imagenes/video/portada-vertical.mp4">
+        <img class="hero-poster" src="imagenes/web/jack-dream-hero.webp" alt="" fetchpriority="high" decoding="async">
       </div>
-      <div class="portada-marca">
-        <p class="kicker">Street food · Lleida</p>
-        <h1 class="portada-claim">Siente <span class="txt-degradado">la Vibra</span></h1>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">Street food · Lleida</p>
+        <h1 class="hero-titulo"><span class="hero-linea">Siente</span><span class="hero-linea"><span class="txt-degradado">la vibra</span></span></h1>
+        <p class="hero-sub">Burgers con carne madurada, música alta y un equipo que le pone energía hasta a un martes.</p>
+        <div class="hero-acciones">
+          <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar mesa</a>
+          <a class="btn btn-fantasma btn-grande" href="carta.html">Ver la carta</a>
+        </div>
+        <p class="hero-estado" data-horario-hoy hidden></p>
       </div>
-      <div class="portada-puntos"></div>
-      <div class="portada-controles">
-        <button class="portada-flecha" type="button" data-portada-prev aria-label="Foto anterior">←</button>
-        <button class="portada-flecha" type="button" data-portada-next aria-label="Foto siguiente">→</button>
+      <a class="hero-scroll" href="#manifiesto" aria-label="Bajar al contenido"><span></span></a>
+      <div class="marquesina hero-marquesina" aria-hidden="true">
+        <div class="marquesina-pista">
+          <span>El motivo por el que has venido</span><i>★</i><span>Dipea como si nadie te estuviera mirando</span><i>★</i><span>Tienen muy pocos modales</span><i>★</i><span>Siente la vibra</span><i>★</i>
+          <span>El motivo por el que has venido</span><i>★</i><span>Dipea como si nadie te estuviera mirando</span><i>★</i><span>Tienen muy pocos modales</span><i>★</i><span>Siente la vibra</span><i>★</i>
+        </div>
       </div>
     </section>
 
-    <!-- ===== MANIFIESTO ===== -->
-    <section class="manifiesto seccion">
+    <!-- ===== MANIFIESTO (cada palabra se enciende al hacer scroll) ===== -->
+    <section class="manifiesto seccion" id="manifiesto">
       <div class="contenedor">
         <p class="kicker reveal">Qué es Vibra</p>
-        <p class="manifiesto-texto reveal" data-retraso="1">
-          Street food con <span class="txt-degradado">producto de verdad</span> y un equipo joven que le pone <span class="txt-degradado">energía</span> hasta a un martes.
-        </p>
-        <p class="manifiesto-nota reveal" data-retraso="2">
-          Carne 100% de vaca nacional madurada, opciones para celíacos y cero tonterías. Esto es Lleida con hambre y ganas de fiesta.
-        </p>
+        <p class="manifiesto-texto" data-palabras>Street food con <span class="txt-degradado">producto de verdad</span> y un equipo joven que le pone <span class="txt-degradado">energía</span> hasta a un martes.</p>
+        <p class="manifiesto-nota reveal" data-retraso="2">Carne 100% de vaca nacional madurada, opciones para celíacos y cero tonterías. Esto es Lleida con hambre y ganas de fiesta.</p>
       </div>
     </section>
 
-    <!-- ===== TEASER DE CARTA ===== -->
-    <section class="seccion">
+    <!-- ===== LAS BURGERS: carril horizontal (en escritorio se fija y avanza con el scroll) ===== -->
+    <section class="shots" data-shots aria-label="Las burgers de Vibra">
+      <div class="contenedor shots-cab">
+        <p class="kicker reveal">Las burgers</p>
+        <h2 class="reveal" data-retraso="1">Nueve razones. <span class="txt-degradado">Cero excusas.</span></h2>
+        <p class="shots-nota reveal" data-retraso="2">Todas con patatas · Carne 100% vaca nacional madurada</p>
+      </div>
+      <div class="shots-viewport">
+        <div class="shots-pista" data-shots-pista>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/jack-dream-neon.webp" alt="Burger La Jack Dream" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Jack Dream</strong><span>17,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/influencer-neon.webp" alt="Burger La Influencer" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Influencer</strong><span>16,90 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/kimchi-crunch-neon.webp" alt="Burger La Kimchi Crunch" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Kimchi Crunch</strong><span>15,90 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/goat-neon.webp" alt="Burger La Goat" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Goat</strong><span>15,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/truffled-neon.webp" alt="Burger La Truffled" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Truffled</strong><span>15,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/smokey-neon.webp" alt="Burger La Smokey" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Smokey</strong><span>15,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/cbd-neon.webp" alt="Burger La CBD" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La CBD</strong><span>14,90 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/veggie-neon.webp" alt="Burger La Veggie" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Veggie</strong><span>14,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="imagenes/web/original-neon.webp" alt="Burger La Original" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Original</strong><span>13,90 €</span></span>
+          </a>
+          <a class="shot shot--final" href="carta.html">
+            <span>Ver la carta<br>entera →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LA CARTA: lista tipográfica (la foto sigue al cursor en escritorio) ===== -->
+    <section class="carta-lista seccion" id="carta">
       <div class="contenedor">
         <div class="teaser-cabecera">
           <div>
             <p class="kicker reveal">La carta</p>
-            <h2 class="reveal" data-retraso="1">El motivo por el que has venido.</h2>
+            <h2 class="reveal" data-retraso="1">Todo lo demás también <span class="txt-degradado">cae</span>.</h2>
           </div>
           <a class="btn btn-fantasma reveal" data-retraso="2" href="carta.html">Ver la carta entera</a>
         </div>
-        <div class="tarjetas-platos">
-          <a class="tarjeta-plato reveal" href="carta.html">
-            <span class="tarjeta-flecha" aria-hidden="true">↗</span>
-            <img src="imagenes/web/goat.webp" alt="Burger La Goat" loading="lazy" decoding="async">
-            <h3>Burgers</h3>
-            <p>La estrella de la casa. Todas con patatas, como debe ser.</p>
-          </a>
-          <a class="tarjeta-plato reveal" data-retraso="1" href="carta.html">
-            <span class="tarjeta-flecha" aria-hidden="true">↗</span>
-            <img src="imagenes/web/bravas-tremola.webp" alt="Bravas Tremola" loading="lazy" decoding="async">
-            <h3>Para compartir</h3>
-            <p>Bravas, nachos y el principio del lío.</p>
-          </a>
-          <a class="tarjeta-plato reveal" data-retraso="2" href="carta.html">
-            <span class="tarjeta-flecha" aria-hidden="true">↗</span>
-            <img src="imagenes/web/brownie.webp" alt="Warm Brownie" loading="lazy" decoding="async">
-            <h3>Postres</h3>
-            <p>El final feliz que no habías pedido pero necesitas.</p>
-          </a>
+        <ul class="lista-cats reveal" data-lista-carta>
+          <li>
+            <a href="carta.html#compartir">
+              <span class="lista-num">01</span>
+              <span class="lista-nombre">Compartir</span>
+              <span class="lista-frase">Aquí se viene a compartir… o eso dicen</span>
+              <img class="lista-img" src="imagenes/web/nachos.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#dips">
+              <span class="lista-num">02</span>
+              <span class="lista-nombre">Dips</span>
+              <span class="lista-frase">Dipea como si nadie te estuviera mirando</span>
+              <img class="lista-img" src="imagenes/web/croquetas.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#burgers">
+              <span class="lista-num">03</span>
+              <span class="lista-nombre">Burgers</span>
+              <span class="lista-frase">El motivo por el que has venido</span>
+              <img class="lista-img" src="imagenes/web/goat.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#bocadillos">
+              <span class="lista-num">04</span>
+              <span class="lista-nombre">Bocadillos</span>
+              <span class="lista-frase">Tienen muy pocos modales</span>
+              <img class="lista-img" src="imagenes/web/texmex.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#milanesas">
+              <span class="lista-num">05</span>
+              <span class="lista-nombre">Milanesas</span>
+              <span class="lista-frase">Las que no necesitan presentación</span>
+              <img class="lista-img" src="imagenes/web/milanesa-a-caballo.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#postres">
+              <span class="lista-num">06</span>
+              <span class="lista-nombre">Postres</span>
+              <span class="lista-frase">Caseros y con final dulce</span>
+              <img class="lista-img" src="imagenes/web/brownie.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== LA TERRAZA (foto a sangre con parallax; admite vídeo igual que la portada) =====
+         Vídeo opcional: imagenes/video/terraza.mp4 y terraza-vertical.mp4 -->
+    <section class="ambiente" data-parallax aria-label="La terraza de Vibra">
+      <div class="ambiente-media" data-parallax-media data-media-slot data-video-h="imagenes/video/terraza.mp4" data-video-v="imagenes/video/terraza-vertical.mp4">
+        <img src="imagenes/web/terraza-hero.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="contenedor ambiente-int">
+        <p class="kicker reveal">La terraza</p>
+        <h2 class="reveal" data-retraso="1">La terraza ya está <span class="txt-degradado">vibrando</span>.</h2>
+        <p class="reveal" data-retraso="2">Mesa para los tuyos, música alta y la mejor burger de la ciudad delante. Lo demás lo ponemos nosotros.</p>
+        <a class="btn btn-degradado btn-grande reveal" data-retraso="3" href="reservar.html">Reservar mesa</a>
+      </div>
+    </section>
+
+    <!-- ===== RESEÑAS DE GOOGLE (textos literales de la ficha) ===== -->
+    <section class="resenas seccion" id="resenas">
+      <div class="contenedor resenas-grid">
+        <div class="resenas-resumen reveal">
+          <p class="kicker">Reseñas</p>
+          <p class="resenas-nota-grande">
+            <strong>4,5</strong>
+            <span class="resena-estrellas" role="img" aria-label="4,5 de 5 estrellas">★★★★<span class="media">★</span></span>
+          </p>
+          <h2>Esto no lo escribimos <span class="txt-degradado">nosotros</span>.</h2>
+          <p class="resenas-sub">Más de 600 personas lo han contado en Google. Nosotros solo lo copiamos aquí.</p>
+          <a class="btn btn-fantasma" href="https://share.google/LYP9HCj4njBHNzmrX" target="_blank" rel="noopener">Ver todas en Google ↗</a>
+        </div>
+        <div class="resenas-carril-wrap">
+          <div class="resenas-carril reveal" data-resenas>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>Las mejores hamburguesas de Lleida. 100% recomendable.</p>
+              <div class="resena-pie">
+                <strong>Andres Cardona Castaño</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>Un servicio muy bueno, la comida está deliciosa, el precio es acorde a la calidad de la comida. Sin duda un lugar donde ir a comer o cenar hamburguesas, bocadillos y platos combinados. Quedé muy contento tanto con el servicio como con la comida. Volveré sin dudarlo.</p>
+              <div class="resena-pie">
+                <strong>QUIM</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>Hemos estado en la terrasita, muy a gusto, con airecito y todo muy bien. Nos hemos pedido cuatro hamburguesas y todas hemos coincidido en que estaban súper buenas, con sus patatitas y todo muy bien. No son esas hamburguesas enormes con mil cosas que luego no sabes ni cómo comer: aquí la puedes comer bien, sin liarte. El sabor muy bueno. Volveremos seguro.</p>
+              <div class="resena-pie">
+                <strong>Sra Maximiliana</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>Muy buena atención, la comida increíble y de muy buena calidad. El personal muy simpático y atento con los clientes. Repetiría sin dudarlo.</p>
+              <div class="resena-pie">
+                <strong>marta castellnou</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>El servicio es bueno, la comida muy rica, la gente muy buena y te atienden al momento. Trabaja allí gente maravillosa.</p>
+              <div class="resena-pie">
+                <strong>Wisal Es Samtoul</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
+              <p>Todo genial, gracias a Cristina, atenta, amable y muy agradable. Gracias.</p>
+              <div class="resena-pie">
+                <strong>sonia Gonzalez Corredera</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+            <article class="resena">
+              <div class="resena-estrellas" role="img" aria-label="4 de 5 estrellas">★★★★<span class="apagada">★</span></div>
+              <p>Muy buena elección para comer un bocata o una burguer. De muy buena calidad y a un precio justo. Con variedad y opciones diferentes al resto. También tapas y ensaladas. Personal muy simpático.</p>
+              <div class="resena-pie">
+                <strong>A.J. Sorolla</strong>
+                <span>· Reseña de Google</span>
+              </div>
+            </article>
+          </div>
+          <div class="resenas-controles reveal">
+            <button class="flecha-circular" type="button" data-resenas-prev aria-label="Reseñas anteriores">←</button>
+            <button class="flecha-circular" type="button" data-resenas-next aria-label="Más reseñas">→</button>
+          </div>
         </div>
       </div>
     </section>
@@ -153,7 +316,7 @@
     <section class="musica seccion" id="musica">
       <div class="contenedor">
         <p class="kicker reveal">La banda sonora</p>
-        <h2 class="reveal" data-retraso="1" style="font-size: clamp(2.2rem, 5.4vw, 3.8rem); margin-top: 0.4rem;">El logo es una onda por algo.</h2>
+        <h2 class="reveal" data-retraso="1">El logo es una onda por algo.</h2>
         <p class="musica-nota reveal" data-retraso="2">Estas son las playlists que suenan en el local. Dale al play y que la vibra te siga a casa.</p>
         <div class="musica-grid">
           <article class="musica-tarjeta reveal">
@@ -208,81 +371,6 @@
           <h3>Síguenos</h3>
           <p><a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram — @vibrastreetfood</a></p>
           <p class="practica-nota">Novedades, burger del mes y poca vergüenza.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== RESEÑAS DE GOOGLE (textos literales de la ficha) ===== -->
-    <section class="resenas seccion" id="resenas">
-      <div class="contenedor">
-        <div class="teaser-cabecera">
-          <div>
-            <p class="kicker reveal">Reseñas</p>
-            <h2 class="reveal" data-retraso="1">Esto no lo escribimos <span class="txt-degradado">nosotros</span>.</h2>
-          </div>
-          <a class="btn btn-degradado reveal" data-retraso="2" href="https://share.google/LYP9HCj4njBHNzmrX" target="_blank" rel="noopener">Más de 600 reseñas en Google · ⭐ 4,5</a>
-        </div>
-        <div class="resenas-carril reveal" data-resenas>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Las mejores hamburguesas de Lleida. 100% recomendable.</p>
-            <div class="resena-pie">
-              <strong>Andres Cardona Castaño</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Un servicio muy bueno, la comida está deliciosa, el precio es acorde a la calidad de la comida. Sin duda un lugar donde ir a comer o cenar hamburguesas, bocadillos y platos combinados. Quedé muy contento tanto con el servicio como con la comida. Volveré sin dudarlo.</p>
-            <div class="resena-pie">
-              <strong>QUIM</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Hemos estado en la terrasita, muy a gusto, con airecito y todo muy bien. Nos hemos pedido cuatro hamburguesas y todas hemos coincidido en que estaban súper buenas, con sus patatitas y todo muy bien. No son esas hamburguesas enormes con mil cosas que luego no sabes ni cómo comer: aquí la puedes comer bien, sin liarte. El sabor muy bueno. Volveremos seguro.</p>
-            <div class="resena-pie">
-              <strong>Sra Maximiliana</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Muy buena atención, la comida increíble y de muy buena calidad. El personal muy simpático y atento con los clientes. Repetiría sin dudarlo.</p>
-            <div class="resena-pie">
-              <strong>marta castellnou</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>El servicio es bueno, la comida muy rica, la gente muy buena y te atienden al momento. Trabaja allí gente maravillosa.</p>
-            <div class="resena-pie">
-              <strong>Wisal Es Samtoul</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="5 de 5 estrellas">★★★★★</div>
-            <p>Todo genial, gracias a Cristina, atenta, amable y muy agradable. Gracias.</p>
-            <div class="resena-pie">
-              <strong>sonia Gonzalez Corredera</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-          <article class="resena">
-            <div class="resena-estrellas" role="img" aria-label="4 de 5 estrellas">★★★★<span class="apagada">★</span></div>
-            <p>Muy buena elección para comer un bocata o una burguer. De muy buena calidad y a un precio justo. Con variedad y opciones diferentes al resto. También tapas y ensaladas. Personal muy simpático.</p>
-            <div class="resena-pie">
-              <strong>A.J. Sorolla</strong>
-              <span>· Reseña de Google</span>
-            </div>
-          </article>
-        </div>
-        <div class="resenas-controles reveal">
-          <button class="portada-flecha" type="button" data-resenas-prev aria-label="Reseñas anteriores">←</button>
-          <button class="portada-flecha" type="button" data-resenas-next aria-label="Más reseñas">→</button>
         </div>
       </div>
     </section>
@@ -388,6 +476,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260903"></script>
+  <script defer src="main.js?v=20260904"></script>
 </body>
 </html>
