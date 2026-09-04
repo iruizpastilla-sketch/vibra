@@ -9,6 +9,15 @@
    1. Fuentes autoalojadas (RGPD: sin CDN de Google)
    ============================================================= */
 @font-face {
+  /* Titulares del brandbook. OJO: el archivo actual es la version DEMO (sin digitos ni licencia comercial).
+     Al tener la completa, sustituir fuentes/ut-bagh-display.woff2 y listo. */
+  font-family: "UT Bagh Display";
+  src: url("fuentes/ut-bagh-display.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
   font-family: "Anton";
   src: url("fuentes/anton-400.woff2") format("woff2");
   font-weight: 400;
@@ -60,7 +69,8 @@
   --degradado: linear-gradient(90deg, #F38F1C 0%, #E83085 100%);
   --linea:    rgba(255, 255, 255, 0.12);
 
-  --display: "Anton", "Arial Narrow", Impact, sans-serif;
+  --display: "UT Bagh Display", "Anton", "Arial Narrow", Impact, sans-serif;
+  --display-num: "Anton", "Arial Narrow", Impact, sans-serif;
   --sans:    "Poppins", "Segoe UI", system-ui, sans-serif;
 
   --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
@@ -167,7 +177,7 @@ h1, h2, h3, h4 {
   justify-content: center;
   gap: 0.55rem;
   font-family: var(--display);
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   padding: 0.95rem 1.9rem;
@@ -229,7 +239,7 @@ h1, h2, h3, h4 {
 .cabecera-logo img { height: 36px; width: auto; }
 .cabecera-nav { display: none; }
 .cabecera-acciones { display: flex; align-items: center; gap: 0.9rem; }
-.cabecera .btn-reservar { font-size: 0.92rem; padding: 0.7rem 1.5rem; }
+.cabecera .btn-reservar { font-size: 0.86rem; padding: 0.7rem 1.35rem; }
 
 .hamburguesa {
   display: inline-flex;
@@ -280,7 +290,7 @@ h1, h2, h3, h4 {
 .menu-movil a.enlace-movil {
   position: relative;
   font-family: var(--display);
-  font-size: clamp(2.4rem, 10vw, 3.6rem);
+  font-size: clamp(2rem, 8vw, 3rem);
   text-transform: uppercase;
   line-height: 1.15;
   color: var(--texto);
@@ -362,7 +372,7 @@ body.sin-scroll { overflow: hidden; }
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
-.teaser-cabecera h2 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); max-width: 14ch; }
+.teaser-cabecera h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); max-width: 14ch; }
 /* --- Franja práctica --- */
 .practica { background: var(--negro-2); border-block: 1px solid var(--linea); }
 .practica-grid {
@@ -404,7 +414,7 @@ body.sin-scroll { overflow: hidden; }
   gap: 1.8rem;
 }
 .banda-reservar h2 {
-  font-size: clamp(2.4rem, 6.5vw, 4.6rem);
+  font-size: clamp(2.1rem, 5.5vw, 4rem);
   max-width: 16ch;
 }
 .banda-reservar p { font-weight: 500; max-width: 44ch; }
@@ -492,7 +502,7 @@ body.sin-scroll { overflow: hidden; }
   pointer-events: none;
 }
 .obra-int { position: relative; z-index: 1; }
-.obra h1 { font-size: clamp(3rem, 9vw, 6.5rem); max-width: 12ch; }
+.obra h1 { font-size: clamp(2.6rem, 7.5vw, 5.4rem); max-width: 12ch; }
 .obra p { margin-top: 1.6rem; max-width: 50ch; color: var(--texto-2); font-size: 1.05rem; }
 .obra .obra-acciones { margin-top: 2.4rem; display: flex; flex-wrap: wrap; gap: 1rem; }
 
@@ -533,7 +543,7 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
   pointer-events: none;
 }
 .carta-hero .contenedor { position: relative; z-index: 1; }
-.carta-hero h1 { font-size: clamp(3.2rem, 9vw, 6.8rem); max-width: 14ch; }
+.carta-hero h1 { font-size: clamp(2.7rem, 7.5vw, 5.6rem); max-width: 14ch; }
 .carta-notas { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .carta-nota-chip {
   font-size: 0.8rem;
@@ -589,7 +599,7 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
   letter-spacing: 0.08em;
   color: var(--amarillo);
 }
-.carta-cab h2 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); margin-top: 0.2rem; }
+.carta-cab h2 { font-size: clamp(2.3rem, 5.5vw, 4rem); margin-top: 0.2rem; }
 .carta-frase {
   margin-top: 0.7rem;
   font-size: 0.85rem;
@@ -1111,7 +1121,7 @@ a.contacto-dato:hover { color: var(--rosa); }
 /* =============================================================
    19. Pedir a domicilio: botón de cabecera, barra móvil y modal
    ============================================================= */
-.cabecera .btn-pedir { display: none; font-size: 0.92rem; padding: 0.7rem 1.4rem; }
+.cabecera .btn-pedir { display: none; font-size: 0.86rem; padding: 0.7rem 1.25rem; }
 @media (min-width: 960px) { .cabecera .btn-pedir { display: inline-flex; } }
 
 /* Barra fija inferior, solo móvil. Oculta hasta pasar la portada para no
@@ -1221,7 +1231,7 @@ a.contacto-dato:hover { color: var(--rosa); }
   color: var(--texto-2);
 }
 .nos-alterna { background: var(--negro-2); border-block: 1px solid var(--linea); }
-.nos-titulo { font-size: clamp(2.2rem, 5vw, 3.8rem); margin-top: 0.6rem; max-width: 18ch; }
+.nos-titulo { font-size: clamp(2rem, 4.4vw, 3.4rem); margin-top: 0.6rem; max-width: 18ch; }
 
 .nos-historia-grid { display: grid; gap: 2.5rem; }
 @media (min-width: 900px) { .nos-historia-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
@@ -1266,7 +1276,7 @@ a.contacto-dato:hover { color: var(--rosa); }
 .nos-cita blockquote p {
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: clamp(1.9rem, 5vw, 3.4rem);
+  font-size: clamp(1.7rem, 4.2vw, 3rem);
   line-height: 1.05;
   text-wrap: balance;
 }
@@ -1391,7 +1401,7 @@ body::after {
 .hero-kicker { color: var(--texto); animation: hero-in 0.9s var(--ease-out) 0.1s both; }
 .hero-titulo {
   margin-top: 0.6rem;
-  font-size: clamp(4.4rem, 13vw, 11.5rem);
+  font-size: clamp(3.6rem, 10.5vw, 9.4rem);
   line-height: 0.88;
   letter-spacing: -0.005em;
 }
@@ -1502,7 +1512,7 @@ body::after {
   font-family: var(--display);
   font-weight: 400;
   text-transform: uppercase;
-  font-size: clamp(2.3rem, 6vw, 5.4rem);
+  font-size: clamp(2rem, 5vw, 4.6rem);
   line-height: 0.95;
   letter-spacing: 0.005em;
   text-wrap: balance;
@@ -1526,7 +1536,7 @@ body::after {
   overflow: hidden;
 }
 .shots-cab { margin-bottom: 1.6rem; }
-.shots-cab h2 { font-size: clamp(2.6rem, 6vw, 4.8rem); margin-top: 0.4rem; max-width: 12ch; }
+.shots-cab h2 { font-size: clamp(2.3rem, 5vw, 4.2rem); margin-top: 0.4rem; max-width: 12ch; }
 .shots-nota {
   margin-top: 0.9rem;
   font-size: 0.76rem;
@@ -1664,7 +1674,7 @@ body::after {
   grid-area: nombre;
   font-family: var(--display);
   text-transform: uppercase;
-  font-size: clamp(2.2rem, 6.5vw, 5.2rem);
+  font-size: clamp(1.9rem, 5.4vw, 4.4rem);
   line-height: 0.95;
   transition: color 0.3s;
 }
@@ -1753,7 +1763,7 @@ body::after {
   z-index: 1;
   padding-block: clamp(4rem, 9vw, 7rem);
 }
-.ambiente-int h2 { font-size: clamp(2.6rem, 7.5vw, 6rem); max-width: 12ch; margin-top: 0.5rem; }
+.ambiente-int h2 { font-size: clamp(2.3rem, 6vw, 5rem); max-width: 12ch; margin-top: 0.5rem; }
 .ambiente-int p:not(.kicker) { margin-top: 1rem; max-width: 42ch; color: var(--texto); }
 .ambiente-int .btn { margin-top: 1.6rem; }
 
@@ -1800,7 +1810,7 @@ body::after {
 .flecha-circular:hover { border-color: var(--rosa); background: rgba(0, 0, 0, 0.7); }
 
 /* --- Musica: titulo sin estilos en linea --- */
-.musica h2 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); margin-top: 0.4rem; }
+.musica h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); margin-top: 0.4rem; }
 
 /* =============================================================
    22. Novedades (destacada + tarjetas) y prensa en Nosotros
@@ -1820,7 +1830,7 @@ body::after {
   flex-direction: column;
   gap: 1rem;
 }
-.destacada-texto h2 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); max-width: 12ch; }
+.destacada-texto h2 { font-size: clamp(2.1rem, 4.8vw, 3.8rem); max-width: 12ch; }
 .destacada-texto p { color: var(--texto-2); max-width: 44ch; }
 .destacada-nota { font-size: 0.95rem; border-left: 3px solid var(--rosa); padding-left: 1rem; }
 .destacada-nota strong { color: var(--texto); font-weight: 600; }
@@ -1889,7 +1899,7 @@ body::after {
 
 .banda-ig { background: var(--negro-2); border-block: 1px solid var(--linea); }
 .banda-ig-int { display: flex; flex-direction: column; gap: 1.4rem; align-items: flex-start; }
-.banda-ig h2 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); max-width: 16ch; }
+.banda-ig h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); max-width: 16ch; }
 .banda-ig p { color: var(--texto-2); max-width: 44ch; margin-top: 0.6rem; }
 @media (min-width: 960px) {
   .banda-ig-int { flex-direction: row; align-items: center; justify-content: space-between; }
@@ -1943,7 +1953,7 @@ body::after {
 .club { background: var(--negro-2); border-block: 1px solid var(--linea); overflow: hidden; }
 .club-grid { display: grid; gap: 2.5rem; align-items: center; }
 @media (min-width: 900px) { .club-grid { grid-template-columns: 1.1fr 1fr; } }
-.club-texto h2 { font-size: clamp(2.4rem, 6vw, 4.6rem); margin-top: 0.5rem; max-width: 12ch; }
+.club-texto h2 { font-size: clamp(2.1rem, 5vw, 4rem); margin-top: 0.5rem; max-width: 12ch; }
 .club-texto p:not(.kicker) { margin-top: 1rem; color: var(--texto-2); max-width: 44ch; }
 .club-acciones { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
 .club-tarjeta {
@@ -2004,3 +2014,9 @@ body::after {
 .legal mark.pendiente { background: var(--amarillo); color: var(--negro); padding: 0.1em 0.4em; border-radius: 4px; font-weight: 600; }
 .legal-pie { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--linea); font-size: 0.88rem; color: var(--texto-3); }
 .legal-pie a { display: inline-block; margin: 0 1.2em 0.4em 0; }
+
+/* =============================================================
+   25. Numeros en Anton: la UT Bagh Display (demo) no trae digitos
+   ============================================================= */
+.precio-cifra, .carta-num, .lista-num, .nos-pilar-num, .nos-cifra strong,
+.resenas-nota-grande strong, .shot-info span, .club-tarjeta-cifra { font-family: var(--display-num); }
