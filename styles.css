@@ -1801,3 +1801,123 @@ body::after {
 
 /* --- Musica: titulo sin estilos en linea --- */
 .musica h2 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); margin-top: 0.4rem; }
+
+/* =============================================================
+   22. Novedades (destacada + tarjetas) y prensa en Nosotros
+   ============================================================= */
+.destacada {
+  display: grid;
+  gap: 0;
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 24px;
+  overflow: hidden;
+}
+@media (min-width: 900px) { .destacada { grid-template-columns: 1.1fr 1fr; } }
+.destacada-texto {
+  padding: clamp(1.8rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.destacada-texto h2 { font-size: clamp(2.4rem, 5.5vw, 4.4rem); max-width: 12ch; }
+.destacada-texto p { color: var(--texto-2); max-width: 44ch; }
+.destacada-nota { font-size: 0.95rem; border-left: 3px solid var(--rosa); padding-left: 1rem; }
+.destacada-nota strong { color: var(--texto); font-weight: 600; }
+.destacada-acciones { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.destacada-media {
+  position: relative;
+  min-height: 280px;
+  background: var(--degradado);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.destacada-media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("imagenes/web/patron.webp") repeat;
+  background-size: 150px;
+  opacity: 0.14;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.destacada-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.destacada-pronto {
+  position: relative;
+  font-family: var(--display);
+  text-transform: uppercase;
+  color: var(--negro);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.9;
+  text-align: center;
+  transform: rotate(-6deg);
+}
+.destacada-pronto small { display: block; font-size: 0.26em; letter-spacing: 0.3em; margin-bottom: 0.6em; }
+
+.novedades-grid { display: grid; gap: 1.25rem; }
+@media (min-width: 720px) { .novedades-grid { grid-template-columns: repeat(2, 1fr); } }
+.novedad {
+  background: var(--negro-3);
+  border: 1px solid var(--linea);
+  border-radius: 20px;
+  padding: 1.7rem 1.6rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  transition: transform 0.45s var(--ease-out), border-color 0.45s var(--ease-out);
+}
+.novedad:hover { transform: translateY(-5px); border-color: rgba(232, 48, 133, 0.4); }
+.novedad-etiqueta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--amarillo);
+}
+.novedad h3 { font-size: 1.6rem; }
+.novedad p { color: var(--texto-2); font-size: 0.95rem; }
+.novedad-pie { margin-top: auto; padding-top: 0.6rem; }
+.novedad-pie a, .novedad-pie button {
+  font-weight: 600;
+  border-bottom: 1px solid var(--rosa);
+  transition: color 0.3s;
+}
+.novedad-pie a:hover, .novedad-pie button:hover { color: var(--rosa); }
+
+.banda-ig { background: var(--negro-2); border-block: 1px solid var(--linea); }
+.banda-ig-int { display: flex; flex-direction: column; gap: 1.4rem; align-items: flex-start; }
+.banda-ig h2 { font-size: clamp(2.2rem, 5.4vw, 3.8rem); max-width: 16ch; }
+.banda-ig p { color: var(--texto-2); max-width: 44ch; margin-top: 0.6rem; }
+@media (min-width: 960px) {
+  .banda-ig-int { flex-direction: row; align-items: center; justify-content: space-between; }
+}
+
+/* Nosotros: donde nos han visto */
+.nos-prensa { list-style: none; padding: 0; margin-top: 2rem; display: grid; gap: 1rem; }
+@media (min-width: 720px) { .nos-prensa { grid-template-columns: repeat(3, 1fr); } }
+.nos-prensa li {
+  border: 1px solid var(--linea);
+  border-radius: 16px;
+  padding: 1.3rem 1.4rem;
+  background: var(--negro-3);
+}
+.nos-prensa strong {
+  display: block;
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+.nos-prensa span {
+  display: block;
+  margin-top: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--texto-3);
+}

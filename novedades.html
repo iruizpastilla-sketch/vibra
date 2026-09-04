@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
   <title>Novedades — Vibra Street Food</title>
-  <meta name="description" content="Novedades y burger del mes de Vibra Street Food. Muy pronto.">
+  <meta name="description" content="Novedades de Vibra Street Food en Lleida: la burger del mes, cambios de horario y todo lo que se cuece en el local. Lo nuevo sale primero en Instagram.">
   <meta name="theme-color" content="#000000">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
@@ -54,14 +54,102 @@
   <!-- ============================= /CABECERA ======================== -->
 
   <main id="contenido">
-    <section class="obra">
-      <div class="contenedor obra-int">
+
+    <!-- ===== CABECERA DE NOVEDADES ===== -->
+    <section class="carta-hero">
+      <div class="contenedor">
         <p class="kicker">Novedades</p>
-        <h1>Aquí se está cocinando algo.</h1>
-        <p class="obra-sub">La burger del mes está al caer. Mientras tanto, síguenos en Instagram para no perderte nada.</p>
-        <div class="obra-acciones"><a class="btn btn-degradado" href="reservar.html">Reservar mesa</a><a class="btn btn-fantasma" href="index.html">Volver al inicio</a></div>
+        <h1>Lo último que ha salido de la <span class="txt-degradado">plancha</span>.</h1>
+        <p class="nos-entradilla">Burger del mes, cambios de horario y lo que se cuece en Vibra. Lo nuevo sale primero en Instagram.</p>
       </div>
     </section>
+
+    <!-- ===== BURGER DEL MES (destacada) =====
+         CÓMO ACTUALIZAR cuando haya burger del mes:
+           1. Cambia el h2, el párrafo y la nota por el nombre, los ingredientes y el precio.
+           2. Sustituye el bloque .destacada-pronto por una foto:
+              <img src="imagenes/web/burger-del-mes.webp" alt="Burger [nombre]" loading="lazy" decoding="async">
+           3. Cambia el botón "Avísame en Instagram" por "Reservar mesa" o "Pedir a domicilio".
+         Cuando termine la edición, vuelve a dejar este bloque en modo "próximamente". -->
+    <section class="seccion">
+      <div class="contenedor">
+        <article class="destacada reveal">
+          <div class="destacada-texto">
+            <p class="kicker">Burger del mes</p>
+            <h2>La próxima está al <span class="txt-degradado">caer</span>.</h2>
+            <p>Cada edición limitada sigue la misma regla: una salsa que manda y un ingrediente que no esperas. Nada de florituras.</p>
+            <p class="destacada-nota">La última fue <strong>La Campeona</strong>: salsa de yema trufada, cecina ahumada y cebolla caramelizada.</p>
+            <div class="destacada-acciones">
+              <a class="btn btn-degradado" href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Avísame en Instagram</a>
+              <a class="btn btn-fantasma" href="carta.html#burgers">Ver las de siempre</a>
+            </div>
+          </div>
+          <div class="destacada-media" aria-hidden="true">
+            <p class="destacada-pronto"><small>Edición limitada</small>Próxima<br>mente</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== AHORA MISMO EN VIBRA =====
+         Para añadir una novedad: copia un <article class="novedad"> y ponlo el
+         primero. Para quitarla, borra el bloque. Máximo recomendable: 4-6 tarjetas. -->
+    <section class="seccion nos-alterna">
+      <div class="contenedor">
+        <p class="kicker reveal">Ahora mismo en Vibra</p>
+        <h2 class="nos-titulo reveal" data-retraso="1">Lo que hay que saber.</h2>
+        <div class="novedades-grid" style="margin-top: 2.2rem;">
+          <article class="novedad reveal">
+            <p class="novedad-etiqueta">Horario</p>
+            <h3>El 15 de septiembre vuelve el horario de temporada</h3>
+            <p>Martes a viernes de 17:00 a 00:00. Sábado y domingo desde las 13:00. Los lunes cerramos para vibrar más fuerte.</p>
+            <p class="novedad-pie"><a href="contacto.html">Ver horarios y cómo llegar</a></p>
+          </article>
+          <article class="novedad reveal" data-retraso="1">
+            <p class="novedad-etiqueta">A domicilio</p>
+            <h3>Estamos en Glovo y Uber Eats</h3>
+            <p>Las burgers viajan con sus patatas. Pide desde la app y te lo llevamos a casa.</p>
+            <p class="novedad-pie"><button type="button" data-pedir-abrir aria-haspopup="dialog">Pedir a domicilio</button></p>
+          </article>
+          <article class="novedad reveal" data-retraso="2">
+            <p class="novedad-etiqueta">Tele</p>
+            <h3>Nos viste en Jocs de Cartes</h3>
+            <p>Salimos en el programa de TV3. Si lo viste, ya sabes cómo se come aquí. Si no, ven a comprobarlo.</p>
+            <p class="novedad-pie"><a href="nosotros.html">Conócenos</a></p>
+          </article>
+          <article class="novedad reveal" data-retraso="3">
+            <p class="novedad-etiqueta">Música</p>
+            <h3>La banda sonora del local, en Spotify</h3>
+            <p>Dos playlists propias: Vibra Rumbeo y Lista Vibra. Dale al play y que la vibra te siga a casa.</p>
+            <p class="novedad-pie"><a href="index.html#musica">Escuchar</a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== INSTAGRAM ===== -->
+    <section class="banda-ig seccion">
+      <div class="contenedor banda-ig-int">
+        <div>
+          <p class="kicker reveal">Instagram</p>
+          <h2 class="reveal" data-retraso="1">Lo nuevo sale primero en Instagram.</h2>
+          <p class="reveal" data-retraso="2">Burger del mes, novedades y poca vergüenza. Síguenos y no te pillará de sorpresa.</p>
+        </div>
+        <a class="btn btn-degradado btn-grande reveal" data-retraso="3" href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">@vibrastreetfood</a>
+      </div>
+    </section>
+
+    <!-- ===== BANDA RESERVAR ===== -->
+    <section class="banda-reservar seccion">
+      <div class="contenedor banda-reservar-int">
+        <div>
+          <h2 class="reveal">¿Lo probamos en persona?</h2>
+          <p class="reveal" data-retraso="1">Reserva mesa y trae hambre. Del resto nos encargamos nosotros.</p>
+        </div>
+        <a class="btn btn-negro btn-grande reveal" data-retraso="2" href="reservar.html">Reservar mesa</a>
+      </div>
+    </section>
+
   </main>
 
   <!-- ================================================================
@@ -77,9 +165,9 @@
         <div>
           <h4>Dónde estamos</h4>
           <ul>
-            <li>Carrer Jaume II, 77<br>25001 Lleida</li>
-            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer+Jaume+II+77+25001+Lleida" target="_blank" rel="noopener">Cómo llegar</a></li>
-            <li><a href="tel:+34973208727">973 208 727</a></li>
+            <li>Carrer de Jaume II, 77<br>25001 Lleida</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer+de+Jaume+II+77+25001+Lleida" target="_blank" rel="noopener">Cómo llegar</a></li>
+            <li><a href="tel:+34973208727">973 20 87 27</a></li>
             <li><a href="mailto:ruizruiz.bu@gmail.com">ruizruiz.bu@gmail.com</a></li>
           </ul>
         </div>
@@ -123,8 +211,7 @@
   <!-- ================================================================
        BARRA DE ACCIONES (solo móvil; aparece al hacer scroll) y
        MODAL PEDIR A DOMICILIO — copiar tal cual en cada página nueva.
-       AVISO: los enlaces de Glovo y Uber Eats son PROVISIONALES (páginas
-       de Lleida). Sustituir por los enlaces del local de Vibra.
+       Enlaces de Glovo y Uber Eats: fichas reales del local (ver lib/manifest.js).
        ================================================================ -->
   <div class="barra-acciones" data-barra-acciones>
     <button class="btn btn-fantasma" type="button" data-pedir-abrir aria-haspopup="dialog">Pedir</button>
@@ -136,16 +223,16 @@
     <h3 id="pedir-titulo">¿Dónde te lo <span class="txt-degradado">llevamos</span>?</h3>
     <p class="pedir-nota">Elige tu app. La burger llega con sus patatas, como debe ser.</p>
     <div class="pedir-opciones">
-      <a class="pedir-opcion" href="https://glovoapp.com/es/es/lleida/" target="_blank" rel="noopener">
+      <a class="pedir-opcion" href="https://glovoapp.com/es/es/lleida/stores/tremola-lleida" target="_blank" rel="noopener">
         <span class="pedir-logo pedir-logo--glovo">Glovo</span>
         <span>Pedir ↗</span>
       </a>
-      <a class="pedir-opcion" href="https://www.ubereats.com/es/city/lleida-ct" target="_blank" rel="noopener">
+      <a class="pedir-opcion" href="https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ" target="_blank" rel="noopener">
         <span class="pedir-logo pedir-logo--uber">Uber Eats</span>
         <span>Pedir ↗</span>
       </a>
     </div>
-    <p class="pedir-pie">¿Dudas con el pedido? Llámanos al <a href="tel:+34973208727">973 208 727</a>.</p>
+    <p class="pedir-pie">¿Dudas con el pedido? Llámanos al <a href="tel:+34973208727">973 20 87 27</a>.</p>
   </dialog>
   <!-- ========================= /BARRA Y MODAL PEDIR ================== -->
 
