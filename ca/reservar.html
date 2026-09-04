@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Reservar taula — Vibra Street Food</title>
+  <meta name="description" content="Reserva taula a Vibra Street Food, Carrer de Jaume II 77, Lleida. Reserva en línia al moment o truca al 973 20 87 27.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="preload" as="font" type="font/woff2" href="../fuentes/anton-400.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../fuentes/poppins-400.woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css?v=20260904">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Salta al contingut</a>
+
+  <!-- ================================================================
+       CAPÇALERA COMPARTIDA (versió en català)
+       ================================================================ -->
+  <header class="cabecera" data-cabecera>
+    <div class="cabecera-int">
+      <a class="cabecera-logo" href="index.html" aria-label="Vibra Street Food — Inici">
+        <img src="../imagenes/web/logo.webp" alt="Vibra Street Food" width="162" height="36">
+      </a>
+      <nav class="cabecera-nav" aria-label="Navegació principal">
+        <a href="carta.html">Carta</a>
+        <a href="nosotros.html">Nosaltres</a>
+        <a href="novedades.html">Novetats</a>
+        <a href="contacto.html">Contacte</a>
+        <a class="cabecera-idioma" href="../reservar.html" lang="es" hreflang="es" aria-label="Versión en castellano">ES</a>
+      </nav>
+      <div class="cabecera-acciones">
+        <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar</button>
+        <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
+        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Obrir el menú" data-menu-btn>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="menu-movil" id="menu-movil" data-menu>
+      <a class="enlace-movil" href="index.html">Inici</a>
+      <a class="enlace-movil" href="carta.html">Carta</a>
+      <a class="enlace-movil" href="nosotros.html">Nosaltres</a>
+      <a class="enlace-movil" href="novedades.html">Novetats</a>
+      <a class="enlace-movil" href="contacto.html">Contacte</a>
+      <div class="menu-movil-pie">
+        <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar taula</a>
+        <button class="btn btn-fantasma btn-grande" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar a domicili</button>
+        <a class="menu-movil-idioma" href="../reservar.html" lang="es">Castellano</a>
+        <a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram — @vibrastreetfood</a>
+      </div>
+    </div>
+  <!-- ============================= /CAPÇALERA ======================= -->
+
+  <main id="contenido">
+
+    <!-- ===== CAPÇALERA DE RESERVES ===== -->
+    <section class="carta-hero">
+      <div class="contenedor">
+        <p class="kicker">Reserves</p>
+        <h1>Això <span class="txt-degradado">s'omplirà</span>.</h1>
+        <div class="carta-notas">
+          <span class="carta-nota-chip">⚡ Confirmació al moment</span>
+          <span class="carta-nota-chip">🍔 Totes les burgers inclouen patates</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MÒDUL DE RESERVES (CoverManager) =====
+         Es carrega directament només en aquesta pàgina. El mòdul està en
+         castellà (CoverManager no ofereix versió en català d'aquest local). -->
+    <section class="reserva-seccion seccion">
+      <div class="contenedor">
+        <div class="reserva-marco reveal">
+          <script type="text/javascript" src="https://www.covermanager.com/js/iframeResizer/iframeResizer.min.js"></script><iframe id="restaurante-vibra" title="Reserves" src="https://www.covermanager.com/reservation/module_restaurant/restaurante-vibra/spanish" allow="payment" frameborder="0" height="550" width="100%" onload="iFrameResize();"></iframe>
+        </div>
+        <div class="reserva-red reveal" data-retraso="1">
+          <p><strong>Grup gran, esdeveniment o alguna cosa especial?</strong> Tenim dues plantes i terrassa. Ens ho expliques de viva veu i t'ho muntem.</p>
+          <div class="reserva-acciones">
+            <a class="btn btn-degradado" href="tel:+34973208727">Trucar al 973 20 87 27</a>
+            <a class="btn btn-fantasma" href="https://www.covermanager.com/reservation/module_restaurant/restaurante-vibra/spanish" target="_blank" rel="noopener">Obrir el mòdul a part</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================================
+       PEU COMPARTIT (versió en català)
+       ================================================================ -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div class="pie-marca">
+          <img src="../imagenes/web/logo.webp" alt="Vibra Street Food" width="153" height="34" loading="lazy">
+          <p>Street food a Lleida. Siente la Vibra.</p>
+        </div>
+        <div>
+          <h4>On som</h4>
+          <ul>
+            <li>Carrer de Jaume II, 77<br>25001 Lleida</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer+de+Jaume+II+77+25001+Lleida" target="_blank" rel="noopener">Com arribar</a></li>
+            <li><a href="tel:+34973208727">973 20 87 27</a></li>
+            <li><a href="mailto:ruizruiz.bu@gmail.com">ruizruiz.bu@gmail.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Horari</h4>
+          <ul>
+            <li>
+              <span class="pie-horario-titulo">Temporada normal</span><br>
+              <span class="pie-horario-linea">De dimarts a divendres — de 17:00 a 00:00</span><br>
+              <span class="pie-horario-linea">Dissabte i diumenge — de 13:00 a 00:00</span>
+            </li>
+            <li>
+              <span class="pie-horario-titulo">Estiu (29 de juny – 14 de setembre)</span><br>
+              <span class="pie-horario-linea">De dimarts a diumenge — de 18:00 a 00:00</span>
+            </li>
+            <li><span class="pie-horario-linea">Dilluns tancat</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>La Vibra</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="reservar.html">Reservar taula</a></li>
+            <li><a href="carta.html">La carta</a></li>
+            <li><a href="index.html#musica">La banda sonora</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pie-legal">
+        <p>© <span data-anio>2026</span> Vibra Street Food · Lleida</p>
+        <ul>
+          <li><a href="../aviso-legal.html" hreflang="es">Avís legal</a></li>
+          <li><a href="../privacidad.html" hreflang="es">Privacitat</a></li>
+          <li><a href="../cookies.html" hreflang="es">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- ============================== /PEU ============================ -->
+
+  <!-- ===== MODAL DEMANAR A DOMICILI (aquí sense barra inferior: la pàgina ja és la de reserves) ===== -->
+  <dialog class="pedir-modal" data-pedir-modal aria-labelledby="pedir-titulo">
+    <button class="modal-cerrar" type="button" data-pedir-cerrar aria-label="Tancar">✕</button>
+    <p class="kicker">A domicili</p>
+    <h3 id="pedir-titulo">On t'ho <span class="txt-degradado">portem</span>?</h3>
+    <p class="pedir-nota">Tria la teva app. La burger arriba amb les seves patates, com ha de ser.</p>
+    <div class="pedir-opciones">
+      <a class="pedir-opcion" href="https://glovoapp.com/es/es/lleida/stores/tremola-lleida" target="_blank" rel="noopener">
+        <span class="pedir-logo pedir-logo--glovo">Glovo</span>
+        <span>Demanar ↗</span>
+      </a>
+      <a class="pedir-opcion" href="https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ" target="_blank" rel="noopener">
+        <span class="pedir-logo pedir-logo--uber">Uber Eats</span>
+        <span>Demanar ↗</span>
+      </a>
+    </div>
+    <p class="pedir-pie">Dubtes amb la comanda? Truca'ns al <a href="tel:+34973208727">973 20 87 27</a>.</p>
+  </dialog>
+
+  <script defer src="../lib/gsap.min.js"></script>
+  <script defer src="../lib/ScrollTrigger.min.js"></script>
+  <script defer src="../lib/manifest.js"></script>
+  <script defer src="../main.js?v=20260904"></script>
+</body>
+</html>

@@ -113,6 +113,22 @@
       return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
     };
 
+    // Textos según el idioma de la página (es / ca)
+    var ca = (document.documentElement.lang || "es").indexOf("ca") === 0;
+    var t = ca ? {
+      cerradoManana: "Avui tancat · Demà obrim a les ",
+      cerrado: "Avui tancat",
+      abrimos: "Avui obrim a les ",
+      hasta: " · fins a les ",
+      abierto: "Obert ara · fins a les "
+    } : {
+      cerradoManana: "Hoy cerrado · Mañana abrimos a las ",
+      cerrado: "Hoy cerrado",
+      abrimos: "Hoy abrimos a las ",
+      hasta: " · hasta las ",
+      abierto: "Abierto ahora · hasta las "
+    };
+
     var hoy = tramoDe(ahora.getDay());
     var minutos = ahora.getHours() * 60 + ahora.getMinutes();
     var texto = "";
@@ -120,12 +136,12 @@
 
     if (!hoy) {
       var manana = tramoDe((ahora.getDay() + 1) % 7);
-      texto = manana ? "Hoy cerrado · Mañana abrimos a las " + manana.abre : "Hoy cerrado";
+      texto = manana ? t.cerradoManana + manana.abre : t.cerrado;
     } else if (minutos < aMinutos(hoy.abre)) {
-      texto = "Hoy abrimos a las " + hoy.abre + " · hasta las " + hoy.cierra;
+      texto = t.abrimos + hoy.abre + t.hasta + hoy.cierra;
     } else {
       abierto = true;
-      texto = "Abierto ahora · hasta las " + hoy.cierra;
+      texto = t.abierto + hoy.cierra;
     }
     el.textContent = texto;
     el.classList.toggle("is-abierto", abierto);

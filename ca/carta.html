@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>La carta — Vibra Street Food</title>
+  <meta name="description" content="La carta de Vibra Street Food a Lleida: burgers amb carn 100% de vaca nacional madurada, entrepans, milaneses, dips i postres casolans. Totes les burgers inclouen patates.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+  <link rel="preload" as="font" type="font/woff2" href="../fuentes/anton-400.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../fuentes/poppins-400.woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css?v=20260904">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Salta al contingut</a>
+
+  <!-- ================================================================
+       CAPÇALERA COMPARTIDA (versió en català)
+       ================================================================ -->
+  <header class="cabecera" data-cabecera>
+    <div class="cabecera-int">
+      <a class="cabecera-logo" href="index.html" aria-label="Vibra Street Food — Inici">
+        <img src="../imagenes/web/logo.webp" alt="Vibra Street Food" width="162" height="36">
+      </a>
+      <nav class="cabecera-nav" aria-label="Navegació principal">
+        <a href="carta.html">Carta</a>
+        <a href="nosotros.html">Nosaltres</a>
+        <a href="novedades.html">Novetats</a>
+        <a href="contacto.html">Contacte</a>
+        <a class="cabecera-idioma" href="../carta.html" lang="es" hreflang="es" aria-label="Versión en castellano">ES</a>
+      </nav>
+      <div class="cabecera-acciones">
+        <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar</button>
+        <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
+        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Obrir el menú" data-menu-btn>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="menu-movil" id="menu-movil" data-menu>
+      <a class="enlace-movil" href="index.html">Inici</a>
+      <a class="enlace-movil" href="carta.html">Carta</a>
+      <a class="enlace-movil" href="nosotros.html">Nosaltres</a>
+      <a class="enlace-movil" href="novedades.html">Novetats</a>
+      <a class="enlace-movil" href="contacto.html">Contacte</a>
+      <div class="menu-movil-pie">
+        <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar taula</a>
+        <button class="btn btn-fantasma btn-grande" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar a domicili</button>
+        <a class="menu-movil-idioma" href="../carta.html" lang="es">Castellano</a>
+        <a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram — @vibrastreetfood</a>
+      </div>
+    </div>
+  <!-- ============================= /CAPÇALERA ======================= -->
+
+  <main id="contenido">
+
+    <!-- ===== CAPÇALERA DE LA CARTA ===== -->
+    <section class="carta-hero">
+      <div class="contenedor">
+        <p class="kicker">La carta</p>
+        <h1>El motiu pel qual has <span class="txt-degradado">vingut</span>.</h1>
+        <div class="carta-notas">
+          <span class="carta-nota-chip">🍟 <strong>Totes les burgers inclouen patates</strong></span>
+          <span class="carta-nota-chip">🥩 Carn 100% vaca nacional madurada</span>
+          <span class="carta-nota-chip">🌾 Opcions per a celíacs</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SUBNAV DE CATEGORIES ===== -->
+    <nav class="carta-nav" aria-label="Categories de la carta">
+      <div class="carta-nav-int" data-carta-nav>
+        <a class="chip" href="#compartir">Per compartir</a>
+        <a class="chip" href="#dips">Dips</a>
+        <a class="chip" href="#burgers">Burgers</a>
+        <a class="chip" href="#bocadillos">Entrepans</a>
+        <a class="chip" href="#milanesas">Milaneses</a>
+        <a class="chip" href="#ensalada">Amanida</a>
+        <a class="chip" href="#postres">Postres</a>
+        <a class="chip" href="#salsas">Salses</a>
+        <a class="chip" href="#extras">Extres</a>
+      </div>
+    </nav>
+
+    <!-- ===== 01 PER COMPARTIR ===== -->
+    <section class="carta-seccion" id="compartir">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">01.</p>
+          <h2>Per compartir</h2>
+          <p class="carta-frase">Aquí es ve a compartir… o això diuen</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="../imagenes/web/bravas-clasicas.webp" alt="Braves Clàssiques" loading="lazy" decoding="async">
+            <h3>Braves Clàssiques <span class="badge badge-pica">Pica</span></h3>
+            <p class="plato-desc">Patates braves amb lactonesa casolana d'all i salsa de chipotle.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/bravas-tremola.webp" alt="Braves Tremola" loading="lazy" decoding="async">
+            <h3>Braves Tremola</h3>
+            <p class="plato-desc">Patates braves amb salsa especial, un tribut al bar Tremola.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/patatas-queso-bacon.webp" alt="Patates CBF — Cheese Bacon Fries" loading="lazy" decoding="async">
+            <h3>Patates CBF</h3>
+            <p class="plato-desc">Cheese Bacon Fries: patates fregides, salsa de formatge cheddar, salsa de formatge fresc, bacon cruixent i cibulet.</p>
+            <p class="plato-precio"><span class="precio-cifra">7,90 €</span><span class="precio-nota">9,90 € amb pulled pork casolà</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/patatas-carbonara.webp" alt="Patates Carbonara" loading="lazy" decoding="async">
+            <h3>Patates Carbonara</h3>
+            <p class="plato-desc">Patates fregides, crema de shiitake, pecorino romano en pols, rovell d'ou i cansalada curada cruixent.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/nachos.webp" alt="Nachos" loading="lazy" decoding="async">
+            <h3>Nachos</h3>
+            <p class="plato-desc">Totopos, chili con carne, guacamole, salsa de formatge, maio de llima, melmelada de tomàquet i pico de gallo.</p>
+            <p class="plato-precio"><span class="precio-cifra">12,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 02 DIPS ===== -->
+    <section class="carta-seccion alterna" id="dips">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">02.</p>
+          <h2>Dips</h2>
+          <p class="carta-frase">Suca com si ningú et mirés</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="../imagenes/web/croquetas.webp" alt="Croquetes variades" loading="lazy" decoding="async">
+            <h3>Croquetes</h3>
+            <p class="plato-desc">De cuit, bolets i tòfona, pernil, sípia en la seva tinta i formatges catalans. 5 unitats.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/gyozas.webp" alt="Gyozas" loading="lazy" decoding="async">
+            <h3>Gyozas</h3>
+            <p class="plato-desc">De bou a la brasa, papada ibèrica i llagostí amb el seu corall, amb maio kimchi. 6 unitats.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,00 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/fingers.webp" alt="Fingers de pollastre" loading="lazy" decoding="async">
+            <h3>Fingers</h3>
+            <p class="plato-desc">Tires de filet de pollastre arrebossades amb salsa Chick Addiction. 9 unitats.</p>
+            <p class="plato-precio"><span class="precio-cifra">9,00 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/tequenos.webp" alt="Tequeños" loading="lazy" decoding="async">
+            <h3>Tequeños</h3>
+            <p class="plato-desc">De formatge llanero amb melmelada de tomàquet. 5 unitats.</p>
+            <p class="plato-precio"><span class="precio-cifra">8,00 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 03 BURGERS ===== -->
+    <section class="carta-seccion" id="burgers">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">03.</p>
+          <h2>Burgers</h2>
+          <p class="carta-frase">El motiu pel qual has vingut</p>
+          <div class="carta-avisos">
+            <span class="carta-nota-chip"><strong>Totes inclouen patates fregides</strong></span>
+            <span class="carta-nota-chip">Carn 100% vaca nacional madurada</span>
+          </div>
+        </div>
+        <div class="burger-shots reveal">
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/jack-dream-neon.webp" alt="Burger La Jack Dream" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carn, formatge cheddar fumat, emulsió de Jack Daniel's, pulled pork casolà i ceba crispy marinada en cervesa.</span>
+            </span>
+            <h3>La Jack Dream</h3>
+            <p class="plato-precio"><span class="precio-cifra">17,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Jack Dream en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/influencer-neon.webp" alt="Burger La Influencer" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carn, doble formatge monterrey, salsa Emmy, melmelada de bacon i pulled pork casolà.</span>
+            </span>
+            <h3>La Influencer <span class="badge badge-pica">Pica</span></h3>
+            <p class="plato-precio"><span class="precio-cifra">16,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Influencer en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/kimchi-crunch-neon.webp" alt="Burger La Kimchi Crunch" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Contracuixa de pollastre arrebossada, enciam, tomàquet, maio de llima, maio kimchi i cogombrets.</span>
+            </span>
+            <h3>La Kimchi Crunch</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Kimchi Crunch en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/goat-neon.webp" alt="Burger La Goat" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carn, formatge monterrey, coronada amb un medalló de formatge de cabra i melmelada de pebrots escalivats.</span>
+            </span>
+            <h3>La Goat</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Goat en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/truffled-neon.webp" alt="Burger La Truffled" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carn, doble formatge monterrey, maio trufada i coronada amb un ou fregit.</span>
+            </span>
+            <h3>La Truffled</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Truffled en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/smokey-neon.webp" alt="Burger La Smokey" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carn, formatge cheddar fumat, bacon fumat, cogombrets i salsa BBQ Bull's Eye.</span>
+            </span>
+            <h3>La Smokey</h3>
+            <p class="plato-precio"><span class="precio-cifra">15,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Smokey en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/cbd-neon.webp" alt="Burger La CBD — Chicken Bacon Deluxe" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Chicken Bacon Deluxe: contracuixa de pollastre arrebossada, enciam, tomàquet, formatge monterrey, bacon cruixent, salsa Chick Addiction i ceba crispy.</span>
+            </span>
+            <h3>La CBD</h3>
+            <p class="plato-precio"><span class="precio-cifra">14,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La CBD en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/veggie-neon.webp" alt="Burger La Veggie" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Pa brioix vegà, crunchy de Heura, enciam, tomàquet, guacamole i cogombrets.</span>
+            </span>
+            <h3>La Veggie <span class="badge badge-vegana">Vegana</span></h3>
+            <p class="plato-precio"><span class="precio-cifra">14,50 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Veggie en detall</span></button>
+          </article>
+          <article class="burger-shot">
+            <span class="burger-shot-media">
+              <img src="../imagenes/web/original-neon.webp" alt="Burger La Original" loading="lazy" decoding="async">
+              <span class="burger-shot-desc">Doble carn, doble formatge monterrey, cogombrets i salsa Hannibal.</span>
+            </span>
+            <h3>La Original</h3>
+            <p class="plato-precio"><span class="precio-cifra">13,90 €</span></p>
+            <span class="burger-shot-toca" aria-hidden="true">Toca per veure</span>
+            <button class="burger-shot-abrir" type="button" aria-haspopup="dialog"><span class="oculto-accesible">Veure La Original en detall</span></button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 04 ENTREPANS ===== -->
+    <section class="carta-seccion alterna" id="bocadillos">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">04.</p>
+          <h2>Entrepans</h2>
+          <p class="carta-frase">Tenen molt pocs modals</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="../imagenes/web/bocadillo-jefecito.webp" alt="Entrepà El Jefecito" loading="lazy" decoding="async">
+            <h3>El Jefecito</h3>
+            <p class="plato-desc">Enciam, tomàquet, filet de pollastre arrebossat, bacon cruixent i maio kimchi.</p>
+            <p class="plato-precio"><span class="precio-cifra">10,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/texmex.webp" alt="Entrepà El Tex-Mex" loading="lazy" decoding="async">
+            <h3>El Tex-Mex <span class="badge badge-pica">Pica</span></h3>
+            <p class="plato-desc">Pit de pollastre, verdures saltades, guacamole i crumble de totopos.</p>
+            <p class="plato-precio"><span class="precio-cifra">10,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/bocadillo-serranito.webp" alt="Entrepà El Shiitake" loading="lazy" decoding="async">
+            <h3>El Shiitake</h3>
+            <p class="plato-desc">Llom de dos colors, crema de shiitake i formatge brie.</p>
+            <p class="plato-precio"><span class="precio-cifra">11,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/bocadillo-pollo.webp" alt="Entrepà El Caprisito" loading="lazy" decoding="async">
+            <h3>El Caprisito</h3>
+            <p class="plato-desc">Pollastre, tomàquet sec, mozzarella fresca i pesto italià.</p>
+            <p class="plato-precio"><span class="precio-cifra">12,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/jamon-i-brie.webp" alt="Entrepà El Briebérico" loading="lazy" decoding="async">
+            <h3>El Briebérico</h3>
+            <p class="plato-desc">Pernil ibèric, formatge brie i una capa de melmelada de tomàquet.</p>
+            <p class="plato-precio"><span class="precio-cifra">13,50 €</span></p>
+          </article>
+          <article class="plato plato--sin-foto">
+            <h3>El Philly Cheese</h3>
+            <p class="plato-desc">Bistec de primera sobre una base de ceba saltada i salsa de formatge fumat.</p>
+            <p class="plato-precio"><span class="precio-cifra">13,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 MILANESES ===== -->
+    <section class="carta-seccion" id="milanesas">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">05.</p>
+          <h2>Milaneses</h2>
+          <p class="carta-frase">Les que no necessiten presentació</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="../imagenes/web/cachopo-jamon.webp" alt="Milanesa La Napolitana" loading="lazy" decoding="async">
+            <h3>La Napolitana</h3>
+            <p class="plato-desc">Milanesa de vedella marinada, salsa de tomàquet amb alfàbrega, mozzarella fosa i pernil dolç.</p>
+            <p class="plato-precio"><span class="precio-cifra">15,90 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/milanesa-a-caballo.webp" alt="Milanesa La A Caballo" loading="lazy" decoding="async">
+            <h3>La A Caballo</h3>
+            <p class="plato-desc">Milanesa de vedella marinada, salsa de tomàquet amb alfàbrega, mozzarella fosa, 2 ous fregits i bacon cruixent.</p>
+            <p class="plato-precio"><span class="precio-cifra">16,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/milanesa-carbonara.webp" alt="Milanesa La de Cabra" loading="lazy" decoding="async">
+            <h3>La de Cabra</h3>
+            <p class="plato-desc">Milanesa de vedella marinada, salsa de tomàquet amb alfàbrega, mozzarella fosa, formatge de cabra, ceba caramel·litzada i nous.</p>
+            <p class="plato-precio"><span class="precio-cifra">16,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 06 AMANIDA ===== -->
+    <section class="carta-seccion alterna" id="ensalada">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">06.</p>
+          <h2>Amanida</h2>
+          <p class="carta-frase">Cruix diferent, però cruix</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="../imagenes/web/ensalada.webp" alt="Amanida La César" loading="lazy" decoding="async">
+            <h3>La César</h3>
+            <p class="plato-desc">Enciam, pollastre arrebossat, crostons, salsa cèsar i pecorino en pols.</p>
+            <p class="plato-precio"><span class="precio-cifra">11,90 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 07 POSTRES ===== -->
+    <section class="carta-seccion" id="postres">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">07.</p>
+          <h2>Postres</h2>
+          <p class="carta-frase">Casolans i amb final dolç</p>
+        </div>
+        <div class="carta-grid reveal">
+          <article class="plato">
+            <img src="../imagenes/web/carrot-cake.webp" alt="Carrot Cake" loading="lazy" decoding="async">
+            <h3>Carrot Cake</h3>
+            <p class="plato-desc">Pastís de pastanaga amb frosting de formatge crema.</p>
+            <p class="plato-precio"><span class="precio-cifra">6,00 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/brownie.webp" alt="Warm Brownie" loading="lazy" decoding="async">
+            <h3>Warm Brownie</h3>
+            <p class="plato-desc">Brownie de xocolata amb gelat de caramel salat.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+          <article class="plato">
+            <img src="../imagenes/web/cheesecake.webp" alt="Cheesecake" loading="lazy" decoding="async">
+            <h3>Cheesecake</h3>
+            <p class="plato-desc">Amb quin topping t'agrada més? Lotus, festuc o Kinder Bueno.</p>
+            <p class="plato-precio"><span class="precio-cifra">6,50 €</span></p>
+          </article>
+          <article class="plato plato--sin-foto">
+            <h3>Torrija Caramel·litzada</h3>
+            <p class="plato-desc">Torrija caramel·litzada amb canyella i gelat de vainilla.</p>
+            <p class="plato-precio"><span class="precio-cifra">5,50 €</span></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 08 SALSES ===== -->
+    <section class="carta-seccion alterna" id="salsas">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">08.</p>
+          <h2>Salses</h2>
+          <p class="carta-frase">El difícil no és triar burger. És triar salsa</p>
+        </div>
+        <div class="salsas-lista reveal">
+          <span class="salsa-chip">Maio Kimchi</span>
+          <span class="salsa-chip">Maio de llima</span>
+          <span class="salsa-chip">Maio trufada</span>
+          <span class="salsa-chip">Jack Daniel's</span>
+          <span class="salsa-chip">Barbacoa</span>
+          <span class="salsa-chip">Emmy <span class="badge badge-pica">Pica</span></span>
+          <span class="salsa-chip">Chick</span>
+          <span class="salsa-chip">Cheddar</span>
+        </div>
+        <p class="salsas-nota reveal">Totes les salses tenen un suplement d'<span class="precio-cifra">1 €</span></p>
+      </div>
+    </section>
+
+    <!-- ===== 09 EXTRES ===== -->
+    <section class="carta-seccion" id="extras">
+      <div class="contenedor">
+        <div class="carta-cab reveal">
+          <p class="carta-num">09.</p>
+          <h2>Extres</h2>
+          <p class="carta-frase">Fes-la teva</p>
+        </div>
+        <div class="extras-lista reveal">
+          <div class="extras-fila">
+            <span>Formatge monterrey · Ceba caramel·litzada · Cogombret</span>
+            <span class="precio-cifra">1 €</span>
+          </div>
+          <div class="extras-fila">
+            <span>Bacon · Ou · Brie</span>
+            <span class="precio-cifra">1,50 €</span>
+          </div>
+          <div class="extras-fila">
+            <span>Formatge de cabra · Formatge cheddar fumat · Pulled pork</span>
+            <span class="precio-cifra">2 €</span>
+          </div>
+        </div>
+        <div class="carta-alergenos reveal">
+          <strong>Al·lèrgies i intoleràncies:</strong> si tens al·lèrgies o necessitats especials, consulta el nostre personal. <strong>Tenim opcions per a celíacs.</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BANDA RESERVAR ===== -->
+    <section class="banda-reservar seccion">
+      <div class="contenedor banda-reservar-int">
+        <div>
+          <h2 class="reveal">Ja saps quina demanaràs?</h2>
+          <p class="reveal" data-retraso="1">Doncs reserva taula abans que s'hi avancin. Aquí les burgers no esperen ningú.</p>
+        </div>
+        <a class="btn btn-negro btn-grande reveal" data-retraso="2" href="reservar.html">Reservar taula</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================================
+       PEU COMPARTIT (versió en català)
+       ================================================================ -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div class="pie-marca">
+          <img src="../imagenes/web/logo.webp" alt="Vibra Street Food" width="153" height="34" loading="lazy">
+          <p>Street food a Lleida. Siente la Vibra.</p>
+        </div>
+        <div>
+          <h4>On som</h4>
+          <ul>
+            <li>Carrer de Jaume II, 77<br>25001 Lleida</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer+de+Jaume+II+77+25001+Lleida" target="_blank" rel="noopener">Com arribar</a></li>
+            <li><a href="tel:+34973208727">973 20 87 27</a></li>
+            <li><a href="mailto:ruizruiz.bu@gmail.com">ruizruiz.bu@gmail.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Horari</h4>
+          <ul>
+            <li>
+              <span class="pie-horario-titulo">Temporada normal</span><br>
+              <span class="pie-horario-linea">De dimarts a divendres — de 17:00 a 00:00</span><br>
+              <span class="pie-horario-linea">Dissabte i diumenge — de 13:00 a 00:00</span>
+            </li>
+            <li>
+              <span class="pie-horario-titulo">Estiu (29 de juny – 14 de setembre)</span><br>
+              <span class="pie-horario-linea">De dimarts a diumenge — de 18:00 a 00:00</span>
+            </li>
+            <li><span class="pie-horario-linea">Dilluns tancat</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>La Vibra</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="reservar.html">Reservar taula</a></li>
+            <li><a href="carta.html">La carta</a></li>
+            <li><a href="index.html#musica">La banda sonora</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pie-legal">
+        <p>© <span data-anio>2026</span> Vibra Street Food · Lleida</p>
+        <ul>
+          <li><a href="../aviso-legal.html" hreflang="es">Avís legal</a></li>
+          <li><a href="../privacidad.html" hreflang="es">Privacitat</a></li>
+          <li><a href="../cookies.html" hreflang="es">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- ============================== /PEU ============================ -->
+
+  <!-- ===== MODAL DE BURGER (s'omple llegint la targeta premuda) ===== -->
+  <dialog class="burger-modal" data-burger-modal aria-labelledby="burger-modal-titulo">
+    <button class="burger-modal-cerrar" type="button" data-modal-cerrar aria-label="Tancar">✕</button>
+    <div class="burger-modal-int">
+      <div class="burger-modal-foto">
+        <img src="../imagenes/web/jack-dream-neon.webp" alt="" data-modal-img>
+      </div>
+      <div class="burger-modal-texto">
+        <h3 id="burger-modal-titulo" data-modal-titulo>Burger</h3>
+        <p class="burger-modal-desc" data-modal-desc></p>
+        <p class="burger-modal-precio"><span class="precio-cifra" data-modal-precio></span></p>
+        <p class="burger-modal-nota">Inclou patates fregides · Carn 100% vaca nacional madurada</p>
+        <div class="burger-modal-acciones">
+          <a class="btn btn-degradado" href="reservar.html">Reservar taula</a>
+          <button class="btn btn-fantasma" type="button" data-modal-cerrar>Seguir mirant</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ================================================================
+       BARRA D'ACCIONS (només mòbil) i MODAL DEMANAR A DOMICILI
+       ================================================================ -->
+  <div class="barra-acciones" data-barra-acciones>
+    <button class="btn btn-fantasma" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar</button>
+    <a class="btn btn-degradado" href="reservar.html">Reservar taula</a>
+  </div>
+  <dialog class="pedir-modal" data-pedir-modal aria-labelledby="pedir-titulo">
+    <button class="modal-cerrar" type="button" data-pedir-cerrar aria-label="Tancar">✕</button>
+    <p class="kicker">A domicili</p>
+    <h3 id="pedir-titulo">On t'ho <span class="txt-degradado">portem</span>?</h3>
+    <p class="pedir-nota">Tria la teva app. La burger arriba amb les seves patates, com ha de ser.</p>
+    <div class="pedir-opciones">
+      <a class="pedir-opcion" href="https://glovoapp.com/es/es/lleida/stores/tremola-lleida" target="_blank" rel="noopener">
+        <span class="pedir-logo pedir-logo--glovo">Glovo</span>
+        <span>Demanar ↗</span>
+      </a>
+      <a class="pedir-opcion" href="https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ" target="_blank" rel="noopener">
+        <span class="pedir-logo pedir-logo--uber">Uber Eats</span>
+        <span>Demanar ↗</span>
+      </a>
+    </div>
+    <p class="pedir-pie">Dubtes amb la comanda? Truca'ns al <a href="tel:+34973208727">973 20 87 27</a>.</p>
+  </dialog>
+  <!-- ========================= /BARRA I MODAL DEMANAR ================ -->
+
+  <script defer src="../lib/gsap.min.js"></script>
+  <script defer src="../lib/ScrollTrigger.min.js"></script>
+  <script defer src="../lib/manifest.js"></script>
+  <script defer src="../main.js?v=20260904"></script>
+</body>
+</html>

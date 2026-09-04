@@ -1921,3 +1921,18 @@ body::after {
   text-transform: uppercase;
   color: var(--texto-3);
 }
+
+/* Selector de idioma (ES / CA) */
+.cabecera-nav a.cabecera-idioma {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  color: var(--texto-2);
+  transition: color 0.3s, border-color 0.3s;
+}
+.cabecera-nav a.cabecera-idioma::after { display: none; }
+.cabecera-nav a.cabecera-idioma:hover { color: var(--blanco); border-color: rgba(232, 48, 133, 0.5); }
+.menu-movil-idioma { font-weight: 600; color: var(--texto-2); }

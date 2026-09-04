@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>document.documentElement.classList.add("js");</script>
+  <title>Vibra Street Food — Burgers i street food a Lleida</title>
+  <meta name="description" content="Street food a Lleida: burgers amb carn 100% de vaca nacional madurada, entrepans, milaneses i postres. Siente la Vibra. Reserva taula o demana a domicili.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Vibra Street Food — Siente la Vibra">
+  <meta property="og:description" content="Burgers i street food a Lleida. Reserva taula.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ca_ES">
+
+  <link rel="icon" type="image/png" href="../favicon.png">
+  <link rel="apple-touch-icon" href="../favicon.png">
+
+  <link rel="preload" as="font" type="font/woff2" href="../fuentes/anton-400.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="../fuentes/poppins-400.woff2" crossorigin>
+  <link rel="preload" as="image" href="../imagenes/web/jack-dream-hero.webp" fetchpriority="high">
+
+  <link rel="stylesheet" href="../styles.css?v=20260904">
+</head>
+<body>
+  <a class="salto-contenido" href="#contenido">Salta al contingut</a>
+
+  <!-- ================================================================
+       CAPÇALERA COMPARTIDA (versió en català) — copiar tal qual a cada
+       pàgina nova de la carpeta ca/
+       ================================================================ -->
+  <header class="cabecera" data-cabecera>
+    <div class="cabecera-int">
+      <a class="cabecera-logo" href="index.html" aria-label="Vibra Street Food — Inici">
+        <img src="../imagenes/web/logo.webp" alt="Vibra Street Food" width="162" height="36">
+      </a>
+      <nav class="cabecera-nav" aria-label="Navegació principal">
+        <a href="carta.html">Carta</a>
+        <a href="nosotros.html">Nosaltres</a>
+        <a href="novedades.html">Novetats</a>
+        <a href="contacto.html">Contacte</a>
+        <a class="cabecera-idioma" href="../index.html" lang="es" hreflang="es" aria-label="Versión en castellano">ES</a>
+      </nav>
+      <div class="cabecera-acciones">
+        <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar</button>
+        <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
+        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Obrir el menú" data-menu-btn>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  <div class="menu-movil" id="menu-movil" data-menu>
+      <a class="enlace-movil" href="index.html">Inici</a>
+      <a class="enlace-movil" href="carta.html">Carta</a>
+      <a class="enlace-movil" href="nosotros.html">Nosaltres</a>
+      <a class="enlace-movil" href="novedades.html">Novetats</a>
+      <a class="enlace-movil" href="contacto.html">Contacte</a>
+      <div class="menu-movil-pie">
+        <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar taula</a>
+        <button class="btn btn-fantasma btn-grande" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar a domicili</button>
+        <a class="menu-movil-idioma" href="../index.html" lang="es">Castellano</a>
+        <a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram — @vibrastreetfood</a>
+      </div>
+    </div>
+  <!-- ============================= /CAPÇALERA ======================= -->
+
+  <main id="contenido">
+
+    <!-- ===== PORTADA BRAND FILM (mateixos vídeos que la versió en castellà) ===== -->
+    <section class="hero" id="portada">
+      <div class="hero-media" data-media-slot data-video-h="../imagenes/video/portada.mp4" data-video-v="../imagenes/video/portada-vertical.mp4">
+        <img class="hero-poster" src="../imagenes/web/jack-dream-hero.webp" alt="" fetchpriority="high" decoding="async">
+      </div>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">Street food · Lleida</p>
+        <h1 class="hero-titulo"><span class="hero-linea">Siente</span><span class="hero-linea"><span class="txt-degradado">la vibra</span></span></h1>
+        <p class="hero-sub">Burgers amb carn madurada, música alta i un equip que hi posa energia fins i tot un dimarts.</p>
+        <div class="hero-acciones">
+          <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar taula</a>
+          <a class="btn btn-fantasma btn-grande" href="carta.html">Veure la carta</a>
+        </div>
+        <p class="hero-estado" data-horario-hoy hidden></p>
+      </div>
+      <a class="hero-scroll" href="#manifiesto" aria-label="Baixar al contingut"><span></span></a>
+      <div class="marquesina hero-marquesina" aria-hidden="true">
+        <div class="marquesina-pista">
+          <span>El motiu pel qual has vingut</span><i>★</i><span>Suca com si ningú et mirés</span><i>★</i><span>Tenen molt pocs modals</span><i>★</i><span>Siente la vibra</span><i>★</i>
+          <span>El motiu pel qual has vingut</span><i>★</i><span>Suca com si ningú et mirés</span><i>★</i><span>Tenen molt pocs modals</span><i>★</i><span>Siente la vibra</span><i>★</i>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MANIFEST ===== -->
+    <section class="manifiesto seccion" id="manifiesto">
+      <div class="contenedor">
+        <p class="kicker reveal">Què és Vibra</p>
+        <p class="manifiesto-texto" data-palabras>Street food amb <span class="txt-degradado">producte de veritat</span> i un equip jove que hi posa <span class="txt-degradado">energia</span> fins i tot un dimarts.</p>
+        <p class="manifiesto-nota reveal" data-retraso="2">Carn 100% de vaca nacional madurada, opcions per a celíacs i zero tonteries. Això és Lleida amb gana i ganes de festa.</p>
+      </div>
+    </section>
+
+    <!-- ===== LES BURGERS ===== -->
+    <section class="shots" data-shots aria-label="Les burgers de Vibra">
+      <div class="contenedor shots-cab">
+        <p class="kicker reveal">Les burgers</p>
+        <h2 class="reveal" data-retraso="1">Nou raons. <span class="txt-degradado">Zero excuses.</span></h2>
+        <p class="shots-nota reveal" data-retraso="2">Totes amb patates · Carn 100% vaca nacional madurada</p>
+      </div>
+      <div class="shots-viewport">
+        <div class="shots-pista" data-shots-pista>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/jack-dream-neon.webp" alt="Burger La Jack Dream" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Jack Dream</strong><span>17,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/influencer-neon.webp" alt="Burger La Influencer" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Influencer</strong><span>16,90 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/kimchi-crunch-neon.webp" alt="Burger La Kimchi Crunch" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Kimchi Crunch</strong><span>15,90 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/goat-neon.webp" alt="Burger La Goat" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Goat</strong><span>15,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/truffled-neon.webp" alt="Burger La Truffled" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Truffled</strong><span>15,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/smokey-neon.webp" alt="Burger La Smokey" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Smokey</strong><span>15,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/cbd-neon.webp" alt="Burger La CBD" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La CBD</strong><span>14,90 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/veggie-neon.webp" alt="Burger La Veggie" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Veggie</strong><span>14,50 €</span></span>
+          </a>
+          <a class="shot" href="carta.html#burgers">
+            <img src="../imagenes/web/original-neon.webp" alt="Burger La Original" loading="lazy" decoding="async">
+            <span class="shot-info"><strong>La Original</strong><span>13,90 €</span></span>
+          </a>
+          <a class="shot shot--final" href="carta.html">
+            <span>Veure la carta<br>sencera →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LA CARTA: llista tipogràfica ===== -->
+    <section class="carta-lista seccion" id="carta">
+      <div class="contenedor">
+        <div class="teaser-cabecera">
+          <div>
+            <p class="kicker reveal">La carta</p>
+            <h2 class="reveal" data-retraso="1">Tota la resta també <span class="txt-degradado">cau</span>.</h2>
+          </div>
+          <a class="btn btn-fantasma reveal" data-retraso="2" href="carta.html">Veure la carta sencera</a>
+        </div>
+        <ul class="lista-cats reveal" data-lista-carta>
+          <li>
+            <a href="carta.html#compartir">
+              <span class="lista-num">01</span>
+              <span class="lista-nombre">Per compartir</span>
+              <span class="lista-frase">Aquí es ve a compartir… o això diuen</span>
+              <img class="lista-img" src="../imagenes/web/nachos.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#dips">
+              <span class="lista-num">02</span>
+              <span class="lista-nombre">Dips</span>
+              <span class="lista-frase">Suca com si ningú et mirés</span>
+              <img class="lista-img" src="../imagenes/web/croquetas.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#burgers">
+              <span class="lista-num">03</span>
+              <span class="lista-nombre">Burgers</span>
+              <span class="lista-frase">El motiu pel qual has vingut</span>
+              <img class="lista-img" src="../imagenes/web/goat.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#bocadillos">
+              <span class="lista-num">04</span>
+              <span class="lista-nombre">Entrepans</span>
+              <span class="lista-frase">Tenen molt pocs modals</span>
+              <img class="lista-img" src="../imagenes/web/texmex.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#milanesas">
+              <span class="lista-num">05</span>
+              <span class="lista-nombre">Milaneses</span>
+              <span class="lista-frase">Les que no necessiten presentació</span>
+              <img class="lista-img" src="../imagenes/web/milanesa-a-caballo.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+          <li>
+            <a href="carta.html#postres">
+              <span class="lista-num">06</span>
+              <span class="lista-nombre">Postres</span>
+              <span class="lista-frase">Casolans i amb final dolç</span>
+              <img class="lista-img" src="../imagenes/web/brownie.webp" alt="" loading="lazy" decoding="async">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== LA TERRASSA ===== -->
+    <section class="ambiente" data-parallax aria-label="La terrassa de Vibra">
+      <div class="ambiente-media" data-parallax-media data-media-slot data-video-h="../imagenes/video/terraza.mp4" data-video-v="../imagenes/video/terraza-vertical.mp4">
+        <img src="../imagenes/web/terraza-hero.webp" alt="" loading="lazy" decoding="async">
+      </div>
+      <div class="contenedor ambiente-int">
+        <p class="kicker reveal">La terrassa</p>
+        <h2 class="reveal" data-retraso="1">La terrassa ja està <span class="txt-degradado">vibrant</span>.</h2>
+        <p class="reveal" data-retraso="2">Taula per als teus, música alta i la millor burger de la ciutat al davant. La resta la posem nosaltres.</p>
+        <a class="btn btn-degradado btn-grande reveal" data-retraso="3" href="reservar.html">Reservar taula</a>
+      </div>
+    </section>
+
+    <!-- ===== RESSENYES DE GOOGLE (textos literals de la fitxa, en l'idioma original) ===== -->
+    <section class="resenas seccion" id="resenas">
+      <div class="contenedor resenas-grid">
+        <div class="resenas-resumen reveal">
+          <p class="kicker">Ressenyes</p>
+          <p class="resenas-nota-grande">
+            <strong>4,5</strong>
+            <span class="resena-estrellas" role="img" aria-label="4,5 de 5 estrelles">★★★★<span class="media">★</span></span>
+          </p>
+          <h2>Això no ho escrivim <span class="txt-degradado">nosaltres</span>.</h2>
+          <p class="resenas-sub">Més de 600 persones ho han explicat a Google. Nosaltres només ho copiem aquí.</p>
+          <a class="btn btn-fantasma" href="https://share.google/LYP9HCj4njBHNzmrX" target="_blank" rel="noopener">Veure-les totes a Google ↗</a>
+        </div>
+        <div class="resenas-carril-wrap">
+          <div class="resenas-carril reveal" data-resenas>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrelles">★★★★★</div>
+              <p>Las mejores hamburguesas de Lleida. 100% recomendable.</p>
+              <div class="resena-pie">
+                <strong>Andres Cardona Castaño</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrelles">★★★★★</div>
+              <p>Un servicio muy bueno, la comida está deliciosa, el precio es acorde a la calidad de la comida. Sin duda un lugar donde ir a comer o cenar hamburguesas, bocadillos y platos combinados. Quedé muy contento tanto con el servicio como con la comida. Volveré sin dudarlo.</p>
+              <div class="resena-pie">
+                <strong>QUIM</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrelles">★★★★★</div>
+              <p>Hemos estado en la terrasita, muy a gusto, con airecito y todo muy bien. Nos hemos pedido cuatro hamburguesas y todas hemos coincidido en que estaban súper buenas, con sus patatitas y todo muy bien. No son esas hamburguesas enormes con mil cosas que luego no sabes ni cómo comer: aquí la puedes comer bien, sin liarte. El sabor muy bueno. Volveremos seguro.</p>
+              <div class="resena-pie">
+                <strong>Sra Maximiliana</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrelles">★★★★★</div>
+              <p>Muy buena atención, la comida increíble y de muy buena calidad. El personal muy simpático y atento con los clientes. Repetiría sin dudarlo.</p>
+              <div class="resena-pie">
+                <strong>marta castellnou</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrelles">★★★★★</div>
+              <p>El servicio es bueno, la comida muy rica, la gente muy buena y te atienden al momento. Trabaja allí gente maravillosa.</p>
+              <div class="resena-pie">
+                <strong>Wisal Es Samtoul</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="5 de 5 estrelles">★★★★★</div>
+              <p>Todo genial, gracias a Cristina, atenta, amable y muy agradable. Gracias.</p>
+              <div class="resena-pie">
+                <strong>sonia Gonzalez Corredera</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+            <article class="resena" lang="es">
+              <div class="resena-estrellas" role="img" aria-label="4 de 5 estrelles">★★★★<span class="apagada">★</span></div>
+              <p>Muy buena elección para comer un bocata o una burguer. De muy buena calidad y a un precio justo. Con variedad y opciones diferentes al resto. También tapas y ensaladas. Personal muy simpático.</p>
+              <div class="resena-pie">
+                <strong>A.J. Sorolla</strong>
+                <span lang="ca">· Ressenya de Google</span>
+              </div>
+            </article>
+          </div>
+          <div class="resenas-controles reveal">
+            <button class="flecha-circular" type="button" data-resenas-prev aria-label="Ressenyes anteriors">←</button>
+            <button class="flecha-circular" type="button" data-resenas-next aria-label="Més ressenyes">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LA BANDA SONORA (Spotify en dos passos) ===== -->
+    <section class="musica seccion" id="musica">
+      <div class="contenedor">
+        <p class="kicker reveal">La banda sonora</p>
+        <h2 class="reveal" data-retraso="1">El logo és una ona per alguna cosa.</h2>
+        <p class="musica-nota reveal" data-retraso="2">Aquestes són les playlists que sonen al local. Dona-li al play i que la vibra et segueixi a casa.</p>
+        <div class="musica-grid">
+          <article class="musica-tarjeta reveal">
+            <h3><img class="musica-titulo-onda" src="../imagenes/onda-naranja.png" alt="" aria-hidden="true"> Vibra Rumbeo</h3>
+            <div class="musica-marco" data-embed data-embed-src="https://open.spotify.com/embed/playlist/6oaw4KtT0CgVAW5fAzOBH1?theme=0" data-embed-title="Reproductor de Spotify: Vibra Rumbeo" data-embed-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+              <div class="embed-placeholder">
+                <span class="mapa-pin" aria-hidden="true">▶</span>
+                <p><strong>Vibra Rumbeo</strong><br>El reproductor es carrega només si tu vols.</p>
+                <button class="btn btn-degradado" type="button" data-embed-cargar>Carregar reproductor</button>
+                <p class="mapa-nota">En carregar-lo es connecta amb Spotify i s'apliquen les seves condicions i la seva política de privacitat.</p>
+              </div>
+            </div>
+            <div class="musica-pie-tarjeta">
+              <a href="https://open.spotify.com/playlist/6oaw4KtT0CgVAW5fAzOBH1" target="_blank" rel="noopener">Obrir a Spotify</a>
+            </div>
+          </article>
+          <article class="musica-tarjeta reveal" data-retraso="1">
+            <h3><img class="musica-titulo-onda" src="../imagenes/onda-rosa.png" alt="" aria-hidden="true"> Lista Vibra</h3>
+            <div class="musica-marco" data-embed data-embed-src="https://open.spotify.com/embed/playlist/3stxpFi4hbrxezvpgwJnvX?theme=0" data-embed-title="Reproductor de Spotify: Lista Vibra" data-embed-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+              <div class="embed-placeholder">
+                <span class="mapa-pin" aria-hidden="true">▶</span>
+                <p><strong>Lista Vibra</strong><br>El reproductor es carrega només si tu vols.</p>
+                <button class="btn btn-degradado" type="button" data-embed-cargar>Carregar reproductor</button>
+                <p class="mapa-nota">En carregar-lo es connecta amb Spotify i s'apliquen les seves condicions i la seva política de privacitat.</p>
+              </div>
+            </div>
+            <div class="musica-pie-tarjeta">
+              <a href="https://open.spotify.com/playlist/3stxpFi4hbrxezvpgwJnvX" target="_blank" rel="noopener">Obrir a Spotify</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FRANJA PRÀCTICA ===== -->
+    <section class="practica seccion">
+      <div class="contenedor practica-grid">
+        <div class="practica-bloque reveal">
+          <h3>On</h3>
+          <p><strong>Carrer de Jaume II, 77</strong><br>25001 Lleida</p>
+          <p class="practica-nota"><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer+de+Jaume+II+77+25001+Lleida" target="_blank" rel="noopener">Com arribar</a></p>
+        </div>
+        <div class="practica-bloque reveal" data-retraso="1">
+          <h3>Quan</h3>
+          <ul>
+            <li><strong>Temporada normal:</strong> de dimarts a divendres 17:00–00:00 · dissabte i diumenge 13:00–00:00</li>
+            <li><strong>Estiu (29 juny – 14 set):</strong> de dimarts a diumenge, 18:00–00:00</li>
+          </ul>
+          <p class="practica-nota">Dilluns tancat. Descansem per vibrar més fort.</p>
+        </div>
+        <div class="practica-bloque reveal" data-retraso="2">
+          <h3>Segueix-nos</h3>
+          <p><a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram — @vibrastreetfood</a></p>
+          <p class="practica-nota">Novetats, burger del mes i poca vergonya.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BANDA RESERVAR ===== -->
+    <section class="banda-reservar seccion">
+      <div class="contenedor banda-reservar-int">
+        <div>
+          <h2 class="reveal">Reserves o t'ho expliquen?</h2>
+          <p class="reveal" data-retraso="1">Taula per als teus, música alta i la millor burger de la ciutat al davant.</p>
+        </div>
+        <a class="btn btn-negro btn-grande reveal" data-retraso="2" href="reservar.html">Reservar ara</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================================================================
+       PEU COMPARTIT (versió en català) — copiar tal qual a cada pàgina de ca/
+       ================================================================ -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie-grid">
+        <div class="pie-marca">
+          <img src="../imagenes/web/logo.webp" alt="Vibra Street Food" width="153" height="34" loading="lazy">
+          <p>Street food a Lleida. Siente la Vibra.</p>
+        </div>
+        <div>
+          <h4>On som</h4>
+          <ul>
+            <li>Carrer de Jaume II, 77<br>25001 Lleida</li>
+            <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Carrer+de+Jaume+II+77+25001+Lleida" target="_blank" rel="noopener">Com arribar</a></li>
+            <li><a href="tel:+34973208727">973 20 87 27</a></li>
+            <li><a href="mailto:ruizruiz.bu@gmail.com">ruizruiz.bu@gmail.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Horari</h4>
+          <ul>
+            <li>
+              <span class="pie-horario-titulo">Temporada normal</span><br>
+              <span class="pie-horario-linea">De dimarts a divendres — de 17:00 a 00:00</span><br>
+              <span class="pie-horario-linea">Dissabte i diumenge — de 13:00 a 00:00</span>
+            </li>
+            <li>
+              <span class="pie-horario-titulo">Estiu (29 de juny – 14 de setembre)</span><br>
+              <span class="pie-horario-linea">De dimarts a diumenge — de 18:00 a 00:00</span>
+            </li>
+            <li><span class="pie-horario-linea">Dilluns tancat</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4>La Vibra</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/vibrastreetfood" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="reservar.html">Reservar taula</a></li>
+            <li><a href="carta.html">La carta</a></li>
+            <li><a href="index.html#musica">La banda sonora</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pie-legal">
+        <p>© <span data-anio>2026</span> Vibra Street Food · Lleida</p>
+        <ul>
+          <li><a href="../aviso-legal.html" hreflang="es">Avís legal</a></li>
+          <li><a href="../privacidad.html" hreflang="es">Privacitat</a></li>
+          <li><a href="../cookies.html" hreflang="es">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <!-- ============================== /PEU ============================ -->
+
+  <!-- ================================================================
+       BARRA D'ACCIONS (només mòbil) i MODAL DEMANAR A DOMICILI
+       ================================================================ -->
+  <div class="barra-acciones" data-barra-acciones>
+    <button class="btn btn-fantasma" type="button" data-pedir-abrir aria-haspopup="dialog">Demanar</button>
+    <a class="btn btn-degradado" href="reservar.html">Reservar taula</a>
+  </div>
+  <dialog class="pedir-modal" data-pedir-modal aria-labelledby="pedir-titulo">
+    <button class="modal-cerrar" type="button" data-pedir-cerrar aria-label="Tancar">✕</button>
+    <p class="kicker">A domicili</p>
+    <h3 id="pedir-titulo">On t'ho <span class="txt-degradado">portem</span>?</h3>
+    <p class="pedir-nota">Tria la teva app. La burger arriba amb les seves patates, com ha de ser.</p>
+    <div class="pedir-opciones">
+      <a class="pedir-opcion" href="https://glovoapp.com/es/es/lleida/stores/tremola-lleida" target="_blank" rel="noopener">
+        <span class="pedir-logo pedir-logo--glovo">Glovo</span>
+        <span>Demanar ↗</span>
+      </a>
+      <a class="pedir-opcion" href="https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ" target="_blank" rel="noopener">
+        <span class="pedir-logo pedir-logo--uber">Uber Eats</span>
+        <span>Demanar ↗</span>
+      </a>
+    </div>
+    <p class="pedir-pie">Dubtes amb la comanda? Truca'ns al <a href="tel:+34973208727">973 20 87 27</a>.</p>
+  </dialog>
+  <!-- ========================= /BARRA I MODAL DEMANAR ================ -->
+
+  <script defer src="../lib/gsap.min.js"></script>
+  <script defer src="../lib/ScrollTrigger.min.js"></script>
+  <script defer src="../lib/manifest.js"></script>
+  <script defer src="../main.js?v=20260904"></script>
+</body>
+</html>
