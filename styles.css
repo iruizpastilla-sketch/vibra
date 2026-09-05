@@ -129,13 +129,8 @@ h1, h2, h3, h4 {
 }
 .salto-contenido:focus { top: 1rem; }
 
-/* Transiciones entre páginas (View Transitions API, progresivo) */
-@view-transition { navigation: auto; }
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.45s;
-  animation-timing-function: var(--ease-out);
-}
+/* Transiciones entre páginas: la cortina de la sección 26 (main.js) sustituye al
+   fundido de la View Transitions API, que además chocaba con ella. */
 
 /* =============================================================
    4. Utilidades
@@ -2020,3 +2015,101 @@ body::after {
    ============================================================= */
 .precio-cifra, .carta-num, .lista-num, .nos-pilar-num, .nos-cifra strong,
 .resenas-nota-grande strong, .shot-info span, .club-tarjeta-cifra { font-family: var(--display-num); }
+
+/* =============================================================
+   26. Fase E: la "magia". Scroll suave (Lenis), cursor propio,
+   tarjetas con relieve, marquesinas vivas y cortina entre páginas.
+   Todo se activa desde main.js solo en escritorio con ratón; el scroll
+   suave y la cortina se apagan además con "reducir movimiento".
+   ============================================================= */
+
+/* --- Lenis (scroll suave). Anula el scroll-behavior nativo mientras manda Lenis --- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* --- Cursor propio: punto que sigue al ratón + aro con inercia --- */
+html.cursor-propio, html.cursor-propio a, html.cursor-propio button, html.cursor-propio [role="button"],
+html.cursor-propio summary, html.cursor-propio label, html.cursor-propio .plato { cursor: none; }
+.cursor { position: fixed; inset: 0; z-index: 11000; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
+.cursor.is-visible { opacity: 1; }
+.cursor.is-oculto { opacity: 0; }
+.cursor-punto, .cursor-aro { position: absolute; left: 0; top: 0; will-change: transform; }
+/* difference: el cursor se ve tanto sobre negro como sobre el degradado rosa */
+.cursor-punto, .cursor:not(.is-texto) .cursor-forma { mix-blend-mode: difference; }
+.cursor-punto {
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--blanco);
+  transition: opacity 0.25s;
+}
+.cursor-forma {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out), margin 0.35s var(--ease-out),
+    background-color 0.35s, border-color 0.35s, transform 0.2s;
+}
+.cursor-texto {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blanco);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cursor.is-enlace .cursor-forma { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--rosa); }
+.cursor.is-texto .cursor-punto { opacity: 0; }
+.cursor.is-texto .cursor-forma {
+  width: 84px;
+  height: 84px;
+  margin: -42px 0 0 -42px;
+  background-color: var(--rosa);
+  border-color: var(--rosa);
+}
+.cursor.is-texto .cursor-texto { opacity: 1; }
+.cursor.is-pulsado .cursor-forma { transform: scale(0.85); }
+/* Los <dialog> viven en la capa superior del navegador, por encima del cursor propio: dentro vuelve el nativo */
+html.cursor-propio dialog, html.cursor-propio dialog * { cursor: auto; }
+html.cursor-propio dialog a, html.cursor-propio dialog button { cursor: pointer; }
+body.sin-scroll .cursor { opacity: 0; }
+
+/* --- Tarjetas con relieve: GSAP lleva el transform, la CSS solo el borde y la sombra --- */
+.plato.is-tilt, .burger-shot.is-tilt { transition-property: border-color, box-shadow; transform-style: preserve-3d; }
+.plato.is-tilt img { transition-property: filter; }
+
+/* --- Marquesinas vivas: la animación CSS se apaga y GSAP la mueve según el scroll --- */
+.marquesina-pista.is-gsap { animation: none; }
+
+/* --- Cortina entre páginas: sube al salir (.transicion) y se retira al llegar (html.is-llegando) --- */
+.transicion {
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  background: var(--degradado);
+  pointer-events: none;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.5s var(--ease-soft);
+}
+.transicion.is-cubierta { clip-path: inset(0 0 0 0); pointer-events: auto; }
+html.is-llegando::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 12000;
+  background: var(--degradado);
+  pointer-events: none;
+  animation: cortina-fuera 0.7s var(--ease-out) 0.12s forwards;
+}
+@keyframes cortina-fuera { to { clip-path: inset(0 0 100% 0); } }

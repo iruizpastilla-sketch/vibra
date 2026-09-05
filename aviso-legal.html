@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>document.documentElement.classList.add("js");try{if(sessionStorage.getItem("vibra-transicion")){sessionStorage.removeItem("vibra-transicion");document.documentElement.classList.add("is-llegando")}}catch(e){}</script>
   <title>Aviso legal — Vibra Street Food</title>
   <meta name="description" content="Aviso legal e información identificativa del titular de vibrastreetfood.com, conforme al artículo 10 de la Ley 34/2002 (LSSI-CE).">
   <meta name="robots" content="index, follow">
@@ -18,7 +18,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fuentes/ut-bagh-display.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260905">
+  <link rel="stylesheet" href="styles.css?v=20260906">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="fc84f6c0-e986-4f75-be10-222ac8fc00f7" data-domains="vibrastreetfood.com"></script>
 </head>
@@ -232,9 +232,10 @@
   </dialog>
   <!-- ========================= /BARRA Y MODAL PEDIR ================== -->
 
+  <script defer src="lib/lenis.min.js"></script>
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260905"></script>
+  <script defer src="main.js?v=20260906"></script>
 </body>
 </html>

@@ -2,6 +2,8 @@
 // Instalar puppeteer en una carpeta temporal:  npm i puppeteer  (en esa carpeta)
 // y ejecutar con NODE_PATH apuntando a su node_modules:
 //   NODE_PATH=/ruta/temporal/node_modules node tools/capturas.js http://localhost:8765/index.html desktop d hero:y=0 carta:.carta-lista
+// Si Windows bloquea el Chrome de puppeteer (Control de aplicaciones), usar el Chrome del sistema:
+//   PUPPETEER_EXECUTABLE_PATH="C:/Program Files/Google/Chrome/Application/chrome.exe"
 // Uso: node capturas.js <url> <desktop|mobile> <prefijo> paso paso ...
 //   paso = nombre:y=1234 | nombre:y=+600 (relativo) | nombre:selector | nombre:hover=selector | nombre:full
 const puppeteer = require('puppeteer');
