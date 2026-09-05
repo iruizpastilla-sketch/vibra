@@ -129,8 +129,13 @@ h1, h2, h3, h4 {
 }
 .salto-contenido:focus { top: 1rem; }
 
-/* Transiciones entre páginas: la cortina de la sección 26 (main.js) sustituye al
-   fundido de la View Transitions API, que además chocaba con ella. */
+/* Transiciones entre páginas (View Transitions API, progresivo) */
+@view-transition { navigation: auto; }
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: var(--ease-out);
+}
 
 /* =============================================================
    4. Utilidades
@@ -2018,9 +2023,9 @@ body::after {
 
 /* =============================================================
    26. Fase E: la "magia". Scroll suave (Lenis), cursor propio,
-   tarjetas con relieve, marquesinas vivas y cortina entre páginas.
+   tarjetas con relieve y marquesinas vivas.
    Todo se activa desde main.js solo en escritorio con ratón; el scroll
-   suave y la cortina se apagan además con "reducir movimiento".
+   suave se apaga además con "reducir movimiento".
    ============================================================= */
 
 /* --- Lenis (scroll suave). Anula el scroll-behavior nativo mientras manda Lenis --- */
@@ -2092,24 +2097,3 @@ body.sin-scroll .cursor { opacity: 0; }
 /* --- Marquesinas vivas: la animación CSS se apaga y GSAP la mueve según el scroll --- */
 .marquesina-pista.is-gsap { animation: none; }
 
-/* --- Cortina entre páginas: sube al salir (.transicion) y se retira al llegar (html.is-llegando) --- */
-.transicion {
-  position: fixed;
-  inset: 0;
-  z-index: 12000;
-  background: var(--degradado);
-  pointer-events: none;
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 0.5s var(--ease-soft);
-}
-.transicion.is-cubierta { clip-path: inset(0 0 0 0); pointer-events: auto; }
-html.is-llegando::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 12000;
-  background: var(--degradado);
-  pointer-events: none;
-  animation: cortina-fuera 0.7s var(--ease-out) 0.12s forwards;
-}
-@keyframes cortina-fuera { to { clip-path: inset(0 0 100% 0); } }

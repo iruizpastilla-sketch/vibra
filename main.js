@@ -627,38 +627,6 @@
     });
   }
 
-  // ---------- Transición entre páginas: cortina degradada que sube al salir y se retira al llegar ----------
-  // El script inline del <head> pone html.is-llegando si venimos de otra página de la web;
-  // la CSS anima la retirada sola, así que aunque este JS fallara la cortina desaparece igual.
-  function initTransiciones() {
-    var raiz = document.documentElement;
-    var CLAVE = "vibra-transicion";
-    if (raiz.classList.contains("is-llegando")) {
-      setTimeout(function () { raiz.classList.remove("is-llegando"); }, 1000);
-    }
-    if (reducirMovimiento) return;
-    var cortina = document.createElement("div");
-    cortina.className = "transicion";
-    cortina.setAttribute("aria-hidden", "true");
-    document.body.appendChild(cortina);
-
-    document.addEventListener("click", function (e) {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      var a = e.target.closest && e.target.closest("a[href]");
-      if (!a || a.target || a.hasAttribute("download") || a.hasAttribute("data-sin-transicion")) return;
-      var url;
-      try { url = new URL(a.href, location.href); } catch (err) { return; }
-      if (url.origin !== location.origin || !/^https?:$/.test(url.protocol)) return;
-      if (url.pathname === location.pathname && url.hash) return; // ancla dentro de la misma página
-      e.preventDefault();
-      try { sessionStorage.setItem(CLAVE, "1"); } catch (err) { /* sin almacenamiento: sin cortina de llegada */ }
-      cortina.classList.add("is-cubierta");
-      setTimeout(function () { location.href = url.href; }, 520);
-    });
-    // Si el navegador restaura la página desde caché (botón atrás), la cortina no debe quedarse puesta
-    window.addEventListener("pageshow", function (e) { if (e.persisted) cortina.classList.remove("is-cubierta"); });
-  }
-
   // ---------- Año del pie ----------
   function initAnio() {
     var el = $("[data-anio]");
@@ -691,7 +659,6 @@
     safe(initCursor, "initCursor");
     safe(initMarquesinaViva, "initMarquesinaViva");
     safe(initTilt, "initTilt");
-    safe(initTransiciones, "initTransiciones");
 
     document.documentElement.classList.add("is-ready");
   }
