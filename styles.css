@@ -63,7 +63,7 @@
   --blanco:   #FFFFFF;
   --texto:    rgba(255, 255, 255, 0.92);
   --texto-2:  rgba(255, 255, 255, 0.64);
-  --texto-3:  rgba(255, 255, 255, 0.42);
+  --texto-3:  rgba(255, 255, 255, 0.58);
   --amarillo: #F38F1C;
   --rosa:     #E83085;
   --degradado: linear-gradient(90deg, #F38F1C 0%, #E83085 100%);
@@ -102,6 +102,7 @@ body {
   overflow-x: clip;
   overscroll-behavior-y: none;
 }
+[hidden] { display: none !important; }
 img, svg, video { display: block; max-width: 100%; }
 img { height: auto; }
 button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
@@ -208,6 +209,8 @@ h1, h2, h3, h4 {
 }
 
 .btn-grande { font-size: 1.15rem; padding: 1.1rem 2.4rem; }
+/* La flecha de "abre en otra pestana" es decorativa: se pinta, no se lee */
+.ext { margin-left: 0.4em; font-size: 0.85em; }
 
 /* =============================================================
    6. Cabecera compartida
@@ -451,7 +454,8 @@ body.sin-scroll { overflow: hidden; }
   margin-bottom: 1rem;
 }
 .pie ul { list-style: none; padding: 0; display: grid; gap: 0.5rem; }
-.pie a { transition: color 0.3s; }
+.pie a { transition: color 0.3s; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255, 255, 255, 0.35); }
+.pie a:hover { text-decoration-color: currentColor; }
 .pie a:hover { color: var(--rosa); }
 .pie .pie-horario-titulo {
   font-weight: 600;

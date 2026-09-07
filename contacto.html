@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
-  <title>Contacto — Vibra Street Food</title>
-  <meta name="description" content="Contacto de Vibra Street Food en Lleida: Carrer de Jaume II 77, teléfono 973 20 87 27, horarios y cómo llegar. Reserva tu mesa.">
+  <title>Contacto y horarios en Lleida — Vibra Street Food</title>
+  <meta name="description" content="Estamos en Carrer de Jaume II, 77, Cappont, Lleida. Horarios, teléfono y cómo llegar a Vibra Street Food.">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://vibrastreetfood.com/contacto.html">
   <link rel="alternate" hreflang="es" href="https://vibrastreetfood.com/contacto.html">
@@ -15,12 +15,19 @@
   <meta property="og:image" content="https://vibrastreetfood.com/imagenes/web/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:title" content="Dónde está Vibra Street Food">
+  <meta property="og:description" content="Carrer de Jaume II, 77, Cappont, Lleida. Horarios, teléfono y cómo llegar.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preload" as="font" type="font/woff2" href="fuentes/ut-bagh-display.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260907">
+  <link rel="stylesheet" href="styles.css?v=20260907b">
+  <!-- Horario para buscadores. Los tramos llevan fechas de validez para que no se
+       solapen con el de verano. HAY QUE RENOVARLAS cada temporada: al terminar el
+       verano de 2027, mover las fechas un ano. Fuente de verdad: lib/manifest.js -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -29,7 +36,6 @@
     "url": "https://vibrastreetfood.com/",
     "menu": "https://vibrastreetfood.com/carta.html",
     "acceptsReservations": "https://vibrastreetfood.com/reservar.html",
-    "alternateName": "Vibra by Tremola",
     "servesCuisine": ["Hamburguesas", "Street food"],
     "address": {
       "@type": "PostalAddress",
@@ -44,15 +50,25 @@
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Monday",
+        "opens": "00:00",
+        "closes": "00:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
         "opens": "17:00",
-        "closes": "00:00"
+        "closes": "00:00",
+        "validFrom": "2026-09-15",
+        "validThrough": "2027-06-28"
       },
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Saturday", "Sunday"],
         "opens": "13:00",
-        "closes": "00:00"
+        "closes": "00:00",
+        "validFrom": "2026-09-15",
+        "validThrough": "2027-06-28"
       },
       {
         "@type": "OpeningHoursSpecification",
@@ -84,12 +100,12 @@
         <a href="nosotros.html">Nosotros</a>
         <a href="novedades.html">Novedades</a>
         <a href="contacto.html">Contacto</a>
-        <a class="cabecera-idioma" href="ca/contacto.html" lang="ca" hreflang="ca" aria-label="Versió en català">CA</a>
+        <a class="cabecera-idioma" href="ca/contacto.html" lang="ca" hreflang="ca" aria-label="CA: versió en català">CA</a>
       </nav>
       <div class="cabecera-acciones">
         <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Pedir</button>
         <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
-        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú" data-menu-btn>
+        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Menú" data-menu-btn>
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -110,7 +126,7 @@
     </div>
   <!-- ============================= /CABECERA ======================== -->
 
-  <main id="contenido">
+  <main id="contenido" tabindex="-1">
 
     <!-- ===== CABECERA DE CONTACTO ===== -->
     <section class="carta-hero">
@@ -132,7 +148,7 @@
             <h3>Dónde estamos</h3>
             <p><strong>Carrer de Jaume II, 77</strong><br>25001 Lleida</p>
             <div class="contacto-acciones">
-              <a class="btn btn-fantasma" href="https://www.google.com/maps/dir/?api=1&amp;destination=Vibra+by+Tremola%2C+Carrer+de+Jaume+II+77%2C+25001+Lleida" target="_blank" rel="noopener">Cómo llegar</a>
+              <a class="btn btn-fantasma" href="https://www.google.com/maps/dir/?api=1&amp;destination=Carrer+de+Jaume+II+77%2C+25001+Lleida" target="_blank" rel="noopener">Cómo llegar</a>
             </div>
           </div>
           <div class="contacto-tarjeta reveal" data-retraso="1">
@@ -155,7 +171,7 @@
           </div>
         </div>
 
-        <div class="mapa-marco reveal" data-retraso="1" data-embed data-embed-title="Mapa de Google Maps con la ubicación de Vibra Street Food" data-embed-fullscreen data-embed-src="https://maps.google.com/maps?q=Vibra+by+Tremola%2C+Carrer+de+Jaume+II+77%2C+25001+Lleida&amp;ll=41.6066746,0.6213790&amp;z=18&amp;iwloc=B&amp;output=embed">
+        <div class="mapa-marco reveal" data-retraso="1" data-embed data-embed-title="Mapa de Google Maps con la ubicación de Vibra Street Food" data-embed-fullscreen data-embed-src="https://maps.google.com/maps?q=Vibra+Street+Food%2C+Carrer+de+Jaume+II+77%2C+25001+Lleida&amp;ll=41.6066746,0.6213790&amp;z=18&amp;iwloc=B&amp;output=embed">
           <div class="mapa-placeholder">
             <span class="mapa-pin" aria-hidden="true">📍</span>
             <p><strong>Carrer de Jaume II, 77 — Lleida</strong><br>El mapa se carga solo si tú quieres.</p>
@@ -175,7 +191,7 @@
         </div>
         <div class="horario-tarjetas">
           <div class="horario-tarjeta reveal" data-retraso="1">
-            <h3>🍂 Temporada normal</h3>
+            <h3><span aria-hidden="true">🍂</span> Temporada normal</h3>
             <ul>
               <li><strong>Martes a viernes</strong> — 17:00 a 00:00</li>
               <li><strong>Sábado y domingo</strong> — 13:00 a 00:00</li>
@@ -183,7 +199,7 @@
             </ul>
           </div>
           <div class="horario-tarjeta reveal" data-retraso="2">
-            <h3>☀️ Verano (29 junio – 14 septiembre)</h3>
+            <h3><span aria-hidden="true">☀️</span> Verano (29 de junio – 14 de septiembre)</h3>
             <ul>
               <li><strong>Martes a domingo</strong> — 18:00 a 00:00</li>
               <li><strong>Lunes</strong> — cerrado</li>
@@ -235,7 +251,7 @@
               <span class="pie-horario-linea">Sábado y domingo — 13:00 a 00:00</span>
             </li>
             <li>
-              <span class="pie-horario-titulo">Verano (29 junio – 14 septiembre)</span><br>
+              <span class="pie-horario-titulo">Verano (29 de junio – 14 de septiembre)</span><br>
               <span class="pie-horario-linea">Martes a domingo — 18:00 a 00:00</span>
             </li>
             <li><span class="pie-horario-linea">Lunes cerrado</span></li>
@@ -296,6 +312,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260907"></script>
+  <script defer src="main.js?v=20260907b"></script>
 </body>
 </html>

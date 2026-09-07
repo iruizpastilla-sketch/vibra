@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
-  <title>Vibra Street Food — Burgers y street food en Lleida</title>
-  <meta name="description" content="Street food en Lleida: burgers con carne 100% de vaca nacional madurada, bocadillos, milanesas y postres. Siente la Vibra. Reserva tu mesa o pide a domicilio.">
+  <title>Vibra Street Food — Hamburguesas y street food en Lleida</title>
+  <meta name="description" content="Hamburguesas con carne madurada, bocadillos y milanesas en Lleida. Reserva mesa, pide a domicilio o mira la carta entera. Siente la Vibra.">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://vibrastreetfood.com/">
   <link rel="alternate" hreflang="es" href="https://vibrastreetfood.com/">
@@ -16,7 +16,7 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:title" content="Vibra Street Food — Siente la Vibra">
-  <meta property="og:description" content="Burgers y street food en Lleida. Reserva tu mesa.">
+  <meta property="og:description" content="Hamburguesas con carne madurada, música alta y terraza en Cappont, Lleida. Reserva tu mesa.">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
 
@@ -28,7 +28,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
   <link rel="preload" as="image" href="imagenes/web/jack-dream-hero.webp" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=20260907">
+  <link rel="stylesheet" href="styles.css?v=20260907b">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="fc84f6c0-e986-4f75-be10-222ac8fc00f7" data-domains="vibrastreetfood.com"></script>
 </head>
@@ -48,12 +48,12 @@
         <a href="nosotros.html">Nosotros</a>
         <a href="novedades.html">Novedades</a>
         <a href="contacto.html">Contacto</a>
-        <a class="cabecera-idioma" href="ca/index.html" lang="ca" hreflang="ca" aria-label="Versió en català">CA</a>
+        <a class="cabecera-idioma" href="ca/index.html" lang="ca" hreflang="ca" aria-label="CA: versió en català">CA</a>
       </nav>
       <div class="cabecera-acciones">
         <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Pedir</button>
         <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
-        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú" data-menu-btn>
+        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Menú" data-menu-btn>
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -74,7 +74,7 @@
     </div>
   <!-- ============================= /CABECERA ======================== -->
 
-  <main id="contenido">
+  <main id="contenido" tabindex="-1">
 
     <!-- ===== PORTADA BRAND FILM =====
          El vídeo entra solo: deja los archivos en imagenes/video/ con estos
@@ -121,7 +121,7 @@
       <div class="contenedor shots-cab">
         <p class="kicker reveal">Las burgers</p>
         <h2 class="reveal" data-retraso="1">Nueve razones. <span class="txt-degradado">Cero excusas.</span></h2>
-        <p class="shots-nota reveal" data-retraso="2">Todas con patatas · Carne 100% vaca nacional madurada</p>
+        <p class="shots-nota reveal" data-retraso="2">Todas con patatas · Vaca 100% nacional madurada, pollo o vegana</p>
       </div>
       <div class="shots-viewport">
         <div class="shots-pista" data-shots-pista>
@@ -240,7 +240,7 @@
       <div class="contenedor ambiente-int">
         <p class="kicker reveal">La terraza</p>
         <h2 class="reveal" data-retraso="1">La terraza ya está <span class="txt-degradado">vibrando</span>.</h2>
-        <p class="reveal" data-retraso="2">Mesa para los tuyos, música alta y la mejor burger de la ciudad delante. Lo demás lo ponemos nosotros.</p>
+        <p class="reveal" data-retraso="2">Mesa para los tuyos, música alta y las burgers saliendo de la plancha. Lo demás lo ponemos nosotros.</p>
         <a class="btn btn-degradado btn-grande reveal" data-retraso="3" href="reservar.html">Reservar mesa</a>
       </div>
     </section>
@@ -256,7 +256,7 @@
           </p>
           <h2>Esto no lo escribimos <span class="txt-degradado">nosotros</span>.</h2>
           <p class="resenas-sub">Más de 600 personas lo han contado en Google. Nosotros solo lo copiamos aquí.</p>
-          <a class="btn btn-fantasma" href="https://share.google/LYP9HCj4njBHNzmrX" target="_blank" rel="noopener">Ver todas en Google ↗</a>
+          <a class="btn btn-fantasma" href="https://share.google/LYP9HCj4njBHNzmrX" target="_blank" rel="noopener">Ver todas en Google<span class="ext" aria-hidden="true">↗</span></a>
         </div>
         <div class="resenas-carril-wrap">
           <div class="resenas-carril reveal" data-resenas>
@@ -333,7 +333,7 @@
           <h2 class="reveal" data-retraso="1">Vuelve. Te lo <span class="txt-degradado">premiamos</span>.</h2>
           <p class="reveal" data-retraso="2">Cada vez que pagas en Vibra sumas puntos. A los 50, postre gratis a escoger. Consulta tu saldo con tu número de móvil, sin apps ni tarjetas.</p>
           <div class="club-acciones reveal" data-retraso="3">
-            <a class="btn btn-degradado" href="https://profile.squareup.com/merchantportal/MLEED709CWCST/loyalty/lalt/2UNXUL30DN" target="_blank" rel="noopener">Ver mis puntos ↗</a>
+            <a class="btn btn-degradado" href="https://profile.squareup.com/merchantportal/MLEED709CWCST/loyalty/lalt/2UNXUL30DN" target="_blank" rel="noopener">Ver mis puntos<span class="ext" aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div class="club-tarjeta reveal" data-retraso="2" aria-hidden="true">
@@ -358,7 +358,7 @@
               <div class="embed-placeholder">
                 <span class="mapa-pin" aria-hidden="true">▶</span>
                 <p><strong>Vibra Rumbeo</strong><br>El reproductor se carga solo si tú quieres.</p>
-                <button class="btn btn-degradado" type="button" data-embed-cargar>Cargar reproductor</button>
+                <button class="btn btn-degradado" type="button" data-embed-cargar aria-label="Cargar el reproductor de Vibra Rumbeo">Cargar reproductor</button>
                 <p class="mapa-nota">Al cargarlo se conecta con Spotify y se aplican sus condiciones y su política de privacidad.</p>
               </div>
             </div>
@@ -372,7 +372,7 @@
               <div class="embed-placeholder">
                 <span class="mapa-pin" aria-hidden="true">▶</span>
                 <p><strong>Lista Vibra</strong><br>El reproductor se carga solo si tú quieres.</p>
-                <button class="btn btn-degradado" type="button" data-embed-cargar>Cargar reproductor</button>
+                <button class="btn btn-degradado" type="button" data-embed-cargar aria-label="Cargar el reproductor de Lista Vibra">Cargar reproductor</button>
                 <p class="mapa-nota">Al cargarlo se conecta con Spotify y se aplican sus condiciones y su política de privacidad.</p>
               </div>
             </div>
@@ -396,7 +396,7 @@
           <h3>Cuándo</h3>
           <ul>
             <li><strong>Temporada normal:</strong> martes a viernes 17:00–00:00 · sábado y domingo 13:00–00:00</li>
-            <li><strong>Verano (29 jun – 14 sep):</strong> martes a domingo, 18:00–00:00</li>
+            <li><strong>Verano (29 de junio – 14 de septiembre):</strong> martes a domingo, 18:00–00:00</li>
           </ul>
           <p class="practica-nota">Lunes cerrado. Descansamos para vibrar más fuerte.</p>
         </div>
@@ -413,7 +413,7 @@
       <div class="contenedor banda-reservar-int">
         <div>
           <h2 class="reveal">¿Reservas o te lo cuentan?</h2>
-          <p class="reveal" data-retraso="1">Mesa para los tuyos, música alta y la mejor burger de la ciudad delante.</p>
+          <p class="reveal" data-retraso="1">Mesa para los tuyos, música alta y hambre de la buena.</p>
         </div>
         <a class="btn btn-negro btn-grande reveal" data-retraso="2" href="reservar.html">Reservar ahora</a>
       </div>
@@ -449,7 +449,7 @@
               <span class="pie-horario-linea">Sábado y domingo — 13:00 a 00:00</span>
             </li>
             <li>
-              <span class="pie-horario-titulo">Verano (29 junio – 14 septiembre)</span><br>
+              <span class="pie-horario-titulo">Verano (29 de junio – 14 de septiembre)</span><br>
               <span class="pie-horario-linea">Martes a domingo — 18:00 a 00:00</span>
             </li>
             <li><span class="pie-horario-linea">Lunes cerrado</span></li>
@@ -510,6 +510,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260907"></script>
+  <script defer src="main.js?v=20260907b"></script>
 </body>
 </html>

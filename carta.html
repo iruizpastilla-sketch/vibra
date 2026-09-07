@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script>document.documentElement.classList.add("js");</script>
-  <title>La carta — Vibra Street Food</title>
-  <meta name="description" content="La carta de Vibra Street Food en Lleida: burgers con carne 100% de vaca nacional madurada, bocadillos, milanesas, dips y postres caseros. Todas las burgers incluyen patatas.">
+  <title>Carta de hamburguesas en Lleida — Vibra Street Food</title>
+  <meta name="description" content="Hamburguesas, bocadillos, milanesas, dips y postres caseros en Lleida. Todas las burgers con patatas. Mira la carta entera de Vibra Street Food.">
   <meta name="theme-color" content="#000000">
   <link rel="canonical" href="https://vibrastreetfood.com/carta.html">
   <link rel="alternate" hreflang="es" href="https://vibrastreetfood.com/carta.html">
@@ -15,12 +15,16 @@
   <meta property="og:image" content="https://vibrastreetfood.com/imagenes/web/og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:title" content="La carta de Vibra Street Food">
+  <meta property="og:description" content="Nueve hamburguesas, bocadillos, milanesas y postres caseros. Todas las burgers con patatas.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="preload" as="font" type="font/woff2" href="fuentes/ut-bagh-display.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260907">
+  <link rel="stylesheet" href="styles.css?v=20260907b">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="fc84f6c0-e986-4f75-be10-222ac8fc00f7" data-domains="vibrastreetfood.com"></script>
 </head>
@@ -40,12 +44,12 @@
         <a href="nosotros.html">Nosotros</a>
         <a href="novedades.html">Novedades</a>
         <a href="contacto.html">Contacto</a>
-        <a class="cabecera-idioma" href="ca/carta.html" lang="ca" hreflang="ca" aria-label="Versió en català">CA</a>
+        <a class="cabecera-idioma" href="ca/carta.html" lang="ca" hreflang="ca" aria-label="CA: versió en català">CA</a>
       </nav>
       <div class="cabecera-acciones">
         <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Pedir</button>
         <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
-        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú" data-menu-btn>
+        <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Menú" data-menu-btn>
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -66,7 +70,7 @@
     </div>
   <!-- ============================= /CABECERA ======================== -->
 
-  <main id="contenido">
+  <main id="contenido" tabindex="-1">
 
     <!-- ===== CABECERA DE LA CARTA ===== -->
     <section class="carta-hero">
@@ -75,7 +79,7 @@
         <h1>El motivo por el que has <span class="txt-degradado">venido</span>.</h1>
         <div class="carta-notas">
           <span class="carta-nota-chip">🍟 <strong>Todas las burgers incluyen patatas</strong></span>
-          <span class="carta-nota-chip">🥩 Carne 100% vaca nacional madurada</span>
+          <span class="carta-nota-chip">🥩 Carne 100% de vaca nacional madurada</span>
           <span class="carta-nota-chip">🌾 Opciones para celíacos</span>
         </div>
       </div>
@@ -185,7 +189,8 @@
           <p class="carta-frase">El motivo por el que has venido</p>
           <div class="carta-avisos">
             <span class="carta-nota-chip"><strong>Todas incluyen patatas fritas</strong></span>
-            <span class="carta-nota-chip">Carne 100% vaca nacional madurada</span>
+            <span class="carta-nota-chip">Vaca 100% nacional madurada</span>
+            <span class="carta-nota-chip">También pollo y opción vegana</span>
           </div>
         </div>
         <div class="burger-shots reveal">
@@ -508,7 +513,7 @@
               <span class="pie-horario-linea">Sábado y domingo — 13:00 a 00:00</span>
             </li>
             <li>
-              <span class="pie-horario-titulo">Verano (29 junio – 14 septiembre)</span><br>
+              <span class="pie-horario-titulo">Verano (29 de junio – 14 de septiembre)</span><br>
               <span class="pie-horario-linea">Martes a domingo — 18:00 a 00:00</span>
             </li>
             <li><span class="pie-horario-linea">Lunes cerrado</span></li>
@@ -548,7 +553,7 @@
         <h3 id="burger-modal-titulo" data-modal-titulo>Burger</h3>
         <p class="burger-modal-desc" data-modal-desc></p>
         <p class="burger-modal-precio"><span class="precio-cifra" data-modal-precio></span></p>
-        <p class="burger-modal-nota">Incluye patatas fritas · Carne 100% vaca nacional madurada</p>
+        <p class="burger-modal-nota">Incluye patatas fritas · Vaca 100% nacional madurada, pollo o vegana</p>
         <div class="burger-modal-acciones">
           <a class="btn btn-degradado" href="reservar.html">Reservar mesa</a>
           <button class="btn btn-fantasma" type="button" data-modal-cerrar>Seguir mirando</button>
@@ -589,6 +594,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260907"></script>
+  <script defer src="main.js?v=20260907b"></script>
 </body>
 </html>
