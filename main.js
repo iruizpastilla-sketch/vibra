@@ -4,7 +4,6 @@
   // ---------- Helpers ----------
   var $ = function (sel, scope) { return (scope || document).querySelector(sel); };
   var $$ = function (sel, scope) { return Array.prototype.slice.call((scope || document).querySelectorAll(sel)); };
-  var finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   // GSAP y ScrollTrigger son opcionales: si no cargan, la web funciona igual, sin los efectos de scroll
   var gsapOk = !!(window.gsap && window.ScrollTrigger);
   if (gsapOk) { window.gsap.registerPlugin(window.ScrollTrigger); }
@@ -185,80 +184,6 @@
       stagger: 0.06,
       ease: "none",
       scrollTrigger: { trigger: el, start: "top 82%", end: "bottom 48%", scrub: true }
-    });
-  }
-
-  // ---------- Burgers: carril horizontal. En escritorio con GSAP se fija y avanza con el scroll ----------
-  function initShots() {
-    var seccion = $("[data-shots]");
-    if (!seccion) return;
-    var pista = $("[data-shots-pista]", seccion);
-    if (!pista || !gsapOk) return;
-    // Móvil y táctil: scroll horizontal nativo (CSS). Solo se fija en escritorio con puntero fino.
-    var escritorio = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)");
-    var fijado = false;
-    var fijar = function () {
-      if (fijado || !escritorio.matches) return;
-      fijado = true;
-      seccion.classList.add("is-pin");
-      var distancia = function () { return Math.max(0, pista.scrollWidth - window.innerWidth); };
-      window.gsap.to(pista, {
-        x: function () { return -distancia(); },
-        ease: "none",
-        scrollTrigger: {
-          trigger: seccion,
-          start: "top top",
-          end: function () { return "+=" + distancia(); },
-          pin: true,
-          scrub: 0.5,
-          anticipatePin: 1,
-          invalidateOnRefresh: true
-        }
-      });
-    };
-    fijar();
-    // Si la ventana pasa a tamaño escritorio después de cargar, se fija entonces
-    if (escritorio.addEventListener) escritorio.addEventListener("change", fijar);
-  }
-
-  // ---------- Lista de la carta: la foto sigue al cursor (solo puntero fino) ----------
-  function initListaCarta() {
-    var lista = $("[data-lista-carta]");
-    if (!lista || !finePointer) return;
-    var g = gsapOk ? window.gsap : null;
-    $$("a", lista).forEach(function (fila) {
-      var img = $(".lista-img", fila);
-      if (!img) return;
-      var posicion = function (e) {
-        var r = fila.getBoundingClientRect();
-        return { x: e.clientX - r.left - img.offsetWidth / 2, y: e.clientY - r.top - img.offsetHeight / 2 };
-      };
-      if (!g) {
-        fila.addEventListener("mousemove", function (e) {
-          var p = posicion(e);
-          img.style.transform = "translate(" + p.x + "px, " + p.y + "px) rotate(-6deg)";
-        });
-        return;
-      }
-      // Con GSAP: la foto persigue al cursor con inercia y gira según lo rápido que se mueva
-      var moverX = g.quickTo(img, "x", { duration: 0.45, ease: "power3.out" });
-      var moverY = g.quickTo(img, "y", { duration: 0.45, ease: "power3.out" });
-      var girar = g.quickTo(img, "rotation", { duration: 0.6, ease: "power3.out" });
-      var ultimoX = null;
-      fila.addEventListener("mouseenter", function (e) {
-        var p = posicion(e);
-        g.set(img, { x: p.x, y: p.y, rotation: -6, scale: 0.7 });
-        g.to(img, { scale: 1, duration: 0.5, ease: "back.out(1.6)", overwrite: "auto" });
-        ultimoX = e.clientX;
-      });
-      fila.addEventListener("mousemove", function (e) {
-        var p = posicion(e);
-        moverX(p.x); moverY(p.y);
-        var vx = ultimoX === null ? 0 : e.clientX - ultimoX;
-        ultimoX = e.clientX;
-        girar(Math.max(-18, Math.min(18, -6 + vx * 0.9)));
-      });
-      fila.addEventListener("mouseleave", function () { girar(-6); ultimoX = null; });
     });
   }
 
@@ -488,7 +413,6 @@
   // =============================================================
   var reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var escritorioFino = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)").matches;
-  var esCatalan = (document.documentElement.lang || "es").indexOf("ca") === 0;
 
   // ---------- Scroll suave con inercia (Lenis): solo escritorio con ratón ----------
   function initSuave() {
@@ -512,58 +436,6 @@
       if (document.body.classList.contains("sin-scroll")) lenis.stop(); else lenis.start();
     };
     new MutationObserver(sincronizar).observe(document.body, { attributes: true, attributeFilter: ["class"] });
-  }
-
-  // ---------- Cursor propio: punto + aro que crece sobre enlaces y dice "Ver" / "Pedir" ----------
-  function initCursor() {
-    if (!escritorioFino || !gsapOk) return;
-    var g = window.gsap;
-    var tx = esCatalan ? { ver: "Veure" } : { ver: "Ver" };
-    var etiquetar = function (sel, texto) {
-      $$(sel).forEach(function (el) { if (!el.hasAttribute("data-cursor")) el.setAttribute("data-cursor", texto); });
-    };
-    // Solo donde la palabra aporta algo: en botones que ya dicen "Reservar" o "Pedir" el aro crece sin texto
-    etiquetar(".burger-shot", tx.ver);
-    etiquetar(".shot", tx.ver);
-    etiquetar(".lista-cats a", tx.ver);
-
-    var raiz = document.createElement("div");
-    raiz.className = "cursor";
-    raiz.setAttribute("aria-hidden", "true");
-    raiz.innerHTML = '<div class="cursor-punto"></div><div class="cursor-aro"><i class="cursor-forma"><b class="cursor-texto"></b></i></div>';
-    document.body.appendChild(raiz);
-    var punto = $(".cursor-punto", raiz);
-    var aro = $(".cursor-aro", raiz);
-    var texto = $(".cursor-texto", raiz);
-    var aroX = g.quickTo(aro, "x", { duration: 0.32, ease: "power3.out" });
-    var aroY = g.quickTo(aro, "y", { duration: 0.32, ease: "power3.out" });
-    var visible = false;
-
-    document.addEventListener("mousemove", function (e) {
-      if (!visible) {
-        visible = true;
-        g.set([punto, aro], { x: e.clientX, y: e.clientY });
-        raiz.classList.add("is-visible");
-        document.documentElement.classList.add("cursor-propio");
-      }
-      g.set(punto, { x: e.clientX, y: e.clientY });
-      aroX(e.clientX); aroY(e.clientY);
-    }, { passive: true });
-    document.addEventListener("mouseleave", function () { raiz.classList.remove("is-visible"); visible = false; });
-    document.addEventListener("mousedown", function () { raiz.classList.add("is-pulsado"); });
-    document.addEventListener("mouseup", function () { raiz.classList.remove("is-pulsado"); });
-
-    var estado = function (el) {
-      var conTexto = el && el.closest && el.closest("[data-cursor]");
-      var nativo = el && el.closest && el.closest("input, textarea, select, iframe, [contenteditable]");
-      var enlace = el && el.closest && el.closest("a, button, [role=button], summary, label, .plato");
-      raiz.classList.toggle("is-oculto", !!nativo);
-      raiz.classList.toggle("is-texto", !!conTexto && !nativo);
-      raiz.classList.toggle("is-enlace", !!enlace && !conTexto && !nativo);
-      if (conTexto) texto.textContent = conTexto.getAttribute("data-cursor");
-    };
-    document.addEventListener("mouseover", function (e) { estado(e.target); });
-    document.addEventListener("mouseout", function (e) { if (!e.relatedTarget) estado(null); });
   }
 
   // ---------- Marquesinas vivas: corren más deprisa y se inclinan según la velocidad del scroll ----------
@@ -641,8 +513,6 @@
     safe(initMediaSlots, "initMediaSlots");
     safe(initHorarioHoy, "initHorarioHoy");
     safe(initManifiesto, "initManifiesto");
-    safe(initShots, "initShots");
-    safe(initListaCarta, "initListaCarta");
     safe(initParallax, "initParallax");
     safe(initReveals, "initReveals");
     safe(initCartaNav, "initCartaNav");
@@ -656,7 +526,6 @@
     safe(initAnio, "initAnio");
     // Fase E
     safe(initSuave, "initSuave");
-    safe(initCursor, "initCursor");
     safe(initMarquesinaViva, "initMarquesinaViva");
     safe(initTilt, "initTilt");
 

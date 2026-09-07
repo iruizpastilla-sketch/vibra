@@ -1558,15 +1558,19 @@ body::after {
   padding-inline: var(--pad);
   width: max-content;
 }
-.shots.is-pin {
-  height: 100svh;
-  min-height: 640px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: 0;
+/* Escritorio: rejilla de tres en tres. El carril horizontal se queda para el
+   movil, donde se arrastra con el dedo. */
+@media (min-width: 960px) {
+  .shots-viewport { overflow: visible; }
+  .shots-pista {
+    width: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-inline: var(--pad);
+    max-width: var(--max);
+    margin-inline: auto;
+  }
 }
-.shots.is-pin .shots-viewport { overflow: hidden; }
 .shot {
   position: relative;
   flex: 0 0 auto;
@@ -1578,7 +1582,11 @@ body::after {
   scroll-snap-align: start;
   transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
 }
-@media (min-width: 960px) { .shot { width: min(clamp(380px, 34vw, 560px), 66vh); } }
+@media (min-width: 960px) {
+  .shot { width: auto; }
+  /* La tarjeta final cierra la rejilla ocupando la fila entera */
+  .shot--final { grid-column: 1 / -1; aspect-ratio: auto; min-height: 190px; }
+}
 .shot img {
   width: 100%;
   height: 100%;
@@ -1700,19 +1708,8 @@ body::after {
   }
   .lista-num { align-self: center; padding-top: 0; }
   .lista-frase { text-align: right; max-width: 24ch; font-size: 0.8rem; }
-  .lista-img {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 250px;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 2;
-    transition: opacity 0.25s;
-    filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.65));
-  }
+  .lista-img { display: none; }
   .lista-cats a:hover { padding-left: 1rem; }
-  .lista-cats a:hover .lista-img { opacity: 1; }
   .lista-cats a:hover .lista-frase { color: var(--texto-2); }
   @supports ((background-clip: text) or (-webkit-background-clip: text)) {
     .lista-cats a:hover .lista-nombre {
@@ -2022,8 +2019,7 @@ body::after {
 .resenas-nota-grande strong, .shot-info span, .club-tarjeta-cifra { font-family: var(--display-num); }
 
 /* =============================================================
-   26. Fase E: la "magia". Scroll suave (Lenis), cursor propio,
-   tarjetas con relieve y marquesinas vivas.
+   26. Scroll suave (Lenis), tarjetas con relieve y marquesinas vivas.
    Todo se activa desde main.js solo en escritorio con ratón; el scroll
    suave se apaga además con "reducir movimiento".
    ============================================================= */
@@ -2033,62 +2029,6 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
-
-/* --- Cursor propio: punto que sigue al ratón + aro con inercia --- */
-html.cursor-propio, html.cursor-propio a, html.cursor-propio button, html.cursor-propio [role="button"],
-html.cursor-propio summary, html.cursor-propio label, html.cursor-propio .plato { cursor: none; }
-.cursor { position: fixed; inset: 0; z-index: 11000; pointer-events: none; opacity: 0; transition: opacity 0.3s; }
-.cursor.is-visible { opacity: 1; }
-.cursor.is-oculto { opacity: 0; }
-.cursor-punto, .cursor-aro { position: absolute; left: 0; top: 0; will-change: transform; }
-/* difference: el cursor se ve tanto sobre negro como sobre el degradado rosa */
-.cursor-punto, .cursor:not(.is-texto) .cursor-forma { mix-blend-mode: difference; }
-.cursor-punto {
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
-  border-radius: 50%;
-  background: var(--blanco);
-  transition: opacity 0.25s;
-}
-.cursor-forma {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  margin: -20px 0 0 -20px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.7);
-  transition: width 0.35s var(--ease-out), height 0.35s var(--ease-out), margin 0.35s var(--ease-out),
-    background-color 0.35s, border-color 0.35s, transform 0.2s;
-}
-.cursor-texto {
-  font-family: var(--sans);
-  font-style: normal;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--blanco);
-  opacity: 0;
-  transition: opacity 0.2s;
-}
-.cursor.is-enlace .cursor-forma { width: 56px; height: 56px; margin: -28px 0 0 -28px; border-color: var(--rosa); }
-.cursor.is-texto .cursor-punto { opacity: 0; }
-.cursor.is-texto .cursor-forma {
-  width: 84px;
-  height: 84px;
-  margin: -42px 0 0 -42px;
-  background-color: var(--rosa);
-  border-color: var(--rosa);
-}
-.cursor.is-texto .cursor-texto { opacity: 1; }
-.cursor.is-pulsado .cursor-forma { transform: scale(0.85); }
-/* Los <dialog> viven en la capa superior del navegador, por encima del cursor propio: dentro vuelve el nativo */
-html.cursor-propio dialog, html.cursor-propio dialog * { cursor: auto; }
-html.cursor-propio dialog a, html.cursor-propio dialog button { cursor: pointer; }
-body.sin-scroll .cursor { opacity: 0; }
 
 /* --- Tarjetas con relieve: GSAP lleva el transform, la CSS solo el borde y la sombra --- */
 .plato.is-tilt, .burger-shot.is-tilt { transition-property: border-color, box-shadow; transform-style: preserve-3d; }
