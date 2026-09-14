@@ -2041,3 +2041,10 @@ html.lenis, html.lenis body { height: auto; }
 /* --- Marquesinas vivas: la animación CSS se apaga y GSAP la mueve según el scroll --- */
 .marquesina-pista.is-gsap { animation: none; }
 
+
+/* =============================================================
+   27. Grupos y eventos: rejilla de tarjetas. Reutiliza .contacto-tarjeta,
+   que en contacto.html va en una sola columna porque comparte fila con el mapa.
+   ============================================================= */
+.tarjetas-rejilla { margin-top: 2.4rem; display: grid; gap: 1.25rem; }
+@media (min-width: 640px) { .tarjetas-rejilla { grid-template-columns: repeat(2, 1fr); } }

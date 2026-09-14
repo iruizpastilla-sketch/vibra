@@ -96,4 +96,11 @@
     <xhtml:link rel="alternate" hreflang="ca" href="https://vibrastreetfood.com/ca/reservar.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vibrastreetfood.com/reservar.html"/>
   </url>
+  <url>
+    <loc>https://vibrastreetfood.com/grupos.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vibrastreetfood.com/grupos.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://vibrastreetfood.com/ca/grupos.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vibrastreetfood.com/grupos.html"/>
+  </url>
 </urlset>
