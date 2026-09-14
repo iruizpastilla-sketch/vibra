@@ -2048,3 +2048,17 @@ html.lenis, html.lenis body { height: auto; }
    ============================================================= */
 .tarjetas-rejilla { margin-top: 2.4rem; display: grid; gap: 1.25rem; }
 @media (min-width: 640px) { .tarjetas-rejilla { grid-template-columns: repeat(2, 1fr); } }
+
+/* =============================================================
+   28. Nosotros: línea temporal de tres capítulos y cinco pilares
+   ============================================================= */
+.nos-linea { margin-top: 2.6rem; display: grid; gap: 1.25rem; }
+@media (min-width: 760px) { .nos-linea { grid-template-columns: repeat(3, 1fr); } }
+.nos-linea .nos-pilar-num { font-size: 1.7rem; }
+.nos-pilares-grid--5 { grid-template-columns: 1fr; }
+@media (min-width: 640px) and (max-width: 759px) {
+  .nos-pilares-grid--5 { grid-template-columns: repeat(2, 1fr); }
+  .nos-pilares-grid--5 > :last-child { grid-column: span 2; }
+}
+@media (min-width: 760px) { .nos-pilares-grid--5 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1180px) { .nos-pilares-grid--5 { grid-template-columns: repeat(5, 1fr); } }
