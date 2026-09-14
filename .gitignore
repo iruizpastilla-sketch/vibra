@@ -2,3 +2,11 @@ fuentes/*.otf
 fuentes/*.ttf
 tools/node_modules/
 tools/capturas/
+
+# Originales de las fotos: se quedan en el disco pero no se publican (556 MB)
+imagenes/*.png
+imagenes/*.jpg
+imagenes/*.jpeg
+imagenes/*.PNG
+imagenes/*.JPG
+imagenes/*.JPEG
