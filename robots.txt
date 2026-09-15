@@ -8,4 +8,5 @@ Disallow: /propuesta-3/
 Disallow: /propuesta-4/
 Disallow: /propuesta-5/
 Disallow: /propuesta-6/
+Disallow: /propuesta-7/
 Disallow: /propuestas/

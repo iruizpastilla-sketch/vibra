@@ -1,0 +1,46 @@
+/* =============================================================
+   PROPUESTA 7 — "Contraste". La portada sigue negra con la burger; desde ahí
+   las secciones alternan papel blanco y negro, con cortes en diagonal.
+   Cada sección clara remapea los tokens de color, así todo lo que hay dentro
+   (tarjetas, líneas, textos) se adapta solo.
+   ============================================================= */
+.claro {
+  --negro: #F5F2EE;
+  --negro-2: #F5F2EE;
+  --negro-3: #FFFFFF;
+  --texto: #171215;
+  --texto-2: rgba(23, 18, 21, 0.72);
+  --texto-3: rgba(23, 18, 21, 0.5);
+  --linea: rgba(23, 18, 21, 0.14);
+  --blanco: #171215;
+  background: var(--negro);
+  color: var(--texto);
+  border-block: 0;
+}
+/* El degradado de marca, en tinta más oscura para que aguante sobre papel */
+.claro .txt-degradado { background: linear-gradient(90deg, #B85B04, #C81C6C); -webkit-background-clip: text; background-clip: text; }
+.claro .btn-fantasma { border-color: rgba(23, 18, 21, 0.4); color: var(--texto); }
+.claro .btn-fantasma:hover { background: rgba(23, 18, 21, 0.06); }
+.claro .btn-negro { background: #171215; color: #F5F2EE; }
+.claro .resena, .claro .musica-tarjeta, .claro .club-tarjeta { background: #FFFFFF; border: 1px solid var(--linea); box-shadow: 0 10px 30px rgba(23, 18, 21, 0.06); }
+.claro .resenas-flechas button { border-color: rgba(23, 18, 21, 0.3); color: var(--texto); }
+.claro .lista-nombre { color: var(--texto); }
+
+/* Cortes en diagonal: cada sección clara se come un poco la anterior y la siguiente */
+.claro { clip-path: polygon(0 0, 100% 3.5vw, 100% 100%, 0 calc(100% - 3.5vw)); margin-top: -3.5vw; margin-bottom: -3.5vw; padding-top: calc(clamp(4rem, 9vw, 7.5rem) + 3.5vw); padding-bottom: calc(clamp(4rem, 9vw, 7.5rem) + 3.5vw); position: relative; z-index: 1; }
+@media (max-width: 720px) { .claro { clip-path: polygon(0 0, 100% 6vw, 100% 100%, 0 calc(100% - 6vw)); margin-top: -6vw; margin-bottom: -6vw; padding-top: calc(clamp(4rem, 9vw, 7.5rem) + 6vw); padding-bottom: calc(clamp(4rem, 9vw, 7.5rem) + 6vw); } }
+.claro.manifiesto { padding-top: calc(clamp(6rem, 12vw, 9rem) + 3.5vw); }
+
+/* El manifiesto en papel: letras enormes en tinta */
+.claro .manifiesto-texto { font-size: clamp(2.6rem, 7.2vw, 7.5rem); line-height: 0.95; }
+.claro .manifiesto-nota { font-size: 1.1rem; }
+
+/* La sección negra que sigue a una clara no lleva borde, el corte ya separa */
+.p-contraste .shots, .p-contraste .club, .p-contraste .practica { border-block: 0; }
+.p-contraste .gigante { background-image: url("../imagenes/web/jack-dream-hero.webp"); background-position: 50% 40%; }
+
+/* Reseñas en papel: la nota grande en tinta */
+.claro .resenas-nota-grande strong { color: var(--texto); }
+
+/* El grano se nota menos sobre papel */
+body.p-contraste::after { opacity: 0.03; }
