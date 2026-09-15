@@ -2173,3 +2173,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 @media (max-width: 380px) {
   .hero-titulo { font-size: 3.2rem; }
 }
+
+/* Tarjetas de la banda sonora en negro sobre el papel, a juego con el reproductor de Spotify (Ivan, 15/9/2026) */
+.claro .musica-tarjeta { --negro: #000000; --negro-2: #0F0D0E; --negro-3: #0F0D0E; --texto: #F5F2EE; --texto-2: rgba(245, 242, 238, 0.72); --texto-3: rgba(245, 242, 238, 0.5); --linea: rgba(255, 255, 255, 0.12); --blanco: #F5F2EE; background: #0F0D0E; color: var(--texto); border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 16px 40px rgba(23, 18, 21, 0.18); }
+.claro .musica-marco { background: #000000; }
