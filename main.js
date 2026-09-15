@@ -311,24 +311,26 @@
   }
 
   // ---------- Embeds en dos pasos: Google Maps y Spotify solo cargan cuando el visitante lo pide ----------
+  function cargarEmbed(marco) {
+    var src = marco.getAttribute("data-embed-src");
+    if (!src || marco.classList.contains("is-cargado")) return;
+    var iframe = document.createElement("iframe");
+    iframe.src = src;
+    iframe.title = marco.getAttribute("data-embed-title") || "";
+    var allow = marco.getAttribute("data-embed-allow");
+    if (allow) iframe.setAttribute("allow", allow);
+    if (marco.hasAttribute("data-embed-fullscreen")) iframe.setAttribute("allowfullscreen", "");
+    iframe.referrerPolicy = "no-referrer-when-downgrade";
+    iframe.loading = "lazy";
+    marco.innerHTML = "";
+    marco.appendChild(iframe);
+    marco.classList.add("is-cargado");
+  }
   function initEmbeds() {
     $$("[data-embed]").forEach(function (marco) {
       var boton = $("[data-embed-cargar]", marco);
-      var src = marco.getAttribute("data-embed-src");
-      if (!boton || !src) return;
-      boton.addEventListener("click", function () {
-        var iframe = document.createElement("iframe");
-        iframe.src = src;
-        iframe.title = marco.getAttribute("data-embed-title") || "";
-        var allow = marco.getAttribute("data-embed-allow");
-        if (allow) iframe.setAttribute("allow", allow);
-        if (marco.hasAttribute("data-embed-fullscreen")) iframe.setAttribute("allowfullscreen", "");
-        iframe.referrerPolicy = "no-referrer-when-downgrade";
-        iframe.loading = "lazy";
-        marco.innerHTML = "";
-        marco.appendChild(iframe);
-        marco.classList.add("is-cargado");
-      });
+      if (!boton) return;
+      boton.addEventListener("click", function () { cargarEmbed(marco); });
     });
   }
 
@@ -609,6 +611,107 @@
     window.gsap.fromTo(el, { backgroundPosition: "50% 10%" }, { backgroundPosition: "50% 80%", ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
   }
 
+
+  // ---------- Cookies (15/9/2026): aviso con "aceptar todas", "solo necesarias" y "configurar".
+  // Guarda la elección 12 meses en localStorage. Con "contenido de terceros" aceptado, Spotify y el
+  // mapa se cargan solos al acercarse; si no, siguen esperando al botón. "Publicidad" queda listo
+  // para el píxel de Meta: escuchar el evento "vibra:cookies" o leer window.vibraConsent. ----------
+  var CLAVE_COOKIES = "vibra-cookies";
+  function leerConsentimiento() {
+    try {
+      var d = JSON.parse(localStorage.getItem(CLAVE_COOKIES) || "null");
+      if (!d || !d.fecha || Date.now() - d.fecha > 365 * 24 * 3600 * 1000) return null;
+      return d;
+    } catch (e) { return null; }
+  }
+  function initCookies() {
+    var ca = (document.documentElement.lang || "es").indexOf("ca") === 0;
+    var base = /\/ca\//.test(location.pathname) ? "../" : "";
+    var T = ca ? {
+      titulo: "Avís de galetes",
+      texto: "Fem servir galetes tècniques perquè la web funcioni. Si acceptes, també carreguem contingut de tercers (Spotify i Google Maps) i galetes de publicitat per mesurar els nostres anuncis. Ho pots canviar quan vulguis.",
+      enlace: "Política de galetes",
+      necesarias: "Necessàries (sempre actives)",
+      terceros: "Contingut de tercers: Spotify i Google Maps",
+      publicidad: "Publicitat i mesura: Meta (Facebook i Instagram)",
+      aceptar: "Acceptar-les totes", rechazar: "Només les necessàries", configurar: "Configurar", guardar: "Desar l'elecció"
+    } : {
+      titulo: "Aviso de cookies",
+      texto: "Usamos cookies técnicas para que la web funcione. Si aceptas, también cargamos contenido de terceros (Spotify y Google Maps) y cookies de publicidad para medir nuestros anuncios. Puedes cambiarlo cuando quieras.",
+      enlace: "Política de cookies",
+      necesarias: "Necesarias (siempre activas)",
+      terceros: "Contenido de terceros: Spotify y Google Maps",
+      publicidad: "Publicidad y medición: Meta (Facebook e Instagram)",
+      aceptar: "Aceptar todas", rechazar: "Solo necesarias", configurar: "Configurar", guardar: "Guardar elección"
+    };
+    var estado = leerConsentimiento();
+    window.vibraConsent = { terceros: !!(estado && estado.terceros), publicidad: !!(estado && estado.publicidad) };
+
+    // Con permiso, los contenidos de terceros se cargan solos cuando están cerca de la pantalla
+    var autoCargar = function () {
+      var marcos = $$("[data-embed]").filter(function (m) { return !m.classList.contains("is-cargado"); });
+      if (!marcos.length) return;
+      if (!("IntersectionObserver" in window)) { marcos.forEach(cargarEmbed); return; }
+      var io = new IntersectionObserver(function (entradas) {
+        entradas.forEach(function (en) { if (en.isIntersecting) { cargarEmbed(en.target); io.unobserve(en.target); } });
+      }, { rootMargin: "400px 0px" });
+      marcos.forEach(function (m) { io.observe(m); });
+    };
+    var aplicar = function () {
+      try { document.dispatchEvent(new CustomEvent("vibra:cookies", { detail: window.vibraConsent })); } catch (e) {}
+      if (window.vibraConsent.terceros) autoCargar();
+    };
+
+    var aviso = document.createElement("div");
+    aviso.className = "cookies";
+    aviso.setAttribute("role", "dialog");
+    aviso.setAttribute("aria-label", T.titulo);
+    aviso.hidden = true;
+    aviso.innerHTML =
+      '<p class="cookies-texto">' + T.texto + ' <a href="' + base + 'cookies.html">' + T.enlace + '</a></p>' +
+      '<form class="cookies-config" hidden>' +
+        '<label class="cookies-opcion"><input type="checkbox" checked disabled> <span>' + T.necesarias + '</span></label>' +
+        '<label class="cookies-opcion"><input type="checkbox" name="terceros"> <span>' + T.terceros + '</span></label>' +
+        '<label class="cookies-opcion"><input type="checkbox" name="publicidad"> <span>' + T.publicidad + '</span></label>' +
+      '</form>' +
+      '<div class="cookies-botones">' +
+        '<button type="button" class="btn btn-degradado" data-cookies-todas>' + T.aceptar + '</button>' +
+        '<button type="button" class="btn btn-fantasma" data-cookies-necesarias>' + T.rechazar + '</button>' +
+        '<button type="button" class="cookies-enlace" data-cookies-config>' + T.configurar + '</button>' +
+        '<button type="button" class="btn btn-fantasma" data-cookies-guardar hidden>' + T.guardar + '</button>' +
+      '</div>';
+    document.body.appendChild(aviso);
+
+    var form = $(".cookies-config", aviso);
+    var btnConfig = $("[data-cookies-config]", aviso);
+    var btnGuardar = $("[data-cookies-guardar]", aviso);
+    var abrir = function () {
+      form.hidden = true; btnConfig.hidden = false; btnGuardar.hidden = true;
+      aviso.hidden = false;
+      requestAnimationFrame(function () { aviso.classList.add("is-visible"); });
+    };
+    var cerrar = function () { aviso.classList.remove("is-visible"); aviso.hidden = true; };
+    var guardar = function (terceros, publicidad) {
+      window.vibraConsent = { terceros: !!terceros, publicidad: !!publicidad };
+      try { localStorage.setItem(CLAVE_COOKIES, JSON.stringify({ terceros: !!terceros, publicidad: !!publicidad, fecha: Date.now() })); } catch (e) {}
+      estado = { terceros: !!terceros, publicidad: !!publicidad };
+      cerrar();
+      aplicar();
+    };
+    $("[data-cookies-todas]", aviso).addEventListener("click", function () { guardar(true, true); });
+    $("[data-cookies-necesarias]", aviso).addEventListener("click", function () { guardar(false, false); });
+    btnConfig.addEventListener("click", function () {
+      form.hidden = false; btnConfig.hidden = true; btnGuardar.hidden = false;
+      form.terceros.checked = !!(estado && estado.terceros);
+      form.publicidad.checked = !!(estado && estado.publicidad);
+    });
+    btnGuardar.addEventListener("click", function () { guardar(form.terceros.checked, form.publicidad.checked); });
+    // "Cambiar mis preferencias" (política de cookies) vuelve a abrir el aviso
+    $$("[data-cookies-abrir]").forEach(function (b) { b.addEventListener("click", function (e) { e.preventDefault(); abrir(); }); });
+
+    if (estado) aplicar(); else abrir();
+  }
+
   // ---------- Año del pie ----------
   function initAnio() {
     var el = $("[data-anio]");
@@ -631,6 +734,7 @@
     safe(initCartaNav, "initCartaNav");
     safe(initBurgerModal, "initBurgerModal");
     safe(initEmbeds, "initEmbeds");
+    safe(initCookies, "initCookies");
     safe(initPedir, "initPedir");
     safe(initBarraAcciones, "initBarraAcciones");
     safe(initResenas, "initResenas");

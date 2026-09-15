@@ -2177,3 +2177,18 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 /* Tarjetas de la banda sonora en negro sobre el papel, a juego con el reproductor de Spotify (Ivan, 15/9/2026) */
 .claro .musica-tarjeta { --negro: #000000; --negro-2: #0F0D0E; --negro-3: #0F0D0E; --texto: #F5F2EE; --texto-2: rgba(245, 242, 238, 0.72); --texto-3: rgba(245, 242, 238, 0.5); --linea: rgba(255, 255, 255, 0.12); --blanco: #F5F2EE; background: #0F0D0E; color: var(--texto); border-color: rgba(255, 255, 255, 0.08); box-shadow: 0 16px 40px rgba(23, 18, 21, 0.18); }
 .claro .musica-marco { background: #000000; }
+
+/* Aviso de cookies (15/9/2026): tarjeta abajo a la izquierda; en móvil, por encima de la barra de acciones */
+.cookies { position: fixed; left: var(--pad); right: var(--pad); bottom: 1rem; z-index: 90; max-width: 440px; background: #0F0D0E; color: #F5F2EE; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.1rem 1.2rem; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); opacity: 0; transform: translateY(12px); transition: opacity 0.35s var(--ease-soft), transform 0.35s var(--ease-soft); }
+.cookies.is-visible { opacity: 1; transform: none; }
+.cookies-texto { font-size: 0.88rem; line-height: 1.45; color: rgba(245, 242, 238, 0.85); }
+.cookies-texto a { color: #F5F2EE; text-decoration: underline; text-underline-offset: 3px; }
+.cookies-config { margin: 0.9rem 0 0; display: grid; gap: 0.45rem; }
+.cookies-opcion { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.84rem; color: rgba(245, 242, 238, 0.85); }
+.cookies-opcion input { margin-top: 0.2rem; accent-color: var(--rosa); }
+.cookies-botones { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.cookies-botones .btn { padding: 0.7rem 1.1rem; font-size: 0.8rem; }
+.cookies-enlace { background: none; border: 0; color: rgba(245, 242, 238, 0.75); font: 600 0.8rem var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0.4rem 0.2rem; }
+.cookies-enlace:hover { color: #F5F2EE; }
+@media (max-width: 720px) { .cookies { left: 0.75rem; right: 0.75rem; max-width: none; bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); } }
+@media (prefers-reduced-motion: reduce) { .cookies { transition: none; } }
