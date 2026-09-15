@@ -2062,3 +2062,6 @@ html.lenis, html.lenis body { height: auto; }
 }
 @media (min-width: 760px) { .nos-pilares-grid--5 { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1180px) { .nos-pilares-grid--5 { grid-template-columns: repeat(5, 1fr); } }
+
+/* Foto grande de Nosotros con el equipo: el encuadre sube para no cortar las cabezas */
+.nos-foto--equipo img { object-position: center 28%; }
