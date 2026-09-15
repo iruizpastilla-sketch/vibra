@@ -10,3 +10,6 @@ imagenes/*.jpeg
 imagenes/*.PNG
 imagenes/*.JPG
 imagenes/*.JPEG
+
+# Fotos en bruto del local (2026-09-16): nunca se publican
+imagenes/pruebas-imagen/

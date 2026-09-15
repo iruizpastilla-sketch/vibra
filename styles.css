@@ -2204,3 +2204,14 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 /* Salsas con foto (15/9/2026): el bote redondo a la izquierda del nombre */
 .salsa-chip--foto { display: inline-flex; align-items: center; gap: 0.65rem; padding-left: 0.45rem; }
 .salsa-chip--foto img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
+
+/* Página El local (16/9/2026): galerías de fotos y fila invertida */
+.local-galeria { margin-top: 1.5rem; display: grid; gap: 1.25rem; }
+@media (min-width: 760px) { .local-galeria { grid-template-columns: 1fr 1fr; } }
+.local-galeria figure { margin: 0; border-radius: 22px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--negro-3); border: 1px solid var(--linea); }
+.local-galeria img { width: 100%; height: 100%; object-fit: cover; }
+.local-galeria figcaption { position: absolute; }
+.local-galeria figure { position: relative; }
+.local-galeria figcaption { left: 1rem; bottom: 0.9rem; padding: 0.35rem 0.7rem; border-radius: 999px; background: rgba(0, 0, 0, 0.55); color: #F5F2EE; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; }
+@media (min-width: 900px) { .local-inversa .nos-equipo-media { order: -1; } }
+.local-fila { margin-top: 3rem; }
