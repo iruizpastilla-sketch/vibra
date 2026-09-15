@@ -1243,6 +1243,9 @@ a.contacto-dato:hover { color: var(--rosa); }
 .nos-historia-texto p + p { margin-top: 1.2rem; }
 .nos-historia-texto strong { color: var(--texto); font-weight: 600; }
 
+.nos-pilares-foto { margin: 2.2rem 0 0; border-radius: 22px; overflow: hidden; aspect-ratio: 2 / 1; background: var(--negro-3); border: 1px solid var(--linea); }
+.nos-pilares-foto img { width: 100%; height: 100%; object-fit: cover; object-position: 45% center; }
+@media (max-width: 640px) { .nos-pilares-foto { aspect-ratio: 4 / 3; } }
 .nos-pilares-grid { margin-top: 2.6rem; display: grid; gap: 1.25rem; }
 @media (min-width: 640px) { .nos-pilares-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .nos-pilares-grid { grid-template-columns: repeat(4, 1fr); } }
