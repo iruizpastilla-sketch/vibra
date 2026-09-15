@@ -2063,7 +2063,8 @@ html.lenis, html.lenis body { height: auto; }
 @media (min-width: 760px) { .nos-pilares-grid--5 { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1180px) { .nos-pilares-grid--5 { grid-template-columns: repeat(5, 1fr); } }
 
-/* Foto grande de Nosotros con el equipo: el encuadre sube para no cortar las cabezas */
-.nos-foto--equipo img { object-position: center 28%; }
-/* En pantallas estrechas la banda baja de altura para que quepan los tres de la foto */
-@media (max-width: 640px) { .nos-foto--equipo { height: clamp(230px, 36vh, 320px); } }
+/* Foto grande de Nosotros con el equipo: la banda toma la proporcion exacta de la
+   foto (encuadre ancho en ordenador, 4:3 en movil), asi el navegador no recorta nada */
+.nos-foto--equipo { height: auto; aspect-ratio: 2.4 / 1; }
+.nos-foto--equipo img { object-position: center; }
+@media (max-width: 640px) { .nos-foto--equipo { aspect-ratio: 4 / 3; } }
