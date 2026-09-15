@@ -1392,7 +1392,7 @@ a.contacto-dato:hover { color: var(--rosa); }
 .hero-kicker { color: var(--texto); animation: hero-in 0.9s var(--ease-out) 0.1s both; }
 .hero-titulo {
   margin-top: 0.6rem;
-  font-size: clamp(3.6rem, 10.5vw, 9.4rem);
+  font-size: clamp(3.6rem, 9vw, 8.2rem); /* "hecha con cabeza" cabe en una línea en el contenedor de 1200px */
   line-height: 0.88;
   letter-spacing: -0.005em;
 }
@@ -2159,4 +2159,13 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
   .hero-acciones { margin-top: 1.3rem; }
   .hero-acciones .btn-grande { padding: 0.95rem 1.8rem; }
   .hero-estado { margin-top: 0.9rem; }
+}
+
+/* Antetítulo de la portada en móvil: cabe en una línea ("Hamburguesería · Cappont · Lleida") */
+@media (max-width: 720px) {
+  .hero-kicker { font-size: 0.7rem; letter-spacing: 0.12em; }
+}
+/* Móviles estrechos: el titular de cuatro líneas deja aire bajo la cabecera */
+@media (max-width: 380px) {
+  .hero-titulo { font-size: 3.2rem; }
 }
