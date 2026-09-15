@@ -2192,3 +2192,11 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .cookies-enlace:hover { color: #F5F2EE; }
 @media (max-width: 720px) { .cookies { left: 0.75rem; right: 0.75rem; max-width: none; bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); } }
 @media (prefers-reduced-motion: reduce) { .cookies { transition: none; } }
+
+/* "Qué es Vibra" en tres tarjetas (Ivan, 15/9/2026) */
+.que-es-grid { margin-top: 2.4rem; display: grid; gap: 1.25rem; }
+@media (min-width: 760px) { .que-es-grid { grid-template-columns: repeat(3, 1fr); } }
+.manifiesto h2 { margin-top: 0.4rem; max-width: 18ch; font-size: clamp(2.2rem, 5vw, 4.4rem); }
+.que-es-grid .nos-pilar h3 { font-size: 1.35rem; }
+.que-es-grid .nos-pilar p { color: var(--texto); font-size: 1.05rem; }
+.que-es-enlace { margin-top: 2rem; }

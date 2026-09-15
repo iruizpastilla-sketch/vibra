@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /pruebas/
 
 Sitemap: https://vibrastreetfood.com/sitemap.xml
