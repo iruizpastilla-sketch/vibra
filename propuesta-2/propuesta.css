@@ -1,0 +1,95 @@
+/* =============================================================
+   PROPUESTA 2 — "Cartel". Póster de calle: bloques de color plano,
+   tipografía gigante, bordes duros, pegatinas y bandas. Sin foto de fondo
+   en la portada: la burger recortada sobre naranja.
+   ============================================================= */
+.p-cartel { --radio: 0; }
+
+/* Portada: bloque naranja, título negro, burger recortada */
+.p-cartel .hero { background: var(--amarillo); min-height: 100svh; }
+.p-cartel .hero-media, .p-cartel .hero-velo { display: none; }
+.p-cartel .hero-int { padding-top: calc(var(--nav-h) + clamp(2rem, 6vh, 4rem)); }
+.p-cartel .hero-kicker { color: #000; font-weight: 700; }
+.p-cartel .hero-kicker::before { background: #000; }
+.p-cartel .hero-titulo { color: #000; font-size: clamp(4.4rem, 13vw, 15rem); line-height: 0.84; letter-spacing: -0.01em; }
+.p-cartel .hero-titulo .txt-degradado { background: none; -webkit-text-fill-color: #000; color: #000; -webkit-text-stroke: 0.035em #000; -webkit-text-fill-color: transparent; }
+.p-cartel .hero-sub { color: #000; font-weight: 600; max-width: 30ch; }
+.p-cartel .hero-estado { color: #000; }
+.p-cartel .hero-estado::before { background: #000; }
+.p-cartel .hero-estado.is-abierto::before { background: #000; box-shadow: none; animation: none; }
+.p-cartel .hero-scroll { border-color: #000; }
+.p-cartel .hero-scroll span { background: #000; }
+
+.cartel-burger {
+  position: absolute; right: -4vw; bottom: 6vh; z-index: 1;
+  width: clamp(280px, 46vw, 760px);
+  filter: drop-shadow(18px 18px 0 #000);
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+@media (max-width: 720px) { .cartel-burger { width: 78vw; right: -18vw; bottom: 12vh; opacity: 0.95; } }
+
+/* Pegatinas */
+.pegatina {
+  position: absolute; z-index: 3;
+  font-family: var(--display); text-transform: uppercase; letter-spacing: 0.04em; line-height: 1;
+  font-size: clamp(0.9rem, 1.4vw, 1.25rem);
+  padding: 0.55em 0.9em;
+  background: #fff; color: #000;
+  border: 3px solid #000; box-shadow: 6px 6px 0 #000;
+  transform: rotate(var(--giro, -6deg));
+  white-space: nowrap;
+}
+.pegatina--rosa { background: var(--rosa); color: #000; }
+.pegatina--negra { background: #000; color: var(--amarillo); border-color: #000; box-shadow: 6px 6px 0 var(--rosa); }
+.pegatina-1 { right: 8vw; top: 16vh; --giro: 7deg; }
+.pegatina-2 { right: 30vw; top: 28vh; --giro: -5deg; }
+.pegatina-3 { left: 52vw; bottom: 22vh; --giro: 4deg; }
+@media (max-width: 960px) { .pegatina-2, .pegatina-3 { display: none; } .pegatina-1 { right: 1rem; top: 8.6rem; --giro: 5deg; } }
+
+/* Botones y tarjetas: bordes duros y sombra desplazada */
+.p-cartel .btn { border-radius: 0; border: 3px solid #000; box-shadow: 6px 6px 0 #000; transition: transform 0.12s steps(2), box-shadow 0.12s steps(2); }
+.p-cartel .btn:hover { transform: translate(3px, 3px); box-shadow: 2px 2px 0 #000; }
+.p-cartel .btn-degradado { background: #000; color: var(--amarillo); }
+.p-cartel .hero .btn-fantasma { background: #fff; color: #000; }
+.p-cartel .cabecera .btn { box-shadow: none; border-width: 2px; }
+.p-cartel .shot, .p-cartel .resena, .p-cartel .club-tarjeta, .p-cartel .musica-tarjeta, .p-cartel .practica-bloque { border-radius: 0; border: 3px solid #000; box-shadow: 8px 8px 0 #000; }
+.p-cartel .shot::after { display: none; }
+.p-cartel .shot-info { background: var(--amarillo); color: #000; left: 0; right: 0; bottom: 0; padding: 0.7rem 1rem; border-top: 3px solid #000; }
+.p-cartel .shot-info span { color: #000; }
+.p-cartel .shot--final { background: var(--rosa); color: #000; }
+
+/* Bandas cruzadas */
+.p-cartel .hero-marquesina { background: #000; color: var(--amarillo); transform: rotate(-2.5deg); bottom: 3.2rem; font-size: 1.4rem; padding-block: 0.4rem; }
+.cartel-banda-2 { position: absolute; left: -3%; right: -3%; bottom: 0.2rem; z-index: 2; transform: rotate(2deg); background: var(--rosa); color: #000; font-size: 1.2rem; padding-block: 0.35rem; }
+
+/* Bloques de color por sección */
+.p-cartel .manifiesto { background: #000; }
+.p-cartel .manifiesto-texto { font-size: clamp(2.6rem, 7.5vw, 8rem); line-height: 0.9; text-transform: uppercase; font-family: var(--display); }
+.p-cartel .shots { background: #fff; color: #000; }
+.p-cartel .shots .kicker, .p-cartel .shots h2, .p-cartel .shots-nota { color: #000; }
+.p-cartel .shots .kicker::before { background: #000; }
+.p-cartel .gigante { background-image: none; color: #000; -webkit-text-fill-color: #000; }
+.p-cartel .carta-lista { background: var(--rosa); color: #000; }
+.p-cartel .carta-lista .kicker, .p-cartel .carta-lista h2, .p-cartel .lista-nombre, .p-cartel .lista-frase, .p-cartel .lista-num { color: #000; }
+.p-cartel .carta-lista .kicker::before { background: #000; }
+.p-cartel .lista-cats, .p-cartel .lista-cats li { border-color: #000; }
+.p-cartel .carta-lista .btn { background: #000; color: var(--rosa); }
+.p-cartel .resenas { background: var(--amarillo); color: #000; }
+.p-cartel .resenas .kicker, .p-cartel .resenas h2, .p-cartel .resenas-sub, .p-cartel .resena, .p-cartel .resena-autor, .p-cartel .resenas-nota-grande strong { color: #000; }
+.p-cartel .resenas .kicker::before { background: #000; }
+.p-cartel .resena { background: #fff; }
+.p-cartel .resenas .btn { background: #000; color: var(--amarillo); }
+.p-cartel .resenas-flechas button { border-color: #000; color: #000; }
+.p-cartel .club { background: #000; }
+.p-cartel .musica { background: #fff; color: #000; }
+.p-cartel .musica .kicker, .p-cartel .musica h2, .p-cartel .musica p, .p-cartel .musica h3 { color: #000; }
+.p-cartel .musica .kicker::before { background: #000; }
+.p-cartel .practica { background: var(--amarillo); color: #000; }
+.p-cartel .practica h3, .p-cartel .practica p, .p-cartel .practica li, .p-cartel .practica a, .p-cartel .practica strong { color: #000; }
+.p-cartel .banda-reservar { background: var(--rosa); }
+.p-cartel .banda-reservar .btn-negro { background: #000; color: var(--rosa); border-color: #000; }
+
+/* Reveals a golpes, sin suavizar */
+html.js .p-cartel .reveal { transition-timing-function: steps(3, end); transition-duration: 0.45s; }
+@media (prefers-reduced-motion: reduce) { .p-cartel .btn { transition: none; } }

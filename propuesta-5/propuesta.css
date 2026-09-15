@@ -1,0 +1,25 @@
+/* =============================================================
+   PROPUESTA 5 — "Historia". La home cuenta cuatro capítulos: la foto se
+   queda fija a un lado y cambia mientras el texto pasa; el fondo cambia de
+   color con cada capítulo. El scroll nunca se bloquea.
+   ============================================================= */
+.p-historia .hero-marquesina { display: none; }
+
+.historia { position: relative; padding-block: clamp(3rem, 6vw, 5rem) 0; }
+.historia-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+.historia-fotos { position: sticky; top: calc(var(--nav-h) + 1rem); height: 42vh; border-radius: 22px; overflow: hidden; background: var(--negro-3); }
+.historia-fotos img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.9s var(--ease-out), transform 6s linear; transform: scale(1.04); }
+.historia-fotos img.is-activa { opacity: 1; transform: scale(1); }
+.historia-cap { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; padding-block: 3rem; }
+.historia-cap:last-child { padding-bottom: 6rem; }
+.historia-num { font-family: var(--display-num); font-size: 0.95rem; letter-spacing: 0.14em; color: var(--texto-3); margin-bottom: 0.8rem; }
+.historia-cap h2 { font-family: var(--display); font-size: clamp(3.2rem, 11vw, 11rem); line-height: 0.85; text-transform: uppercase; margin: 0 0 1.2rem; }
+.historia-cap p { font-size: clamp(1.05rem, 1.5vw, 1.35rem); color: var(--texto-2); max-width: 34ch; }
+.historia-cap.is-activa h2 { color: var(--texto); }
+@media (min-width: 960px) {
+  .historia-grid { grid-template-columns: 5fr 6fr; gap: 4rem; align-items: start; }
+  .historia-fotos { height: calc(100svh - var(--nav-h) - 2rem); order: 2; }
+  .historia-textos { order: 1; }
+  .historia-cap { min-height: 100svh; }
+}
+.p-historia .gigante { background-image: url("../imagenes/web/jack-dream-hero.webp"); }

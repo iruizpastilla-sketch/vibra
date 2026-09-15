@@ -1,0 +1,93 @@
+/* =============================================================
+   PROPUESTA 3 — "Revista". Papel claro, aire, columnas, capítulos numerados,
+   citas grandes y fotos a distintos tamaños. Calma y nivel.
+   ============================================================= */
+.p-revista {
+  --negro: #F3EEE8; --negro-2: #ECE5DC; --negro-3: #FFFFFF;
+  --texto: #171215; --texto-2: rgba(23, 18, 21, 0.68); --texto-3: rgba(23, 18, 21, 0.48);
+  --linea: rgba(23, 18, 21, 0.14); --blanco: #171215;
+  --naranja-tinta: #B85B04; --rosa-tinta: #C81C6C;
+}
+.p-revista body, body.p-revista { background: var(--negro); color: var(--texto); }
+body.p-revista::after { opacity: 0.35; mix-blend-mode: multiply; }
+.p-revista .cabecera.is-solida, .p-revista .cabecera { background: rgba(243, 238, 232, 0.86); border-bottom: 1px solid var(--linea); }
+.p-revista .cabecera-nav a { color: var(--texto-2); }
+.p-revista .cabecera-nav a:hover, .p-revista .cabecera-nav a.is-activa { color: var(--texto); }
+.p-revista .btn-degradado { background: #171215; color: #F3EEE8; }
+.p-revista .btn-fantasma { border-color: rgba(23, 18, 21, 0.4); color: var(--texto); }
+.p-revista .btn-negro { background: #171215; color: #F3EEE8; }
+.p-revista .hamburguesa span { background: #171215; }
+.p-revista .menu-movil { background: #F3EEE8; }
+.p-revista .txt-degradado { background: linear-gradient(90deg, var(--naranja-tinta), var(--rosa-tinta)); -webkit-background-clip: text; background-clip: text; }
+.p-revista .kicker { color: var(--texto-3); }
+
+/* Portada partida: texto a la izquierda, foto a toda altura a la derecha */
+.p-revista .hero { min-height: 100svh; display: grid; grid-template-columns: 1fr; background: var(--negro); }
+.p-revista .hero-velo, .p-revista .hero-scroll, .p-revista .hero-marquesina { display: none; }
+.p-revista .hero-media { position: relative; inset: auto; order: 2; height: 62vw; max-height: 70svh; margin: 0 var(--pad) 2rem; border-radius: 0; overflow: hidden; }
+.p-revista .hero-media img { object-position: 50% 45%; }
+.p-revista .hero-media.sin-video img { animation: none; }
+.p-revista .hero-int { order: 1; padding-top: clamp(7rem, 16vh, 11rem); padding-bottom: 2rem; }
+.p-revista .hero-kicker { font-family: ui-monospace, Menlo, Consolas, monospace; letter-spacing: 0.18em; font-size: 0.72rem; }
+.p-revista .hero-titulo { font-size: clamp(3.4rem, 9vw, 10rem); line-height: 0.92; color: var(--texto); max-width: 8ch; }
+.p-revista .hero-sub { color: var(--texto-2); font-size: 1.15rem; max-width: 42ch; border-left: 2px solid var(--rosa-tinta); padding-left: 1.2rem; }
+.p-revista .hero-estado { color: var(--texto-2); }
+.p-revista .hero-estado::before { background: var(--rosa-tinta); }
+.p-revista .hero-estado.is-abierto::before { background: #2F7A4F; box-shadow: none; animation: none; }
+.revista-pie-foto { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--texto-3); padding: 0.6rem var(--pad) 0; order: 3; }
+@media (min-width: 960px) {
+  .p-revista .hero { grid-template-columns: 6fr 6fr; align-items: stretch; }
+  .p-revista .hero-int { grid-column: 1; padding-right: 3rem; align-self: center; }
+  .p-revista .hero-media { grid-column: 2; grid-row: 1 / span 2; height: auto; max-height: none; margin: 0; min-height: 100svh; }
+  .revista-pie-foto { grid-column: 1; padding: 0 var(--pad) 2rem; align-self: end; }
+}
+
+/* Capítulos numerados, hairlines y citas */
+.p-revista .seccion { border-top: 1px solid var(--linea); }
+.p-revista .manifiesto-texto { font-family: var(--display); font-size: clamp(2.4rem, 6.4vw, 6.5rem); line-height: 0.98; max-width: 16ch; }
+.p-revista .manifiesto-nota { font-size: 1.05rem; color: var(--texto-2); max-width: 46ch; }
+.revista-cap { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.72rem; letter-spacing: 0.2em; color: var(--texto-3); margin-bottom: 1.4rem; }
+.revista-cap b { font-weight: 500; color: var(--texto); }
+.p-revista .gigante { background-image: url("../imagenes/web/jack-dream-hero.webp"); background-position: 50% 45%; }
+.p-revista .shot { border-radius: 0; border: 1px solid var(--linea); background: #fff; }
+.p-revista .shot::after { background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.7) 100%); }
+.p-revista .lista-cats, .p-revista .lista-cats li { border-color: var(--linea); }
+.p-revista .lista-nombre { font-size: clamp(1.7rem, 4.6vw, 3.6rem); }
+.p-revista .ambiente { min-height: auto; padding-block: clamp(3rem, 8vw, 6rem); background: var(--negro); }
+.p-revista .ambiente-media { position: relative; inset: auto; margin: 0 var(--pad); height: 60vh; }
+.p-revista .ambiente::after { display: none; }
+.p-revista .ambiente-int { padding-top: 1.6rem; color: var(--texto); }
+.p-revista .ambiente-int p { color: var(--texto-2); }
+.p-revista .ambiente-int h2 { color: var(--texto); }
+.p-revista .resena, .p-revista .club-tarjeta, .p-revista .musica-tarjeta { background: #fff; border: 1px solid var(--linea); border-radius: 0; }
+.p-revista .resena-texto { font-family: var(--display); font-size: 1.35rem; line-height: 1.15; }
+.p-revista .resenas-nota-grande strong { color: var(--texto); }
+.p-revista .club-tarjeta { color: var(--texto); }
+.p-revista .practica-bloque { background: #fff; border: 1px solid var(--linea); border-radius: 0; }
+.p-revista .banda-reservar { background: #171215; color: #F3EEE8; }
+.p-revista .banda-reservar h2, .p-revista .banda-reservar p { color: #F3EEE8; }
+.p-revista .banda-reservar .btn-negro { background: #F3EEE8; color: #171215; }
+.p-revista .pie { background: #171215; color: rgba(243, 238, 232, 0.8); }
+.p-revista .pie h4, .p-revista .pie strong, .p-revista .pie a { color: #F3EEE8; }
+.p-revista .barra-acciones { background: rgba(243, 238, 232, 0.94); border-top: 1px solid var(--linea); }
+.p-revista .pedir-modal { background: #F3EEE8; color: var(--texto); }
+.p-revista .pedir-modal h3 { color: var(--texto); }
+
+/* Cita grande de una clienta */
+.revista-cita { padding: clamp(4rem, 9vw, 7rem) 0; border-top: 1px solid var(--linea); }
+.revista-cita blockquote { margin: 0; }
+.revista-cita p { font-family: var(--display); font-size: clamp(2.2rem, 6.5vw, 7rem); line-height: 0.95; text-transform: uppercase; max-width: 14ch; }
+.revista-cita p::before { content: "\201C"; color: var(--rosa-tinta); }
+.revista-cita footer { margin-top: 1.4rem; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--texto-3); }
+
+/* Rejilla de fotos a distintos tamaños */
+.revista-fotos { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.8rem; margin-top: 2rem; }
+.revista-fotos figure { margin: 0; overflow: hidden; background: #ddd; }
+.revista-fotos img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s var(--ease-out); }
+.revista-fotos figure:hover img { transform: scale(1.04); }
+.revista-fotos figcaption { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.66rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--texto-3); padding: 0.5rem 0 0; }
+.revista-fotos .f-1 { grid-column: span 4; aspect-ratio: 16 / 10; }
+.revista-fotos .f-2 { grid-column: span 2; aspect-ratio: 4 / 5; }
+.revista-fotos .f-3 { grid-column: span 2; aspect-ratio: 1; }
+.revista-fotos .f-4 { grid-column: span 4; aspect-ratio: 21 / 9; }
+@media (max-width: 720px) { .revista-fotos { grid-template-columns: 1fr 1fr; } .revista-fotos .f-1, .revista-fotos .f-4 { grid-column: span 2; } }

@@ -1,164 +1,20 @@
 /* =============================================================
-   PROPUESTA 1 — "Entrada de cine"
-   Copia de la portada con cinco ideas sacadas de las webs premiadas:
-   1. Intro de marca de 1,5 s: VIBRA como ventana a la burger (una vez por sesión)
-   2. Titular gigante que se revela línea a línea, ondas del logo flotando detrás
-   3. Sello giratorio con el dato real: 4,5 y 643 reseñas
-   4. Palabra gigante NUEVE con la foto dentro de las letras, que se mueve al bajar
-   5. Viaje de color entre secciones y cierre con el nombre a toda anchura
-   Sin cursor propio, sin bloquear el scroll, sin cortinas entre páginas.
+   PROPUESTA 1 — "Entrada de cine" (revisada: fuera las ondas sobre la burger)
+   Intro y NUEVE vienen de propuestas/comun.css. Aquí: titular grande,
+   sello giratorio, viaje de color y cierre con el nombre a toda anchura.
    ============================================================= */
+.p-cine .hero-titulo { font-size: clamp(4.4rem, 14vw, 15.5rem); line-height: 0.86; }
 
-/* --- 1. Intro --- */
-.intro {
-  position: fixed;
-  inset: 0;
-  z-index: 20000;
-  background: #000;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-}
-html.sin-intro .intro { display: none; }
-.intro-palabra {
-  font-family: var(--display);
-  font-size: clamp(7rem, 34vw, 44rem);
-  line-height: 0.85;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-  background-image: url("../imagenes/web/jack-dream-hero.webp");
-  background-size: 130% auto;
-  background-position: 50% 30%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  will-change: transform, opacity;
-}
-.intro-onda {
-  position: absolute;
-  width: 46vw;
-  max-width: 720px;
-  opacity: 0;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-.intro-onda--naranja { left: -6vw; top: 18vh; }
-.intro-onda--rosa { right: -6vw; bottom: 14vh; }
-
-/* --- 2. Portada de cine --- */
-.propuesta .hero-int { position: relative; z-index: 2; }
-.propuesta .hero-titulo { font-size: clamp(4.4rem, 14vw, 15.5rem); line-height: 0.86; }
-.propuesta .hero-mascara { display: block; overflow: hidden; padding: 0.16em 0 0.1em; margin: -0.16em 0 -0.1em; }
-/* GSAP lleva la entrada del titular: fuera la animación CSS de la web real, que la pisaba */
-.propuesta .hero-linea, .propuesta .hero-kicker, .propuesta .hero-sub, .propuesta .hero-acciones, .propuesta .hero-estado { animation: none; }
-.propuesta .hero-linea { display: block; }
-.hero-onda {
-  position: absolute;
-  z-index: 1;
-  width: 54vw;
-  max-width: 820px;
-  opacity: 0.55;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-.hero-onda--naranja { left: -9vw; top: 10%; }
-.hero-onda--rosa { right: -9vw; bottom: 14%; }
-@media (max-width: 720px) {
-  .hero-onda { width: 90vw; opacity: 0.4; }
-  .hero-onda--naranja { left: -30vw; top: 6%; }
-  .hero-onda--rosa { right: -30vw; bottom: 22%; }
-}
-
-/* --- 3. Sello giratorio --- */
-.sello {
-  position: absolute;
-  z-index: 3;
-  right: clamp(1rem, 4vw, 3rem);
-  bottom: clamp(7.5rem, 17vh, 11rem);
-  width: clamp(120px, 12vw, 170px);
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-}
-.sello::before {
-  content: "";
-  position: absolute;
-  inset: 16%;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
+/* Sello giratorio */
+.sello { position: absolute; z-index: 3; right: clamp(1rem, 4vw, 3rem); bottom: clamp(7.5rem, 17vh, 11rem); width: clamp(120px, 12vw, 170px); aspect-ratio: 1; display: grid; place-items: center; pointer-events: none; }
+.sello::before { content: ""; position: absolute; inset: 16%; border-radius: 50%; background: rgba(0, 0, 0, 0.42); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .sello svg { position: absolute; inset: 0; width: 100%; height: 100%; animation: sello-gira 26s linear infinite; }
 .sello text { font-family: var(--sans); font-weight: 600; letter-spacing: 1.1px; fill: var(--texto); }
-.sello-centro {
-  position: relative;
-  font-family: var(--display-num);
-  font-size: clamp(2rem, 3.2vw, 2.9rem);
-  line-height: 1;
-  background: var(--degradado);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
+.sello-centro { position: relative; font-family: var(--display-num); font-size: clamp(2rem, 3.2vw, 2.9rem); line-height: 1; background: var(--degradado); -webkit-background-clip: text; background-clip: text; color: transparent; }
 @keyframes sello-gira { to { transform: rotate(360deg); } }
 @media (max-width: 720px) { .sello { display: none; } }
+@media (prefers-reduced-motion: reduce) { .sello svg { animation: none; } }
 
-/* --- 4. NUEVE gigante con la foto dentro --- */
-.gigante {
-  font-family: var(--display);
-  font-size: clamp(5.5rem, 27vw, 32rem);
-  line-height: 0.8;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  background-image: url("../imagenes/web/jack-dream-neon.webp");
-  background-size: 118% auto;
-  background-position: 50% 30%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  margin: 0 0 0.05em -0.02em;
-  user-select: none;
-}
-.propuesta .shots-cab h2 { margin-top: 0.2rem; }
-
-/* --- 5. Cierre: el nombre a toda anchura --- */
-.propuesta .pie { overflow: hidden; }
-.pie-gigante {
-  font-family: var(--display);
-  font-size: clamp(4.5rem, 22vw, 26rem);
-  line-height: 0.8;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 2rem 0 -0.16em;
-  padding-top: 0.06em;
-  background: var(--degradado);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  user-select: none;
-}
-
-/* --- Aviso de que es una propuesta --- */
-.aviso-propuesta {
-  position: fixed;
-  left: 50%;
-  bottom: 1rem;
-  z-index: 15000;
-  transform: translateX(-50%);
-  font-family: var(--mono, monospace);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--negro);
-  background: var(--amarillo);
-  padding: 0.35rem 0.8rem;
-  border-radius: 999px;
-  pointer-events: none;
-}
-@media (max-width: 960px) { .aviso-propuesta { left: auto; right: 0.6rem; top: 4.9rem; bottom: auto; transform: none; font-size: 0.62rem; } }
-@media (prefers-reduced-motion: reduce) {
-  .sello svg { animation: none; }
-}
+/* Cierre: el nombre a toda anchura */
+.p-cine .pie { overflow: hidden; }
+.pie-gigante { font-family: var(--display); font-size: clamp(4.5rem, 22vw, 26rem); line-height: 0.8; letter-spacing: -0.02em; text-transform: uppercase; text-align: center; margin: 2rem 0 -0.16em; padding-top: 0.06em; background: var(--degradado); -webkit-background-clip: text; background-clip: text; color: transparent; user-select: none; }

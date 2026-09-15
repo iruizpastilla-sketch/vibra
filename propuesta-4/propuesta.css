@@ -1,0 +1,42 @@
+/* =============================================================
+   PROPUESTA 4 — "Neón". La noche de Cappont: burger flotando con un halo
+   que respira, palabra que cambia, líneas de luz entre secciones.
+   ============================================================= */
+.p-neon .hero { background: #050307; }
+.p-neon .hero-media img { opacity: 0.35; filter: saturate(1.3) contrast(1.1); }
+.p-neon .hero-velo { background: radial-gradient(60% 55% at 50% 60%, transparent 0%, rgba(5, 3, 7, 0.55) 70%, #050307 100%); }
+.p-neon .hero-int { text-align: center; max-width: none; display: flex; flex-direction: column; align-items: center; padding-top: clamp(5rem, 12vh, 8rem); }
+.p-neon .hero-kicker { color: var(--rosa); text-shadow: 0 0 12px rgba(232, 48, 133, 0.8); }
+.p-neon .hero-kicker::before { background: var(--rosa); box-shadow: 0 0 10px var(--rosa); }
+.p-neon .hero-titulo { font-size: clamp(4.2rem, 13vw, 14rem); line-height: 0.88; }
+.p-neon .hero-titulo .hero-linea:first-child { color: #fff; text-shadow: 0 0 22px rgba(255, 255, 255, 0.25); }
+.neon-palabra { display: inline-block; position: relative; min-width: 6.2ch; text-align: center; }
+.neon-palabra > span { display: block; background: var(--degradado); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 18px rgba(232, 48, 133, 0.55)) drop-shadow(0 0 40px rgba(243, 143, 28, 0.35)); }
+.p-neon .hero-sub { text-align: center; max-width: 40ch; color: rgba(255, 255, 255, 0.78); }
+.p-neon .hero-acciones { justify-content: center; }
+.p-neon .btn-degradado { box-shadow: 0 0 24px rgba(232, 48, 133, 0.45), 0 0 60px rgba(243, 143, 28, 0.25); }
+.p-neon .btn-degradado:hover { box-shadow: 0 0 34px rgba(232, 48, 133, 0.7), 0 0 90px rgba(243, 143, 28, 0.4); }
+.p-neon .hero-estado { justify-content: center; }
+
+/* La burger flotando con su halo, detrás del titular */
+.neon-escena { position: absolute; z-index: 1; left: 50%; top: 54%; width: min(70vw, 760px); aspect-ratio: 900 / 689; pointer-events: none; transform: translate(-50%, -50%); }
+.p-neon .hero-titulo, .p-neon .hero-sub { text-shadow: 0 2px 30px rgba(0, 0, 0, 0.7); }
+.neon-halo { position: absolute; inset: -10% -6%; border-radius: 50%; background: radial-gradient(closest-side, rgba(243, 143, 28, 0.55), rgba(232, 48, 133, 0.35) 45%, transparent 72%); filter: blur(40px); animation: neon-respira 4.5s ease-in-out infinite; }
+.neon-burger { position: relative; width: 100%; height: auto; display: block; filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.7)); animation: neon-flota 6s ease-in-out infinite; }
+@keyframes neon-respira { 50% { transform: scale(1.12); opacity: 0.8; } }
+@keyframes neon-flota { 50% { transform: translateY(-14px) rotate(-1.5deg); } }
+@media (max-width: 720px) { .neon-escena { width: 92vw; } }
+
+/* Líneas de luz entre secciones */
+.p-neon .seccion { position: relative; }
+.p-neon .seccion::before { content: ""; position: absolute; left: 10%; right: 10%; top: 0; height: 1px; background: var(--degradado); box-shadow: 0 0 12px rgba(232, 48, 133, 0.7), 0 0 30px rgba(243, 143, 28, 0.35); opacity: 0.8; }
+.p-neon .manifiesto-texto .txt-degradado { filter: drop-shadow(0 0 14px rgba(232, 48, 133, 0.5)); }
+.p-neon .shot { border: 1px solid rgba(255, 255, 255, 0.08); transition: box-shadow 0.4s, border-color 0.4s; }
+.p-neon .shot:hover { border-color: rgba(232, 48, 133, 0.7); box-shadow: 0 0 0 1px rgba(232, 48, 133, 0.5), 0 0 40px rgba(232, 48, 133, 0.25); }
+.p-neon .shot-info span, .p-neon .precio-cifra { filter: drop-shadow(0 0 10px rgba(243, 143, 28, 0.6)); }
+.p-neon .gigante { background-image: url("../imagenes/web/jack-dream-hero.webp"); filter: drop-shadow(0 0 30px rgba(232, 48, 133, 0.35)); }
+.p-neon .marquesina-pista { text-shadow: 0 0 10px rgba(0, 0, 0, 0.4); }
+.p-neon .resenas-nota-grande strong { filter: drop-shadow(0 0 16px rgba(243, 143, 28, 0.6)); }
+.p-neon .club-tarjeta { box-shadow: 0 0 60px rgba(232, 48, 133, 0.2); }
+body.p-neon::after { opacity: 0.1; }
+@media (prefers-reduced-motion: reduce) { .neon-halo, .neon-burger { animation: none; } }
