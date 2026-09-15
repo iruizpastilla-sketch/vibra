@@ -2065,3 +2065,5 @@ html.lenis, html.lenis body { height: auto; }
 
 /* Foto grande de Nosotros con el equipo: el encuadre sube para no cortar las cabezas */
 .nos-foto--equipo img { object-position: center 28%; }
+/* En pantallas estrechas la banda baja de altura para que quepan los tres de la foto */
+@media (max-width: 640px) { .nos-foto--equipo { height: clamp(230px, 36vh, 320px); } }
