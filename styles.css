@@ -2091,7 +2091,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 /* --- NUEVE gigante con la foto dentro --- */
 .gigante {
   font-family: var(--display);
-  font-size: clamp(5.5rem, 27vw, 32rem);
+  font-size: clamp(4.2rem, 21vw, 19rem); /* "Burgers." mide 3,92 em: así cabe en el contenedor a cualquier ancho */
   line-height: 0.8;
   letter-spacing: -0.02em;
   text-transform: uppercase;
