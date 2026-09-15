@@ -2,11 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://vibrastreetfood.com/sitemap.xml
-Disallow: /propuesta-1/
-Disallow: /propuesta-2/
-Disallow: /propuesta-3/
-Disallow: /propuesta-4/
-Disallow: /propuesta-5/
-Disallow: /propuesta-6/
-Disallow: /propuesta-7/
-Disallow: /propuestas/

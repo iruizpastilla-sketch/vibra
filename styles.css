@@ -2068,3 +2068,130 @@ html.lenis, html.lenis body { height: auto; }
 .nos-foto--equipo { height: auto; aspect-ratio: 2.4 / 1; }
 .nos-foto--equipo img { object-position: center; }
 @media (max-width: 640px) { .nos-foto--equipo { aspect-ratio: 4 / 3; } }
+
+/* =============================================================
+   29. Portada: intro de marca, entrada del titular, carrusel de apartados
+   y NUEVE gigante. Elegido por Ivan el 15/9/2026 (propuestas 1 y 7).
+   ============================================================= */
+
+/* --- Intro: VIBRA como ventana a la burger. Una vez por sesión; ?intro la repite --- */
+.intro { position: fixed; inset: 0; z-index: 20000; background: #000; display: grid; place-items: center; overflow: hidden; }
+html.sin-intro .intro { display: none; }
+.intro-palabra {
+  font-family: var(--display);
+  font-size: clamp(7rem, 34vw, 44rem);
+  line-height: 0.85;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  background-image: url("imagenes/web/jack-dream-hero.webp");
+  background-size: 130% auto;
+  background-position: 50% 30%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  will-change: transform, opacity;
+}
+.intro-onda { position: absolute; width: 46vw; max-width: 720px; opacity: 0; pointer-events: none; mix-blend-mode: screen; }
+.intro-onda--naranja { left: -6vw; top: 18vh; }
+.intro-onda--rosa { right: -6vw; bottom: 14vh; }
+
+/* --- Entrada del titular: GSAP la lleva; sin JS queda la animación CSS de siempre --- */
+html.js .hero-linea, html.js .hero-kicker, html.js .hero-sub, html.js .hero-acciones, html.js .hero-estado { animation: none; }
+.hero-mascara { display: block; overflow: hidden; padding: 0.16em 0 0.1em; margin: -0.16em 0 -0.1em; }
+
+/* --- Carrusel de apartados: cada diapositiva ocupa toda la portada --- */
+.hero-slides { position: absolute; inset: 0; }
+.hero-slide { position: absolute; inset: 0; display: flex; align-items: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.9s var(--ease-soft), visibility 0s 0.9s; }
+.hero-slide.is-activa { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.9s var(--ease-soft), visibility 0s; }
+.hero-slide .hero-int { width: 100%; }
+.hero-slide.is-activa .hero-media img { animation: kenburns 24s ease-in-out infinite alternate; }
+.hero-slide.is-activa .hero-media.con-video img { animation: none; }
+p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; text-wrap: balance; }
+
+.hero-control { position: absolute; left: var(--pad); bottom: clamp(3.4rem, 7vh, 4.6rem); z-index: 3; display: flex; align-items: center; gap: 0.7rem; }
+.hero-puntos { display: flex; gap: 0.4rem; }
+.hero-punto { position: relative; width: 36px; height: 4px; padding: 0; border: 0; border-radius: 2px; background: rgba(255, 255, 255, 0.28); cursor: pointer; overflow: hidden; }
+.hero-punto::after { content: ""; position: absolute; inset: 0; background: var(--degradado); transform: scaleX(0); transform-origin: left; }
+.hero-punto.is-activa::after { animation: hero-progreso var(--hero-dur, 6.5s) linear forwards; }
+.hero.is-pausado .hero-punto.is-activa::after { animation-play-state: paused; }
+.hero-punto:focus-visible { outline: 2px solid var(--blanco); outline-offset: 3px; }
+@keyframes hero-progreso { to { transform: scaleX(1); } }
+.hero-flecha { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.4); background: rgba(0, 0, 0, 0.3); color: var(--blanco); display: grid; place-items: center; font-size: 1.1rem; line-height: 1; transition: border-color 0.3s, background 0.3s; }
+.hero-flecha:hover { border-color: var(--blanco); background: rgba(0, 0, 0, 0.5); }
+.hero-flecha:focus-visible { outline: 2px solid var(--blanco); outline-offset: 2px; }
+@media (max-width: 720px) {
+  .hero-control { bottom: 4.4rem; }
+  .hero-flecha { display: none; }
+  .hero-punto { width: 26px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .hero-slide.is-activa { transition: none; }
+  .hero-punto.is-activa::after { animation: none; transform: scaleX(1); }
+}
+
+/* --- NUEVE gigante con la foto dentro --- */
+.gigante {
+  font-family: var(--display);
+  font-size: clamp(5.5rem, 27vw, 32rem);
+  line-height: 0.8;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  background-image: url("imagenes/web/jack-dream-hero.webp");
+  background-size: 118% auto;
+  background-position: 50% 40%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0.12em 0 0.05em -0.02em;
+  user-select: none;
+}
+.shots-cab h2 { margin-top: 0.2rem; }
+
+/* =============================================================
+   30. Contraste: secciones que alternan papel y negro, con cortes en
+   diagonal. Una sección con la clase "claro" remapea los tokens de color en
+   su ámbito y todo lo que hay dentro (tarjetas, líneas, textos) se adapta.
+   ============================================================= */
+.claro {
+  --negro: #F5F2EE;
+  --negro-2: #F5F2EE;
+  --negro-3: #FFFFFF;
+  --texto: #171215;
+  --texto-2: rgba(23, 18, 21, 0.72);
+  --texto-3: rgba(23, 18, 21, 0.5);
+  --linea: rgba(23, 18, 21, 0.14);
+  --blanco: #171215;
+  --corte: 3.5vw;
+  position: relative;
+  z-index: 1;
+  background: var(--negro);
+  color: var(--texto);
+  border-block: 0;
+  clip-path: polygon(0 0, 100% var(--corte), 100% 100%, 0 calc(100% - var(--corte)));
+  margin-top: calc(-1 * var(--corte));
+  margin-bottom: calc(-1 * var(--corte));
+  padding-top: calc(clamp(4rem, 9vw, 7.5rem) + var(--corte));
+  padding-bottom: calc(clamp(4rem, 9vw, 7.5rem) + var(--corte));
+}
+@media (max-width: 720px) { .claro { --corte: 6vw; } }
+.claro.manifiesto { padding-top: calc(clamp(6rem, 12vw, 9rem) + var(--corte)); }
+.carta-seccion.claro { padding-top: calc(clamp(3.2rem, 7vw, 5.5rem) + var(--corte)); padding-bottom: calc(clamp(3.2rem, 7vw, 5.5rem) + var(--corte)); }
+.claro + .claro { margin-top: 0; }
+
+/* El degradado de marca, en tinta más oscura para que aguante sobre papel */
+.claro .txt-degradado { background: linear-gradient(90deg, #B85B04, #C81C6C); -webkit-background-clip: text; background-clip: text; }
+.claro .btn-fantasma { border-color: rgba(23, 18, 21, 0.4); color: var(--texto); }
+.claro .btn-fantasma:hover { background: rgba(23, 18, 21, 0.06); }
+.claro .btn-negro { background: #171215; color: #F5F2EE; }
+.claro .resena, .claro .musica-tarjeta, .claro .club-tarjeta, .claro .plato, .claro .nos-pilar, .claro .contacto-tarjeta, .claro .novedad, .claro .burger-shot { background: #FFFFFF; border: 1px solid var(--linea); box-shadow: 0 10px 30px rgba(23, 18, 21, 0.06); }
+.claro .flecha-circular { border-color: rgba(23, 18, 21, 0.3); background: #FFFFFF; color: var(--texto); }
+.claro .flecha-circular:hover { border-color: var(--rosa); background: rgba(23, 18, 21, 0.06); }
+.claro .lista-nombre, .claro .resenas-nota-grande strong { color: var(--texto); }
+.claro .manifiesto-texto { font-size: clamp(2.6rem, 7.2vw, 7.5rem); line-height: 0.95; }
+.claro .manifiesto-nota { font-size: 1.1rem; }
+.claro .burger-shot-desc { color: #F5F2EE; }
+.claro .plato--sin-foto { background: linear-gradient(160deg, rgba(232, 48, 133, 0.06), #FFFFFF 45%); }
+
+/* La sección negra que sigue a una clara no lleva borde: el corte ya separa */
+.shots, .club, .practica, .carta-seccion { border-block: 0; }
+body::after { opacity: 0.035; }

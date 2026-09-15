@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>document.documentElement.classList.add("js");</script>
+  <script>document.documentElement.classList.add("js");try{if((sessionStorage.getItem("vibra-intro")==="1"&&location.search.indexOf("intro")===-1)||matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("sin-intro")}catch(e){}</script>
   <title>Hamburguesas en Lleida — Vibra Street Food, Cappont</title>
   <meta name="description" content="Vaca nacional madurada, bocadillos y milanesas en Cappont, Lleida. Todas las burgers con patatas. Reserva mesa o pide a domicilio.">
   <meta name="theme-color" content="#000000">
@@ -28,11 +28,16 @@
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
   <link rel="preload" as="image" href="imagenes/web/jack-dream-hero.webp" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=20260914">
+  <link rel="stylesheet" href="styles.css?v=20260915">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="fc84f6c0-e986-4f75-be10-222ac8fc00f7" data-domains="vibrastreetfood.com"></script>
 </head>
 <body>
+  <div class="intro" id="intro" aria-hidden="true">
+    <img class="intro-onda intro-onda--naranja" src="imagenes/web/onda-naranja.png" alt="">
+    <img class="intro-onda intro-onda--rosa" src="imagenes/web/onda-rosa.png" alt="">
+    <div class="intro-palabra">Vibra</div>
+  </div>
   <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
 
   <!-- ================================================================
@@ -86,6 +91,8 @@
            imagenes/video/portada-vertical.mp4  vertical 1080x1920 para móvil (si falta, se usa el horizontal)
          La foto de respaldo es la <img> de dentro de .hero-media. -->
     <section class="hero" id="portada">
+    <div class="hero-slides" data-hero-slides>
+    <article class="hero-slide is-activa" data-slide>
       <div class="hero-media" data-media-slot data-video-h="imagenes/video/portada.mp4" data-video-v="imagenes/video/portada-vertical.mp4">
         <img class="hero-poster" src="imagenes/web/jack-dream-hero.webp" alt="" fetchpriority="high" decoding="async">
       </div>
@@ -100,6 +107,53 @@
         </div>
         <p class="hero-estado" data-horario-hoy hidden></p>
       </div>
+    </article>
+    <article class="hero-slide" data-slide>
+      <div class="hero-media"><img src="imagenes/web/terraza-hero.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">Grupos y eventos</p>
+        <p class="hero-titulo"><span class="hero-linea">Sala privada</span><span class="hero-linea"><span class="txt-degradado">para 25</span></span></p>
+        <p class="hero-sub">En la planta de abajo. Puerta propia, vuestras mesas y nadie pasando por el medio.</p>
+        <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="grupos.html">Ver la sala</a></div>
+      </div>
+    </article>
+    <article class="hero-slide" data-slide>
+      <div class="hero-media"><img src="imagenes/web/equipo-ancha.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">Nosotros</p>
+        <p class="hero-titulo"><span class="hero-linea">De cañas</span><span class="hero-linea"><span class="txt-degradado">a burgers</span></span></p>
+        <p class="hero-sub">Un bar universitario, dos primos que lo cogieron en 2023 y unas burgers que la gente pedía más que las cervezas.</p>
+        <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="nosotros.html">Nuestra historia</a></div>
+      </div>
+    </article>
+    <article class="hero-slide" data-slide>
+      <div class="hero-media"><img src="imagenes/web/goat-neon.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">La carta</p>
+        <p class="hero-titulo"><span class="hero-linea">Todo lo</span><span class="hero-linea"><span class="txt-degradado">que hay</span></span></p>
+        <p class="hero-sub">Nueve burgers, bocadillos, milanesas, dips y postres caseros. Todas las burgers con patatas.</p>
+        <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="carta.html">Ver la carta</a></div>
+      </div>
+    </article>
+    <article class="hero-slide" data-slide>
+      <div class="hero-media"><img src="imagenes/web/influencer-neon.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">Novedades</p>
+        <p class="hero-titulo"><span class="hero-linea">La burger</span><span class="hero-linea"><span class="txt-degradado">del mes</span></span></p>
+        <p class="hero-sub">Edición limitada: una salsa que manda y un ingrediente que no esperas. La próxima está al caer.</p>
+        <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="novedades.html">Ver novedades</a></div>
+      </div>
+    </article>
+    </div>
+    <div class="hero-control" data-hero-control role="group" aria-label="Apartados de la portada">
+      <button class="hero-flecha" type="button" data-hero-prev aria-label="Anterior">←</button>
+      <div class="hero-puntos"><button class="hero-punto is-activa" type="button" aria-label="Apartado 1" aria-current="true"></button><button class="hero-punto" type="button" aria-label="Apartado 2" aria-current="false"></button><button class="hero-punto" type="button" aria-label="Apartado 3" aria-current="false"></button><button class="hero-punto" type="button" aria-label="Apartado 4" aria-current="false"></button><button class="hero-punto" type="button" aria-label="Apartado 5" aria-current="false"></button></div>
+      <button class="hero-flecha" type="button" data-hero-next aria-label="Siguiente">→</button>
+    </div>
       <a class="hero-scroll" href="#manifiesto" aria-label="Bajar al contenido"><span></span></a>
       <div class="marquesina hero-marquesina" aria-hidden="true">
         <div class="marquesina-pista">
@@ -110,7 +164,7 @@
     </section>
 
     <!-- ===== MANIFIESTO (cada palabra se enciende al hacer scroll) ===== -->
-    <section class="manifiesto seccion" id="manifiesto">
+    <section class="claro manifiesto seccion" id="manifiesto">
       <div class="contenedor">
         <p class="kicker reveal">Qué es Vibra</p>
         <p class="manifiesto-texto" data-palabras>No inventamos platos para <span class="txt-degradado">epatar</span> ni te explicamos la historia de cada ingrediente. Sabes lo que vas a comer <span class="txt-degradado">antes de pedirlo</span>.</p>
@@ -122,7 +176,8 @@
     <section class="shots" data-shots aria-label="Las burgers de Vibra">
       <div class="contenedor shots-cab">
         <p class="kicker reveal">Las burgers</p>
-        <h2 class="reveal" data-retraso="1">Nueve en carta. <span class="txt-degradado">Todas con patatas.</span></h2>
+        <div class="gigante reveal" aria-label="Nueve">Nueve.</div>
+        <h2 class="reveal" data-retraso="1"><span class="txt-degradado">Todas con patatas.</span></h2>
         <p class="shots-nota reveal" data-retraso="2">Doble carne en seis de las nueve · También pollo y opción vegana</p>
       </div>
       <div class="shots-viewport">
@@ -171,7 +226,7 @@
     </section>
 
     <!-- ===== LA CARTA: lista tipográfica (la foto sigue al cursor en escritorio) ===== -->
-    <section class="carta-lista seccion" id="carta">
+    <section class="claro carta-lista seccion" id="carta">
       <div class="contenedor">
         <div class="teaser-cabecera">
           <div>
@@ -248,7 +303,7 @@
     </section>
 
     <!-- ===== RESEÑAS DE GOOGLE (textos literales de la ficha) ===== -->
-    <section class="resenas seccion" id="resenas">
+    <section class="claro resenas seccion" id="resenas">
       <div class="contenedor resenas-grid">
         <div class="resenas-resumen reveal">
           <p class="kicker">Reseñas</p>
@@ -348,7 +403,7 @@
     </section>
 
     <!-- ===== LA BANDA SONORA (Spotify en dos pasos) ===== -->
-    <section class="musica seccion" id="musica">
+    <section class="claro musica seccion" id="musica">
       <div class="contenedor">
         <p class="kicker reveal">La banda sonora</p>
         <h2 class="reveal" data-retraso="1">Lo que suena aquí <span class="txt-degradado">dentro</span></h2>
@@ -508,6 +563,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260914"></script>
+  <script defer src="main.js?v=20260915"></script>
 </body>
 </html>

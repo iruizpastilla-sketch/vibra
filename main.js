@@ -6,6 +6,7 @@
   var $$ = function (sel, scope) { return Array.prototype.slice.call((scope || document).querySelectorAll(sel)); };
   // GSAP y ScrollTrigger son opcionales: si no cargan, la web funciona igual, sin los efectos de scroll
   var gsapOk = !!(window.gsap && window.ScrollTrigger);
+  var reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (gsapOk) { window.gsap.registerPlugin(window.ScrollTrigger); }
   function safe(fn, nombre) {
     try { fn(); } catch (e) { console.warn("[" + nombre + "]", e); }
@@ -411,7 +412,6 @@
   //  Fase E: la "magia". Todo opcional: sin GSAP, sin ratón o con
   //  "reducir movimiento" activado, la web funciona igual sin estos extras.
   // =============================================================
-  var reducirMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var escritorioFino = window.matchMedia("(min-width: 960px) and (hover: hover) and (pointer: fine)").matches;
 
   // ---------- Scroll suave con inercia (Lenis): solo escritorio con ratón ----------
@@ -499,6 +499,143 @@
     });
   }
 
+
+  // =============================================================
+  //  Portada (elegida por Ivan el 15/9/2026): intro de marca, entrada del
+  //  titular, carrusel de apartados y NUEVE gigante. Todo opcional: sin GSAP
+  //  o con "reducir movimiento" la portada funciona igual, sin adornos.
+  // =============================================================
+
+  // ---------- Intro: VIBRA como ventana a la burger, una vez por sesión (?intro la repite) ----------
+  function initIntro() {
+    var intro = document.getElementById("intro");
+    var raiz = document.documentElement;
+    if (!intro) return;
+    var vista = false;
+    try { vista = sessionStorage.getItem("vibra-intro") === "1" && location.search.indexOf("intro") === -1; } catch (e) {}
+    if (vista || reducirMovimiento || !gsapOk) { intro.remove(); raiz.classList.add("sin-intro"); return; }
+    try { sessionStorage.setItem("vibra-intro", "1"); } catch (e) {}
+    raiz.classList.add("con-intro");
+    document.body.classList.add("sin-scroll");
+    var g = window.gsap;
+    var palabra = $(".intro-palabra", intro);
+    var ondas = $$(".intro-onda", intro);
+    g.timeline({ onComplete: function () { intro.remove(); document.body.classList.remove("sin-scroll"); } })
+      .fromTo(palabra, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 0)
+      .fromTo(palabra, { backgroundPosition: "50% 22%" }, { backgroundPosition: "50% 62%", duration: 1.6, ease: "none" }, 0)
+      .fromTo(ondas, { opacity: 0, x: function (i) { return i ? 70 : -70; } }, { opacity: 0.85, x: 0, duration: 0.9, ease: "power3.out", stagger: 0.1 }, 0.15)
+      .to(palabra, { scale: 18, opacity: 0, duration: 0.95, ease: "power3.in" }, 1.3)
+      .to(ondas, { opacity: 0, duration: 0.4 }, 1.35)
+      .to(intro, { opacity: 0, duration: 0.35 }, 1.95);
+  }
+
+  // ---------- Portada: entrada del titular y carrusel de apartados ----------
+  function initPortada() {
+    var hero = $(".hero");
+    if (!hero) return;
+    var g = gsapOk ? window.gsap : null;
+    var animar = !!g && !reducirMovimiento;
+
+    // Cada línea del titular sale de debajo de una máscara
+    $$(".hero-titulo .hero-linea", hero).forEach(function (l) {
+      var m = document.createElement("span");
+      m.className = "hero-mascara";
+      l.parentNode.insertBefore(m, l);
+      m.appendChild(l);
+    });
+    var partesDe = function (slide) {
+      return [".hero-kicker", ".hero-sub", ".hero-acciones", ".hero-estado"].map(function (s) { return $(s, slide); }).filter(Boolean);
+    };
+    var entrar = function (slide, retraso) {
+      if (!animar) return;
+      var lineas = $$(".hero-linea", slide), partes = partesDe(slide);
+      g.set(lineas, { yPercent: 110 });
+      g.set(partes, { opacity: 0, y: 18 });
+      g.timeline({ delay: retraso || 0 })
+        .to(lineas, { yPercent: 0, duration: 1.1, ease: "power4.out", stagger: 0.12 })
+        .to(partes, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.08 }, "-=0.7");
+    };
+
+    var slides = $$("[data-slide]", hero);
+    var primera = slides[0] || hero;
+    entrar(primera, document.documentElement.classList.contains("con-intro") ? 1.6 : 0.15);
+    if (slides.length < 2) return;
+
+    // ----- Carrusel -----
+    var DUR = 6500;
+    hero.style.setProperty("--hero-dur", DUR + "ms");
+    var control = $("[data-hero-control]", hero);
+    var puntos = $$(".hero-punto", control);
+    var actual = 0, temporizador = null, pausado = false;
+
+    var reiniciar = function () {
+      clearTimeout(temporizador);
+      if (pausado || reducirMovimiento) return;
+      temporizador = setTimeout(function () { ir(actual + 1); }, DUR);
+    };
+    // Reinicia la barra de progreso del punto activo (aunque sea el mismo elemento)
+    var barra = function () {
+      var activo = puntos[actual];
+      if (activo) { activo.classList.remove("is-activa"); void activo.offsetWidth; activo.classList.add("is-activa"); }
+    };
+    var ir = function (i) {
+      var siguiente = (i + slides.length) % slides.length;
+      if (siguiente === actual) return;
+      var prev = slides[actual], next = slides[siguiente];
+      actual = siguiente;
+      if (animar) {
+        var salen = $$(".hero-linea, .hero-kicker, .hero-sub, .hero-acciones, .hero-estado", prev);
+        g.to(salen, { opacity: 0, y: -14, duration: 0.4, ease: "power2.in", onComplete: function () { g.set(salen, { clearProps: "opacity,y" }); } });
+      }
+      prev.classList.remove("is-activa");
+      next.classList.add("is-activa");
+      entrar(next, 0.25);
+      puntos.forEach(function (p, j) {
+        p.classList.toggle("is-activa", j === actual);
+        p.setAttribute("aria-current", j === actual ? "true" : "false");
+      });
+      barra();
+      reiniciar();
+    };
+
+    puntos.forEach(function (p, j) { p.addEventListener("click", function () { ir(j); }); });
+    var prevBtn = $("[data-hero-prev]", control), nextBtn = $("[data-hero-next]", control);
+    if (prevBtn) prevBtn.addEventListener("click", function () { ir(actual - 1); });
+    if (nextBtn) nextBtn.addEventListener("click", function () { ir(actual + 1); });
+
+    // Se para con el ratón sobre los controles (la barra se detiene y se ve), con el
+    // teclado dentro y con la pestaña oculta. En el resto de la portada sigue pasando.
+    var pausar = function () { pausado = true; hero.classList.add("is-pausado"); clearTimeout(temporizador); };
+    var seguir = function () { pausado = false; hero.classList.remove("is-pausado"); reiniciar(); };
+    if (control) {
+      control.addEventListener("mouseenter", pausar);
+      control.addEventListener("mouseleave", seguir);
+    }
+    hero.addEventListener("focusin", pausar);
+    hero.addEventListener("focusout", function (e) { if (!hero.contains(e.relatedTarget)) seguir(); });
+    document.addEventListener("visibilitychange", function () { if (document.hidden) pausar(); else seguir(); });
+
+    // Deslizar con el dedo
+    var x0 = null;
+    hero.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener("touchend", function (e) {
+      if (x0 === null) return;
+      var dx = e.changedTouches[0].clientX - x0; x0 = null;
+      if (Math.abs(dx) > 40) ir(dx < 0 ? actual + 1 : actual - 1);
+    }, { passive: true });
+
+    // Con intro, el reloj arranca cuando la intro se va, para que la primera diapositiva se vea entera
+    var arranque = document.documentElement.classList.contains("con-intro") ? 1600 : 0;
+    setTimeout(function () { barra(); reiniciar(); }, arranque);
+  }
+
+  // ---------- NUEVE gigante: la foto se desplaza dentro de las letras al bajar ----------
+  function initGigante() {
+    var el = $(".gigante");
+    if (!el || !gsapOk || reducirMovimiento) return;
+    window.gsap.fromTo(el, { backgroundPosition: "50% 10%" }, { backgroundPosition: "50% 80%", ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true } });
+  }
+
   // ---------- Año del pie ----------
   function initAnio() {
     var el = $("[data-anio]");
@@ -512,6 +649,9 @@
     safe(initNavActiva, "initNavActiva");
     safe(initMediaSlots, "initMediaSlots");
     safe(initHorarioHoy, "initHorarioHoy");
+    safe(initIntro, "initIntro");
+    safe(initPortada, "initPortada");
+    safe(initGigante, "initGigante");
     safe(initManifiesto, "initManifiesto");
     safe(initParallax, "initParallax");
     safe(initReveals, "initReveals");
