@@ -1344,21 +1344,8 @@ a.contacto-dato:hover { color: var(--rosa); }
 }
 
 /* =============================================================
-   21. Home brand film: grano, portada con video, marquesina,
-   manifiesto, carril de burgers, lista de carta, terraza, resenas
+   21. Home brand film: portada con video, manifiesto, carril de burgers, lista de carta, terraza, resenas
    ============================================================= */
-
-/* Grano sutil sobre toda la web (textura, no ruido) */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.045;
-  background-image: url("imagenes/web/grano.png");
-  background-size: 160px;
-}
 
 /* --- Portada --- */
 .hero {
@@ -1399,7 +1386,7 @@ body::after {
   position: relative;
   z-index: 2;
   padding-top: calc(var(--nav-h) + 2rem);
-  padding-bottom: clamp(6.5rem, 14vh, 9rem);
+  padding-bottom: calc(3.5vw + 4.6rem);
 }
 @keyframes hero-in { from { opacity: 0; transform: translateY(28px); } }
 .hero-kicker { color: var(--texto); animation: hero-in 0.9s var(--ease-out) 0.1s both; }
@@ -1456,7 +1443,7 @@ body::after {
 .hero-scroll {
   position: absolute;
   right: var(--pad);
-  bottom: clamp(5.6rem, 12vh, 7.4rem);
+  bottom: calc(3.5vw + 1rem);
   z-index: 2;
   width: 28px;
   height: 46px;
@@ -1477,36 +1464,6 @@ body::after {
 }
 @keyframes rueda { 50% { transform: translateY(16px); opacity: 0.2; } }
 @media (min-width: 960px) { .hero-scroll { display: block; } }
-
-/* --- Marquesina (banda girada con frases de la carta) --- */
-.marquesina { overflow: hidden; white-space: nowrap; }
-.marquesina-pista {
-  display: inline-flex;
-  align-items: center;
-  gap: 2.2rem;
-  padding-right: 2.2rem;
-  font-family: var(--display);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  animation: marquesina 34s linear infinite;
-  will-change: transform;
-}
-.marquesina-pista i { font-style: normal; font-size: 0.7em; opacity: 0.85; }
-@keyframes marquesina { to { transform: translateX(-50%); } }
-.marquesina:hover .marquesina-pista { animation-play-state: paused; }
-.hero-marquesina {
-  position: absolute;
-  left: -3%;
-  right: -3%;
-  bottom: 0.4rem;
-  z-index: 3;
-  transform: rotate(-1.6deg);
-  background: var(--degradado);
-  color: var(--negro);
-  padding: 0.72rem 0;
-  font-size: clamp(1rem, 1.6vw, 1.35rem);
-  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.35);
-}
 
 /* --- Manifiesto en grande, palabra a palabra --- */
 .manifiesto { padding-top: clamp(6rem, 12vw, 9rem); }
@@ -2023,7 +1980,7 @@ body::after {
 .resenas-nota-grande strong, .shot-info span, .club-tarjeta-cifra { font-family: var(--display-num); }
 
 /* =============================================================
-   26. Scroll suave (Lenis), tarjetas con relieve y marquesinas vivas.
+   26. Scroll suave (Lenis) y tarjetas con relieve.
    Todo se activa desde main.js solo en escritorio con ratón; el scroll
    suave se apaga además con "reducir movimiento".
    ============================================================= */
@@ -2038,8 +1995,6 @@ html.lenis, html.lenis body { height: auto; }
 .plato.is-tilt, .burger-shot.is-tilt { transition-property: border-color, box-shadow; transform-style: preserve-3d; }
 .plato.is-tilt img { transition-property: filter; }
 
-/* --- Marquesinas vivas: la animación CSS se apaga y GSAP la mueve según el scroll --- */
-.marquesina-pista.is-gsap { animation: none; }
 
 
 /* =============================================================
@@ -2108,7 +2063,7 @@ html.js .hero-linea, html.js .hero-kicker, html.js .hero-sub, html.js .hero-acci
 .hero-slide.is-activa .hero-media.con-video img { animation: none; }
 p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; text-wrap: balance; }
 
-.hero-control { position: absolute; left: var(--pad); bottom: clamp(3.4rem, 7vh, 4.6rem); z-index: 3; display: flex; align-items: center; gap: 0.7rem; }
+.hero-control { position: absolute; left: var(--pad); bottom: calc(3.5vw + 1rem); z-index: 3; display: flex; align-items: center; gap: 0.7rem; }
 .hero-puntos { display: flex; gap: 0.4rem; }
 .hero-punto { position: relative; width: 36px; height: 4px; padding: 0; border: 0; border-radius: 2px; background: rgba(255, 255, 255, 0.28); cursor: pointer; overflow: hidden; }
 .hero-punto::after { content: ""; position: absolute; inset: 0; background: var(--degradado); transform: scaleX(0); transform-origin: left; }
@@ -2120,7 +2075,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .hero-flecha:hover { border-color: var(--blanco); background: rgba(0, 0, 0, 0.5); }
 .hero-flecha:focus-visible { outline: 2px solid var(--blanco); outline-offset: 2px; }
 @media (max-width: 720px) {
-  .hero-control { bottom: 4.4rem; }
+  .hero-control { bottom: calc(6vw + 1.6rem); }
   .hero-flecha { display: none; }
   .hero-punto { width: 26px; }
 }
@@ -2194,4 +2149,14 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 
 /* La sección negra que sigue a una clara no lleva borde: el corte ya separa */
 .shots, .club, .practica, .carta-seccion { border-block: 0; }
-body::after { opacity: 0.035; }
+
+/* Portátiles con poca altura (va al final para ganar a las reglas de portada): el titular
+   y los márgenes bajan de tamaño para que nada quede bajo la cabecera */
+@media (min-width: 721px) and (max-height: 720px) {
+  .hero-int { padding-top: var(--nav-h); }
+  .hero-titulo { margin-top: 0.3rem; font-size: clamp(3rem, 7vw, 6.2rem); }
+  .hero-sub { margin-top: 0.8rem; font-size: 1.05rem; max-width: 44ch; }
+  .hero-acciones { margin-top: 1.3rem; }
+  .hero-acciones .btn-grande { padding: 0.95rem 1.8rem; }
+  .hero-estado { margin-top: 0.9rem; }
+}

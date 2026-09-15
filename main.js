@@ -438,33 +438,6 @@
     new MutationObserver(sincronizar).observe(document.body, { attributes: true, attributeFilter: ["class"] });
   }
 
-  // ---------- Marquesinas vivas: corren más deprisa y se inclinan según la velocidad del scroll ----------
-  function initMarquesinaViva() {
-    var pistas = $$(".marquesina-pista");
-    if (!pistas.length || !gsapOk) return;
-    var g = window.gsap;
-    var tweens = pistas.map(function (pista) {
-      pista.classList.add("is-gsap"); // apaga la animación CSS; GSAP toma el relevo
-      return g.to(pista, { xPercent: -50, duration: 34, ease: "none", repeat: -1 });
-    });
-    var estado = { ts: 1, skew: 0 };
-    var aplicar = function () {
-      tweens.forEach(function (t) { t.timeScale(estado.ts); });
-      g.set(pistas, { skewX: estado.skew });
-    };
-    var volver = g.to(estado, { ts: 1, skew: 0, duration: 1.4, ease: "power3.out", paused: true, onUpdate: aplicar });
-    window.ScrollTrigger.create({
-      onUpdate: function (self) {
-        var v = self.getVelocity();
-        var fuerza = Math.min(Math.abs(v) / 350, 4);
-        estado.ts = (self.direction < 0 ? -1 : 1) * (1 + fuerza);
-        estado.skew = Math.max(-14, Math.min(14, -v / 160));
-        aplicar();
-        volver.invalidate().restart();
-      }
-    });
-  }
-
   // ---------- Tarjetas con relieve: se inclinan hacia el cursor (platos de la carta y burgers) ----------
   function initTilt() {
     if (!escritorioFino || !gsapOk) return;
@@ -666,7 +639,6 @@
     safe(initAnio, "initAnio");
     // Fase E
     safe(initSuave, "initSuave");
-    safe(initMarquesinaViva, "initMarquesinaViva");
     safe(initTilt, "initTilt");
 
     document.documentElement.classList.add("is-ready");
