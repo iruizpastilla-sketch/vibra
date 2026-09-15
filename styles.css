@@ -2200,3 +2200,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .que-es-grid .nos-pilar h3 { font-size: 1.35rem; }
 .que-es-grid .nos-pilar p { color: var(--texto); font-size: 1.05rem; }
 .que-es-enlace { margin-top: 2rem; }
+
+/* Salsas con foto (15/9/2026): el bote redondo a la izquierda del nombre */
+.salsa-chip--foto { display: inline-flex; align-items: center; gap: 0.65rem; padding-left: 0.45rem; }
+.salsa-chip--foto img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; flex: 0 0 auto; }
