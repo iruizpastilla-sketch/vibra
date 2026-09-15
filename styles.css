@@ -2041,7 +2041,7 @@ html.sin-intro .intro { display: none; }
   line-height: 0.85;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  background-image: url("imagenes/web/jack-dream-hero.webp");
+  background-image: url("imagenes/web/burger-abierta.webp");
   background-size: 130% auto;
   background-position: 50% 30%;
   -webkit-background-clip: text;
@@ -2062,6 +2062,7 @@ html.js .hero-linea, html.js .hero-kicker, html.js .hero-sub, html.js .hero-acci
 .hero-slide { position: absolute; inset: 0; display: flex; align-items: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.9s var(--ease-soft), visibility 0s 0.9s; }
 .hero-slide.is-activa { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 0.9s var(--ease-soft), visibility 0s; }
 .hero-slide .hero-int { width: 100%; }
+@media (min-width: 960px) { .hero-slide:first-child .hero-poster { object-position: left center; } }
 .hero-slide.is-activa .hero-media img { animation: kenburns 24s ease-in-out infinite alternate; }
 .hero-slide.is-activa .hero-media.con-video img { animation: none; }
 p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400; text-transform: uppercase; text-wrap: balance; }
