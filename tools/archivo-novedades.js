@@ -90,6 +90,27 @@ function codecDelMp4(file) {
   })(0, buf.length);
   return encontrados[0] || "?";
 }
+// Fotogramas por segundo de la pista de vídeo (muestras / duración), leyendo las cajas del MP4
+function fpsDelMp4(file) {
+  const buf = fs.readFileSync(file);
+  const pistas = []; let actual = null;
+  (function cajas(ini, fin) {
+    let p = ini;
+    while (p + 8 <= fin) {
+      let size = buf.readUInt32BE(p); const tipo = buf.toString("latin1", p + 4, p + 8); let cab = 8;
+      if (size === 1) { size = Number(buf.readBigUInt64BE(p + 8)); cab = 16; } else if (size === 0) size = fin - p;
+      if (size < cab) break;
+      if (tipo === "trak") { actual = {}; pistas.push(actual); }
+      if (tipo === "mdhd" && actual) { const v = buf[p + cab]; if (v === 1) { actual.timescale = buf.readUInt32BE(p + cab + 20); actual.duracion = Number(buf.readBigUInt64BE(p + cab + 24)); } else { actual.timescale = buf.readUInt32BE(p + cab + 12); actual.duracion = buf.readUInt32BE(p + cab + 16); } }
+      if (tipo === "hdlr" && actual) actual.tipo = buf.toString("latin1", p + cab + 8, p + cab + 12);
+      if (tipo === "stsz" && actual) actual.muestras = buf.readUInt32BE(p + cab + 8);
+      if (["moov", "trak", "mdia", "minf", "stbl"].includes(tipo)) cajas(p + cab, p + size);
+      p += size;
+    }
+  })(0, buf.length);
+  const v = pistas.find((t) => t.tipo === "vide" && t.muestras && t.duracion && t.timescale);
+  return v ? (v.muestras * v.timescale) / v.duracion : null;
+}
 
 let navegador = null;
 async function paginaChrome() {
@@ -126,12 +147,14 @@ async function fotogramaVideo(file, segundo) {
 
 // Recomprime a 720x1280 H.264 sin sonido (del segundo `desde` al `hasta`), con el bitrate justo para el límite
 async function recomprimirVideo(file, dst, desde, hasta) {
+  // A la cadencia original (tope 30) y leyendo cada fotograma por su punto medio: así no se duplica ni se salta ninguno
+  const FPS = Math.min(30, Math.round(fpsDelMp4(file) || 24));
   const p = await paginaChrome();
-  const b64 = await p.evaluate(async (src, limite, desde, hasta) => {
+  const b64 = await p.evaluate(async (src, limite, desde, hasta, FPS) => {
     const v = document.createElement("video"); v.muted = true; v.preload = "auto"; v.src = src; document.body.appendChild(v);
     await new Promise((res, rej) => { v.addEventListener("loadeddata", res, { once: true }); v.addEventListener("error", () => rej(new Error("Chrome no puede leer el vídeo"))); });
     if (!v.videoWidth) throw new Error("Chrome no decodifica este vídeo (¿sin GPU?)");
-    const W = 720, H = 1280, FPS = 24;
+    const W = 720, H = 1280;
     const ini = Math.max(0, desde || 0), fin = Math.min(v.duration, hasta || v.duration), dur = fin - ini;
     if (dur <= 0.5) throw new Error("recorte vacío: desde " + ini + " hasta " + fin);
     const bitrate = Math.min(1800000, Math.floor((limite * 8 * 0.9) / dur));
@@ -146,7 +169,7 @@ async function recomprimirVideo(file, dst, desde, hasta) {
     if (r > R) { sw = Math.round(v.videoHeight * R); sx = Math.round((v.videoWidth - sw) / 2); } else { sh = Math.round(v.videoWidth / R); sy = Math.round((v.videoHeight - sh) / 2); }
     const total = Math.floor(dur * FPS);
     for (let i = 0; i < total; i++) {
-      const t = ini + i / FPS;
+      const t = ini + (i + 0.5) / FPS;
       await new Promise((res) => { v.addEventListener("seeked", res, { once: true }); v.currentTime = t; });
       ctx.drawImage(v, sx, sy, sw, sh, 0, 0, W, H);
       const frame = new VideoFrame(c, { timestamp: Math.round((i / FPS) * 1e6), duration: Math.round(1e6 / FPS) });
@@ -159,7 +182,7 @@ async function recomprimirVideo(file, dst, desde, hasta) {
     const bytes = new Uint8Array(muxer.target.buffer);
     let s = ""; for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
     return btoa(s);
-  }, aUrl(file), LIMITE_RECOMPRIMIDO, desde == null ? null : desde, hasta == null ? null : hasta);
+  }, aUrl(file), LIMITE_RECOMPRIMIDO, desde == null ? null : desde, hasta == null ? null : hasta, FPS);
   await p.close();
   fs.writeFileSync(dst, Buffer.from(b64, "base64"));
   return fs.statSync(dst).size;
