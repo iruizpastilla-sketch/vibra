@@ -16,3 +16,6 @@ imagenes/pruebas-imagen/
 
 # Vídeos originales de Instagram (menús de grupos, 16/9/2026): se quedan en el disco, no se publican
 imagenes/*.mp4
+
+# Originales del archivo de novedades (fotos y vídeos verticales de Instagram): no se publican
+imagenes/novedades/

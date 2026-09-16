@@ -1,0 +1,15 @@
+{
+  "name": "vibra-tools",
+  "version": "1.0.0",
+  "description": "Herramientas locales de la web de Vibra (no se publican): archivo de novedades, capturas.",
+  "keywords": [],
+  "author": "",
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "dependencies": {
+    "heic-convert": "^2.1.0",
+    "puppeteer": "^25.11.0",
+    "sharp": "^0.35.4"
+  },
+  "private": true
+}

@@ -24,7 +24,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fuentes/ut-bagh-display.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260916e">
+  <link rel="stylesheet" href="styles.css?v=20260916f">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="fc84f6c0-e986-4f75-be10-222ac8fc00f7" data-domains="vibrastreetfood.com"></script>
 </head>
@@ -148,6 +148,32 @@
       </div>
     </section>
 
+    <!-- ===== EL ARCHIVO: lo que ya ha pasado =====
+         CÓMO AÑADIR una entrada (la burger del mes que termina, un tardeo, un evento):
+           1. Deja el original VERTICAL (foto 1080x1920 o vídeo .mp4) en imagenes/novedades/ con el
+              nombre AAAA-MM-nombre.jpg (o .mp4). Esa carpeta no se publica.
+           2. Ejecuta: node tools/archivo-novedades.js  → genera las versiones web y escribe las tarjetas.
+           3. Pega la tarjeta dentro de <div class="archivo-carril" data-archivo>, LA MÁS RECIENTE PRIMERO,
+              y revisa la etiqueta (Burger del mes · Tardeo · Evento · Carta), el título y la línea.
+           4. La primera vez, quita el atributo hidden de esta <section>. -->
+    <section class="seccion archivo" id="archivo" hidden>
+      <div class="contenedor">
+        <div class="archivo-cab">
+          <div>
+            <p class="kicker reveal">El archivo</p>
+            <h2 class="nos-titulo reveal" data-retraso="1">Lo que ya <span class="txt-degradado">ha pasado</span>.</h2>
+            <p class="reveal" data-retraso="2">Las burgers del mes, los tardeos y todo lo que hemos ido montando. Tal cual lo subimos a Instagram.</p>
+          </div>
+          <div class="archivo-controles reveal" data-retraso="2">
+            <button class="flecha-circular" type="button" data-archivo-prev aria-label="Anteriores">←</button>
+            <button class="flecha-circular" type="button" data-archivo-next aria-label="Siguientes">→</button>
+          </div>
+        </div>
+        <div class="archivo-carril reveal" data-archivo data-retraso="3">
+        </div>
+      </div>
+    </section>
+
     <!-- ===== INSTAGRAM ===== -->
     <section class="banda-ig seccion">
       <div class="contenedor banda-ig-int">
@@ -260,6 +286,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260916e"></script>
+  <script defer src="main.js?v=20260916f"></script>
 </body>
 </html>

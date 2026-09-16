@@ -390,6 +390,35 @@
     if (next) next.addEventListener("click", function () { carril.scrollBy({ left: paso(), behavior: "smooth" }); });
   }
 
+  // ---------- Archivo de novedades: carril con flechas; los vídeos verticales solo se reproducen a la vista ----------
+  function initArchivo() {
+    var carril = $("[data-archivo]");
+    if (!carril) return;
+    var paso = function () {
+      var t = carril.querySelector(".archivo-item");
+      return t ? t.getBoundingClientRect().width + 18 : 300;
+    };
+    var prev = $("[data-archivo-prev]"), next = $("[data-archivo-next]");
+    if (prev) prev.addEventListener("click", function () { carril.scrollBy({ left: -paso(), behavior: "smooth" }); });
+    if (next) next.addEventListener("click", function () { carril.scrollBy({ left: paso(), behavior: "smooth" }); });
+    var videos = $$("video[data-src]", carril);
+    if (!videos.length || reducirMovimiento) return;
+    var arrancar = function (v) {
+      if (!v.getAttribute("src")) v.src = v.getAttribute("data-src");
+      var p = v.play();
+      if (p && p.catch) p.catch(function () { /* autoplay bloqueado: se queda la foto */ });
+    };
+    videos.forEach(function (v) { v.addEventListener("playing", function () { v.classList.add("is-playing"); }); });
+    if (!("IntersectionObserver" in window)) { videos.forEach(arrancar); return; }
+    var io = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (en) {
+        var v = en.target;
+        if (en.isIntersecting) arrancar(v); else if (v.getAttribute("src")) v.pause();
+      });
+    }, { rootMargin: "120px 0px", threshold: 0.25 });
+    videos.forEach(function (v) { io.observe(v); });
+  }
+
   // ---------- Analítica sin cookies: nombres de evento para Umami ----------
   // Umami lee data-umami-event en el momento del clic, así que basta con marcar los elementos.
   function initAnalitica() {
@@ -738,6 +767,7 @@
     safe(initPedir, "initPedir");
     safe(initBarraAcciones, "initBarraAcciones");
     safe(initResenas, "initResenas");
+    safe(initArchivo, "initArchivo");
     safe(initAnclaCarga, "initAnclaCarga");
     safe(initAnalitica, "initAnalitica");
     safe(initAnio, "initAnio");

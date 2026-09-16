@@ -2254,3 +2254,21 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 
 /* Horario de respuesta en las tarjetas de contacto (16/9/2026): en pequeño, como pidió Ivan */
 .contacto-tarjeta p.practica-nota { margin-top: 0.35rem; font-size: 0.8rem; color: var(--texto-3); }
+
+/* Archivo de novedades (16/9/2026): carril de tarjetas verticales, formato Instagram */
+.archivo-cab { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.archivo-cab > div:first-child > p:not(.kicker) { margin-top: 0.8rem; color: var(--texto-2); max-width: 52ch; }
+.archivo-controles { display: flex; gap: 0.6rem; }
+.archivo-carril { margin-top: 2rem; display: flex; gap: 1.1rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0.25rem 0 0.75rem; scrollbar-width: none; }
+.archivo-carril::-webkit-scrollbar { display: none; }
+.archivo-item { flex: 0 0 min(280px, 72vw); scroll-snap-align: start; display: flex; flex-direction: column; background: var(--negro-3); border: 1px solid var(--linea); border-radius: 20px; overflow: hidden; }
+.claro .archivo-item { background: #FFFFFF; box-shadow: 0 10px 30px rgba(23, 18, 21, 0.06); }
+.archivo-media { position: relative; aspect-ratio: 9 / 16; background: #0F0D0E; }
+.archivo-media img, .archivo-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.archivo-media video { opacity: 0; transition: opacity 0.5s var(--ease-soft); }
+.archivo-media video.is-playing { opacity: 1; }
+.archivo-pie { padding: 1rem 1.1rem 1.15rem; display: grid; gap: 0.3rem; }
+.archivo-etiqueta { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--texto-3); }
+.archivo-pie h3 { font-size: 1.35rem; }
+.archivo-pie p:not(.archivo-etiqueta) { color: var(--texto-2); font-size: 0.9rem; }
+@media (max-width: 720px) { .archivo-controles { display: none; } }
