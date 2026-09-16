@@ -11,11 +11,15 @@
 //     son UNA entrada: la foto es el cartel y el vídeo se reproduce encima.
 //   · Foto que no es 9:16 (p. ej. 4:5 de Instagram): se pone entera sobre un fondo hecho con la
 //     misma foto desenfocada. Si ya es casi 9:16, se recorta al centro.
-//   · Vídeo: si es H.264 y pesa 4 MB o menos, se copia tal cual. Si no (HEVC del iPhone, 50 MB…),
-//     se recomprime con Chrome a 720x1280 H.264 sin sonido para que quepa en 4 MB. Sin ffmpeg.
+//   · Vídeo: si es H.264 y pesa 4 MB o menos, se copia tal cual. Si no (HEVC del iPhone, 4K, 80 MB…),
+//     se recomprime con Chrome a 720x1280 H.264 sin sonido para que quepa en unos 6 MB. Sin ffmpeg.
+//   · Recortes: en imagenes/novedades/ajustes.json se puede pedir que un vídeo empiece o acabe en un
+//     segundo dado: { "2026-05-tardeo-opening": { "desde": 4, "hasta": 30 } } (los dos opcionales).
+//     Con recorte, el vídeo se recomprime siempre y el cartel es su primer fotograma.
 //
 // Requisitos (una vez, dentro de tools/; node_modules no se sube a git):
 //   npm i sharp heic-convert puppeteer
+// Chrome tiene que ir CON GPU (así se lanza aquí): sin ella no decodifica los vídeos HEVC del iPhone.
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
@@ -25,7 +29,8 @@ const ORIGEN = path.join(RAIZ, "imagenes", "novedades");
 const args = process.argv.slice(2);
 const iSalida = args.indexOf("--salida");
 const SALIDA = iSalida >= 0 ? path.resolve(args[iSalida + 1]) : path.join(RAIZ, "imagenes", "web", "novedades");
-const LIMITE_VIDEO = 4 * 1024 * 1024;
+const LIMITE_COPIA = 4 * 1024 * 1024; // hasta aquí un H.264 se copia tal cual
+const LIMITE_RECOMPRIMIDO = 6 * 1024 * 1024; // objetivo al recomprimir
 const CHROME = process.env.PUPPETEER_EXECUTABLE_PATH || "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const MESES = {
   es: ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"],
@@ -98,14 +103,14 @@ async function paginaChrome() {
   return p;
 }
 
-// Un fotograma del vídeo (a los 0,8 s, o al 20 % si es largo), como PNG
-async function fotogramaVideo(file) {
+// Un fotograma del vídeo como PNG 1080x1920: el del segundo pedido, o (sin recorte) a los 0,8 s / al 20 %
+async function fotogramaVideo(file, segundo) {
   const p = await paginaChrome();
-  const png = await p.evaluate((src) => new Promise((res, rej) => {
+  const png = await p.evaluate((src, seg) => new Promise((res, rej) => {
     const v = document.createElement("video"); v.muted = true; v.preload = "auto"; v.src = src;
     v.style.cssText = "display:block;width:1080px;height:1920px;object-fit:cover"; document.body.appendChild(v);
     v.addEventListener("error", () => rej(new Error("Chrome no puede leer el vídeo")));
-    v.addEventListener("loadeddata", () => { const d = v.duration; v.currentTime = Math.min(Math.max(0.8, d * 0.2), Math.max(0, d - 0.1)); });
+    v.addEventListener("loadeddata", () => { const d = v.duration; v.currentTime = seg != null ? Math.min(seg + 0.05, d - 0.05) : Math.min(Math.max(0.8, d * 0.2), Math.max(0, d - 0.1)); });
     v.addEventListener("seeked", () => {
       const c = document.createElement("canvas"); c.width = 1080; c.height = 1920;
       const ctx = c.getContext("2d"); const r = v.videoWidth / v.videoHeight, R = 1080 / 1920;
@@ -114,19 +119,21 @@ async function fotogramaVideo(file) {
       ctx.drawImage(v, sx, sy, sw, sh, 0, 0, 1080, 1920);
       res(c.toDataURL("image/png").split(",")[1]);
     }, { once: true });
-  }), aUrl(file));
+  }), aUrl(file), segundo == null ? null : segundo);
   await p.close();
   return Buffer.from(png, "base64");
 }
 
-// Recomprime a 720x1280 H.264 sin sonido, con el bitrate justo para no pasar del límite
-async function recomprimirVideo(file, dst) {
+// Recomprime a 720x1280 H.264 sin sonido (del segundo `desde` al `hasta`), con el bitrate justo para el límite
+async function recomprimirVideo(file, dst, desde, hasta) {
   const p = await paginaChrome();
-  const b64 = await p.evaluate(async (src, limite) => {
+  const b64 = await p.evaluate(async (src, limite, desde, hasta) => {
     const v = document.createElement("video"); v.muted = true; v.preload = "auto"; v.src = src; document.body.appendChild(v);
     await new Promise((res, rej) => { v.addEventListener("loadeddata", res, { once: true }); v.addEventListener("error", () => rej(new Error("Chrome no puede leer el vídeo"))); });
     if (!v.videoWidth) throw new Error("Chrome no decodifica este vídeo (¿sin GPU?)");
-    const W = 720, H = 1280, FPS = 24, dur = v.duration;
+    const W = 720, H = 1280, FPS = 24;
+    const ini = Math.max(0, desde || 0), fin = Math.min(v.duration, hasta || v.duration), dur = fin - ini;
+    if (dur <= 0.5) throw new Error("recorte vacío: desde " + ini + " hasta " + fin);
     const bitrate = Math.min(1800000, Math.floor((limite * 8 * 0.9) / dur));
     const codec = (await VideoEncoder.isConfigSupported({ codec: "avc1.4d0028", width: W, height: H, bitrate, framerate: FPS })).supported ? "avc1.4d0028" : "avc1.42E028";
     const muxer = new Mp4Muxer.Muxer({ target: new Mp4Muxer.ArrayBufferTarget(), video: { codec: "avc", width: W, height: H }, fastStart: "in-memory" });
@@ -139,10 +146,10 @@ async function recomprimirVideo(file, dst) {
     if (r > R) { sw = Math.round(v.videoHeight * R); sx = Math.round((v.videoWidth - sw) / 2); } else { sh = Math.round(v.videoWidth / R); sy = Math.round((v.videoHeight - sh) / 2); }
     const total = Math.floor(dur * FPS);
     for (let i = 0; i < total; i++) {
-      const t = i / FPS;
+      const t = ini + i / FPS;
       await new Promise((res) => { v.addEventListener("seeked", res, { once: true }); v.currentTime = t; });
       ctx.drawImage(v, sx, sy, sw, sh, 0, 0, W, H);
-      const frame = new VideoFrame(c, { timestamp: Math.round(t * 1e6), duration: Math.round(1e6 / FPS) });
+      const frame = new VideoFrame(c, { timestamp: Math.round((i / FPS) * 1e6), duration: Math.round(1e6 / FPS) });
       enc.encode(frame, { keyFrame: i % (FPS * 2) === 0 });
       frame.close();
       if (fallo) throw fallo;
@@ -152,7 +159,7 @@ async function recomprimirVideo(file, dst) {
     const bytes = new Uint8Array(muxer.target.buffer);
     let s = ""; for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
     return btoa(s);
-  }, aUrl(file), LIMITE_VIDEO);
+  }, aUrl(file), LIMITE_RECOMPRIMIDO, desde == null ? null : desde, hasta == null ? null : hasta);
   await p.close();
   fs.writeFileSync(dst, Buffer.from(b64, "base64"));
   return fs.statSync(dst).size;
@@ -184,7 +191,10 @@ function tarjeta(lang, base, y, m, titulo, conVideo) {
     return;
   }
   fs.mkdirSync(SALIDA, { recursive: true });
-  const todos = fs.readdirSync(ORIGEN).filter((f) => !fs.statSync(path.join(ORIGEN, f)).isDirectory());
+  let ajustes = {};
+  const fAjustes = path.join(ORIGEN, "ajustes.json");
+  if (fs.existsSync(fAjustes)) { try { ajustes = JSON.parse(fs.readFileSync(fAjustes, "utf8")); } catch (e) { console.log("AVISO ajustes.json no se puede leer: " + e.message); } }
+  const todos = fs.readdirSync(ORIGEN).filter((f) => !fs.statSync(path.join(ORIGEN, f)).isDirectory() && f !== "ajustes.json");
   const validos = todos.filter((f) => /^\d{4}-(0[1-9]|1[0-2])-[a-z0-9]+(-[a-z0-9]+)*\.(jpe?g|png|heic|mp4)$/i.test(f));
   const ignorados = todos.filter((f) => !validos.includes(f));
   if (ignorados.length) console.log("Ignorados (el nombre debe ser AAAA-MM-nombre.ext, en minúsculas y sin espacios): " + ignorados.join(", "));
@@ -201,14 +211,16 @@ function tarjeta(lang, base, y, m, titulo, conVideo) {
   const tarjetas = { es: [], ca: [] };
   for (const base of bases) {
     const e = entradas[base];
+    const aj = ajustes[base] || {};
+    const recorte = aj.desde != null || aj.hasta != null;
     const [y, m] = base.split("-");
     const slug = base.slice(8);
     const dst540 = path.join(SALIDA, base + "-540.webp"), dst1080 = path.join(SALIDA, base + "-1080.webp");
     if (!fs.existsSync(dst1080) || !fs.existsSync(dst540)) {
-      const buf = e.foto ? await decodificar(e.foto) : await fotogramaVideo(e.video);
+      const buf = e.foto ? await decodificar(e.foto) : await fotogramaVideo(e.video, recorte ? aj.desde || 0 : null);
       await cartel916(buf, 1080, dst1080);
       await cartel916(buf, 540, dst540);
-      console.log("ok  " + base + " → cartel 540 y 1080 px" + (e.foto ? "" : " (fotograma del vídeo)"));
+      console.log("ok  " + base + " → cartel 540 y 1080 px" + (e.foto ? "" : " (fotograma del vídeo" + (recorte ? " en el segundo " + (aj.desde || 0) : "") + ")"));
     } else console.log("ya  " + base + " → cartel");
     let conVideo = false;
     if (e.video) {
@@ -216,11 +228,12 @@ function tarjeta(lang, base, y, m, titulo, conVideo) {
       if (fs.existsSync(dstV)) { console.log("ya  " + base + " → vídeo"); conVideo = true; }
       else {
         const tam = fs.statSync(e.video).size, codec = codecDelMp4(e.video);
-        if (tam <= LIMITE_VIDEO && /^avc/.test(codec)) { fs.copyFileSync(e.video, dstV); conVideo = true; console.log("ok  " + base + " → vídeo copiado (" + Math.round(tam / 1024) + " KB, " + codec + ")"); }
+        if (!recorte && tam <= LIMITE_COPIA && /^avc/.test(codec)) { fs.copyFileSync(e.video, dstV); conVideo = true; console.log("ok  " + base + " → vídeo copiado (" + Math.round(tam / 1024) + " KB, " + codec + ")"); }
         else {
-          process.stdout.write("..  " + base + " → recomprimiendo (" + Math.round((tam / 1024 / 1024) * 10) / 10 + " MB, " + codec + ") ");
-          try { const nuevo = await recomprimirVideo(e.video, dstV); conVideo = true; console.log("→ " + Math.round(nuevo / 1024) + " KB, 720x1280 H.264"); }
-          catch (err) { console.log("\nAVISO " + base + ": no se ha podido recomprimir (" + err.message + "). Se queda solo el cartel; pide una exportación de 4 MB o menos."); }
+          const motivo = recorte ? "recorte " + (aj.desde != null ? "desde " + aj.desde + " s" : "") + (aj.hasta != null ? " hasta " + aj.hasta + " s" : "") : Math.round((tam / 1024 / 1024) * 10) / 10 + " MB, " + codec;
+          process.stdout.write("..  " + base + " → recomprimiendo (" + motivo.trim() + ") ");
+          try { const nuevo = await recomprimirVideo(e.video, dstV, aj.desde, aj.hasta); conVideo = true; console.log("→ " + Math.round(nuevo / 1024) + " KB, 720x1280 H.264"); }
+          catch (err) { console.log("\nAVISO " + base + ": no se ha podido recomprimir (" + err.message + "). Se queda solo el cartel."); }
         }
       }
     }

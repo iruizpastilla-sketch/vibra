@@ -64,7 +64,8 @@
     $$("[data-media-slot]").forEach(function (slot) {
       var h = slot.getAttribute("data-video-h");
       var v = slot.getAttribute("data-video-v");
-      var src = (vertical && v) ? v : (h || v);
+      // Con data-video-solo-vertical, el vídeo vertical solo se usa en pantallas verticales (en apaisado queda la foto)
+      var src = (vertical && v) ? v : (h || (slot.hasAttribute("data-video-solo-vertical") ? null : v));
       if (!src) { slot.classList.add("sin-video"); return; }
 
       var video = document.createElement("video");
