@@ -2251,3 +2251,6 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .menu-cartel:hover { transform: translateY(-3px); border-color: var(--rosa); }
 .menu-cartel img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 559px) { .menu-cartel { justify-self: start; } }
+
+/* Horario de respuesta en las tarjetas de contacto (16/9/2026): en pequeño, como pidió Ivan */
+.contacto-tarjeta p.practica-nota { margin-top: 0.35rem; font-size: 0.8rem; color: var(--texto-3); }
