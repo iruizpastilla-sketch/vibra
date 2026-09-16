@@ -2215,3 +2215,14 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .local-galeria figcaption { left: 1rem; bottom: 0.9rem; padding: 0.35rem 0.7rem; border-radius: 999px; background: rgba(0, 0, 0, 0.55); color: #F5F2EE; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; }
 @media (min-width: 900px) { .local-inversa .nos-equipo-media { order: -1; } }
 .local-fila { margin-top: 3rem; }
+
+/* Menú de escritorio con seis entradas (16/9/2026): nada de saltos de línea ni de aplastar el logo; entre 960 y 1199 px, más compacto */
+.cabecera-logo { flex-shrink: 0; }
+.cabecera-nav a { white-space: nowrap; }
+@media (min-width: 960px) and (max-width: 1199px) {
+  .cabecera-int { gap: 1rem; }
+  .cabecera-nav { gap: 1.15rem; }
+  .cabecera-nav a { font-size: 0.84rem; letter-spacing: 0.02em; }
+  .cabecera-acciones { gap: 0.6rem; }
+  .cabecera .btn-reservar, .cabecera .btn-pedir { padding-inline: 1.05rem; }
+}
