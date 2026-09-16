@@ -61,7 +61,7 @@ Referencia real del tono (sacado de su propia carta):
 - **Instagram:** @vibrastreetfood
 - **Horario:**
   - Temporada verano: martes a domingo, 18:00–00:00
-  - Temporada normal: martes a viernes 17:00–00:00; sábado y domingo 13:00–00:00
+  - Temporada normal: martes a viernes 17:00–00:00; sábado y domingo 12:00–00:00
   - *(Mostrar los dos claramente diferenciados.)*
 - **Reservas:** CoverManager *(falta localizar el enlace/código de incrustar)*
 - **Playlist Spotify:** *(pendiente de pasar)*
