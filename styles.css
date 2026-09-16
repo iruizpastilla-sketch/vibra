@@ -2226,3 +2226,6 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
   .cabecera-acciones { gap: 0.6rem; }
   .cabecera .btn-reservar, .cabecera .btn-pedir { padding-inline: 1.05rem; }
 }
+
+/* Titulares de cabecera largos, como el de Grupos (16/9/2026): menos cuerpo para que quepan en tres o cuatro líneas */
+.carta-hero h1.larga { font-size: clamp(2.3rem, 4.8vw, 4.3rem); max-width: 22ch; line-height: 1.02; }
