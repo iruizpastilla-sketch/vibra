@@ -76,7 +76,9 @@
   --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  --nav-h: 72px;
+  --cab-h: 72px;            /* la cabecera */
+  --barra-h: 30px;          /* la barra fina de arriba (calle e Instagram); 0 en móvil */
+  --nav-h: calc(var(--cab-h) + var(--barra-h)); /* todo lo fijo arriba: lo usan los márgenes de las páginas */
   --pad:   1.25rem;
   --max:   1280px;
 }
@@ -217,9 +219,9 @@ h1, h2, h3, h4 {
    ============================================================= */
 .cabecera {
   position: fixed;
-  top: 0; left: 0; right: 0;
+  top: var(--barra-h); left: 0; right: 0;
   z-index: 100;
-  height: var(--nav-h);
+  height: var(--cab-h);
   transition: background-color 0.4s var(--ease-soft), border-color 0.4s var(--ease-soft), backdrop-filter 0.4s var(--ease-soft);
   border-bottom: 1px solid transparent;
 }
@@ -2282,3 +2284,10 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
   .shots-cierre { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
   .shots-flecha { transform: rotate(90deg); margin: 1.1rem 0 1.1rem 0.2rem; }
 }
+
+/* Barra fina encima de la cabecera (17/9/2026): la calle y el Instagram. Oculta en móvil. */
+.barra-superior { position: fixed; top: 0; left: 0; right: 0; z-index: 101; height: var(--barra-h); background: #0A0809; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 0.74rem; letter-spacing: 0.02em; color: var(--texto-2); }
+.barra-superior-int { max-width: var(--ancho); margin: 0 auto; padding: 0 var(--pad); height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.barra-superior a { color: inherit; white-space: nowrap; transition: color 0.3s; }
+.barra-superior a:hover { color: var(--blanco); }
+@media (max-width: 719px) { :root { --barra-h: 0px; } .barra-superior { display: none; } }
