@@ -2272,3 +2272,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .archivo-pie h3 { font-size: 1.35rem; }
 .archivo-pie p:not(.archivo-etiqueta) { color: var(--texto-2); font-size: 0.9rem; }
 @media (max-width: 720px) { .archivo-controles { display: none; } }
+
+/* Cierre del bloque de burgers (17/9/2026): sustituye a la lista de la carta en la portada */
+.shots-cierre { margin-top: 2.4rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem 1.6rem; flex-wrap: wrap; }
+.shots-cierre h2 { font-size: clamp(1.7rem, 3.2vw, 2.6rem); line-height: 1; }
