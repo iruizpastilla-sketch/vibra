@@ -1,15 +1,16 @@
 # Publicación automática de la web en vibrastreetfood.com (hosting de FastComet, por FTPS).
 #
-# ESTE ARCHIVO AQUÍ NO HACE NADA: es la plantilla. Para activarla hay que copiarla a
-# .github/workflows/publicar.yml, y solo cuando existan en GitHub los tres secretos
-# (Settings → Secrets and variables → Actions → New repository secret):
-#
-#   FTP_SERVER     nombre del servidor de FastComet (el que enseña cPanel en "Cuentas de FTP")
-#   FTP_USERNAME   usuario de la cuenta FTP creada solo para esto, encerrada en la carpeta de la web
-#   FTP_PASSWORD   su contraseña (la escribe Ivan; nadie más la ve)
-#
-# Desde ese momento, cada cambio que llegue a la rama main se sube solo (solo los archivos que cambian).
+# Activa desde el 18/9/2026. Cada cambio que llega a la rama main se sube solo (solo los archivos que cambian).
 # No borra nada que no haya subido ella misma y nunca vacía la carpeta (dangerous-clean-slate está apagado).
+#
+# Usa tres secretos del repositorio (Settings → Secrets and variables → Actions):
+#
+#   FTP_SERVER     nombre del servidor de FastComet
+#   FTP_USERNAME   cuenta FTP creada solo para esto en el cPanel, encerrada en la carpeta de la web
+#   FTP_PASSWORD   su contraseña (la escribió Ivan; nadie más la ve)
+#
+# Si se cambia la contraseña de esa cuenta en cPanel, hay que actualizar FTP_PASSWORD aquí o dejará de publicar.
+# Para publicar a mano sin cambiar nada: pestaña Actions → "Publicar en vibrastreetfood.com" → Run workflow.
 
 name: Publicar en vibrastreetfood.com
 
