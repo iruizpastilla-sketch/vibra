@@ -2311,3 +2311,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .pedir-desplegable .pedir-opcion { padding: 0.75rem 0.9rem; border-radius: 14px; }
 .pedir-menu:hover .pedir-desplegable, .pedir-menu:focus-within .pedir-desplegable { opacity: 1; visibility: visible; transform: none; }
 @media (hover: none) { .pedir-desplegable { display: none; } }
+
+/* Titular de Reservar en una sola línea, también en el móvil (Ivan y Víctor, 17/9/2026) */
+.carta-hero h1.una-linea { max-width: none; white-space: nowrap; font-size: clamp(2.1rem, 10.2vw, 5.6rem); }
+.carta-hero h1.una-linea:lang(ca) { font-size: clamp(1.6rem, 7.6vw, 5.6rem); }
