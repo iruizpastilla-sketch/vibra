@@ -57,6 +57,8 @@ select { margin-bottom: 15px; }
 select:focus, input:focus, textarea:focus, button.btn.dropdown-toggle.btn-default:focus { border-color: #E83085 !important; outline: none !important; }
 input::placeholder, textarea::placeholder,
 #user_first_name::placeholder, #user_last_name::placeholder, #user_email::placeholder, #user_phone::placeholder { color: rgba(245, 242, 238, 0.55) !important; font-weight: 500; }
+/* el envoltorio del desplegable de prefijos viene con fondo blanco y asomaba por las esquinas */
+div.bootstrap-select.form-control, div.btn-group.bootstrap-select { background: transparent !important; border: 0 !important; box-shadow: none !important; }
 .bootstrap-select .dropdown-menu { background: #1E1A1C !important; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; }
 .bootstrap-select .dropdown-menu li a { color: #F5F2EE !important; }
 .bootstrap-select .dropdown-menu li a:hover, .bootstrap-select .dropdown-menu li.selected a { background: #2A2427 !important; }
