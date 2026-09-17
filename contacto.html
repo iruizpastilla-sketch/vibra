@@ -24,7 +24,7 @@
   <link rel="preload" as="font" type="font/woff2" href="fuentes/ut-bagh-display.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=20260917e">
+  <link rel="stylesheet" href="styles.css?v=20260917f">
   <!-- Horario para buscadores. Los tramos llevan fechas de validez para que no se
        solapen con el de verano. HAY QUE RENOVARLAS cada temporada: al terminar el
        verano de 2027, mover las fechas un ano. Fuente de verdad: lib/manifest.js -->
@@ -111,7 +111,13 @@
         <a class="cabecera-idioma" href="ca/contacto.html" lang="ca" hreflang="ca" aria-label="CA: versió en català">CA</a>
       </nav>
       <div class="cabecera-acciones">
-        <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Pedir</button>
+        <div class="pedir-menu">
+          <button class="btn btn-fantasma btn-pedir" type="button" data-pedir-abrir aria-haspopup="dialog">Pedir</button>
+          <div class="pedir-desplegable"><div class="pedir-desplegable-caja">
+            <a class="pedir-opcion" href="https://glovoapp.com/es/es/lleida/stores/tremola-lleida" target="_blank" rel="noopener"><span class="pedir-logo pedir-logo--glovo">Glovo</span><span>Pedir ↗</span></a>
+            <a class="pedir-opcion" href="https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ" target="_blank" rel="noopener"><span class="pedir-logo pedir-logo--uber">Uber Eats</span><span>Pedir ↗</span></a>
+          </div></div>
+        </div>
         <a class="btn btn-degradado btn-reservar" href="reservar.html">Reservar</a>
         <button class="hamburguesa" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Menú" data-menu-btn>
           <span></span><span></span><span></span>
@@ -308,6 +314,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260917e"></script>
+  <script defer src="main.js?v=20260917f"></script>
 </body>
 </html>
