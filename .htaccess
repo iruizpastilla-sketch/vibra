@@ -15,12 +15,23 @@ ErrorDocument 410 /404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # QR impreso en los manteles: vibrastreetfood.com/carta (antes lo servia WordPress).
+  # Va antes que nada para resolverse en un solo salto. 302 y no 301: asi se puede cambiar el destino
+  # mas adelante sin que los moviles lo tengan memorizado. El utm permite contar en Umami cuantos entran por el QR.
+  RewriteRule ^carta/?$ https://vibrastreetfood.com/carta.html?utm_source=qr&utm_medium=mantel&utm_campaign=carta [R=302,L]
+
   # Cualquier peticion sin HTTPS o por otro nombre (www, alias del hosting) va al dominio limpio.
   # OJO: si algun dia se pone Cloudflare en modo "Flexible", esta regla entra en bucle.
   RewriteCond %{REQUEST_URI} !^/\.well-known/ [NC]
   RewriteCond %{HTTPS} !=on [OR]
   RewriteCond %{HTTP_HOST} !^vibrastreetfood\.com$ [NC]
   RewriteRule ^(.*)$ https://vibrastreetfood.com/$1 [R=301,L]
+
+  # Direcciones sin ".html" (por si alguien las escribe o las enlaza asi): /reservar -> /reservar.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.+?)/?$ /$1.html [R=301,L]
 
   # Restos del WordPress anterior: ya no existen (410)
   RewriteRule ^(wp-admin|wp-includes|wp-content|wp-json)(/|$) - [R=410,L]

@@ -84,6 +84,16 @@ function corto(v, n) { v = v == null ? '-' : String(v); return v.length > n ? v.
     if (esperado404 ? r.status !== 404 : r.status !== 200) fallos++;
     if (esHtml && r.status === 200 && (noindex !== 'no' || canon !== 'ok')) fallos++;
   }
+  // QR de los manteles y direcciones sin .html (solo en el hosting definitivo; GitHub Pages las sirve directamente)
+  console.log('');
+  console.log('QR de los manteles y direcciones sin .html:');
+  for (const [ruta, esperado] of [['/carta', '/carta.html?utm_source=qr'], ['/carta/', '/carta.html?utm_source=qr'], ['/reservar', '/reservar.html'], ['/ca/carta', '/ca/carta.html']]) {
+    const r = await pedir(BASE + ruta);
+    const loc = (r.headers && r.headers['location']) || '';
+    const bien = r.status >= 300 && r.status < 400 && loc.indexOf(esperado) >= 0;
+    console.log('  ' + ruta + ' -> ' + (r.error ? 'ERROR ' + r.error : r.status + ' ' + loc) + (bien ? '  ok' : (r.status === 200 ? '  (200 directo: vale en GitHub Pages)' : '  REVISAR')));
+    if (!bien && r.status !== 200) fallos++;
+  }
   console.log('');
   console.log('Cabeceras de seguridad en ' + BASE + '/ :');
   const home = await pedir(BASE + '/');
