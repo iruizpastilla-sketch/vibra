@@ -2311,3 +2311,21 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .pedir-desplegable .pedir-opcion { padding: 0.75rem 0.9rem; border-radius: 14px; }
 .pedir-menu:hover .pedir-desplegable, .pedir-menu:focus-within .pedir-desplegable { opacity: 1; visibility: visible; transform: none; }
 @media (hover: none) { .pedir-desplegable { display: none; } }
+
+/* "Carta" como botón fijo de la cabecera, igual que Reservar y visible también en el móvil (Ivan y Víctor, 17/9/2026) */
+.cabecera .btn-carta { font-size: 0.86rem; padding: 0.7rem 1.35rem; }
+@media (min-width: 960px) and (max-width: 1199px) { .cabecera .btn-carta { padding-inline: 1.05rem; } }
+@media (max-width: 959px) {
+  .cabecera-acciones { gap: 0.5rem; }
+  .cabecera .btn-carta, .cabecera .btn-reservar { font-size: 0.78rem; padding: 0.6rem 0.95rem; }
+  .cabecera-logo img { height: 31px; }
+}
+@media (max-width: 380px) {
+  .cabecera-acciones { gap: 0.35rem; }
+  .cabecera .btn-carta, .cabecera .btn-reservar { font-size: 0.72rem; padding: 0.52rem 0.72rem; }
+  .cabecera-logo img { height: 26px; }
+}
+@media (max-width: 340px) {
+  .cabecera-logo img { height: 22px; }
+  .cabecera .btn-carta, .cabecera .btn-reservar { font-size: 0.7rem; padding: 0.5rem 0.6rem; }
+}
