@@ -9,9 +9,11 @@ a, a:hover { color: #F38F1C; }
 /* Sin logo dentro del modulo: la pagina de reservas de la web ya lo lleva en la cabecera */
 div#datos_reserva:before { content: none !important; display: none !important; }
 
-/* Aviso de grupos al pie */
-body[language="spanish"] div#datos_reserva:after {
-  content: 'Para reservas de más de 25 comensales, por favor, contacten directamente con el restaurante.';
+/* Aviso de grupos al pie, en castellano y en catalan. El modulo deja reservar hasta 11; los grupos van desde 12 */
+body[language="catalan"] div#datos_reserva:after { content: 'Per a reserves a partir de 12 comensals, si us plau, contactin directament amb el restaurant.'; }
+body[language="spanish"] div#datos_reserva:after { content: 'Para reservas a partir de 12 comensales, por favor, contacten directamente con el restaurante.'; }
+body[language="spanish"] div#datos_reserva:after,
+body[language="catalan"] div#datos_reserva:after {
   display: block;
   padding: 2.2em .5em .6em;
   max-width: 100%;
@@ -165,7 +167,7 @@ select#lang_select { width: auto !important; min-width: 58px; height: 32px; padd
 /* Sin lista de espera: Vibra no la usa. Para recuperarla basta con borrar esta regla. */
 #waiting_button_list { display: none !important; }
 #group_request_button { margin-top: 26px !important; }
-body[language="spanish"] div#datos_reserva:after { padding: 30px 15px 8px; }
+body[language="spanish"] div#datos_reserva:after, body[language="catalan"] div#datos_reserva:after { padding: 30px 15px 8px; }
 @media (max-width: 767px) {
   #datos_reserva > .row { display: block; margin-top: 14px !important; }
   #datos_reserva > .row > .mt10 { margin-top: 22px !important; }
@@ -184,6 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const langOptions = {
     spanish: "ES",
+    catalan: "CA",
     english: "EN",
     french: "FR",
     portuguese: "PT",

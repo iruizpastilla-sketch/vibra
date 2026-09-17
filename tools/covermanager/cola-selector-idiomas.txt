@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const langOptions = {
     spanish: "ES",
+    catalan: "CA",
     english: "EN",
     french: "FR",
     portuguese: "PT",
