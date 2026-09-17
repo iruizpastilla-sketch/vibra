@@ -42,7 +42,9 @@ ErrorDocument 410 /404.html
   RewriteRule ^$ - [R=410,L]
 
   # Carpetas internas que no deben servirse nunca
-  RewriteRule ^(\.git|\.claude|tools)(/|$) - [R=404,L]
+  RewriteRule ^(\.git|\.github|\.claude|tools)(/|$) - [R=404,L]
+  # Archivo de estado que deja en el servidor la publicacion automatica por FTP
+  RewriteRule ^\.ftp-deploy-sync-state\.json$ - [R=404,L]
 </IfModule>
 
 # ----- Duracion de cache -----
