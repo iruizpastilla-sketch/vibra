@@ -2291,3 +2291,13 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .barra-superior a { color: inherit; white-space: nowrap; transition: color 0.3s; }
 .barra-superior a:hover { color: var(--blanco); }
 @media (max-width: 719px) { :root { --barra-h: 0px; } .barra-superior { display: none; } }
+
+/* Textos del carrusel más contenidos para que no tapen la foto (Ivan y Víctor, 17/9/2026) */
+.hero-titulo { font-size: clamp(2.5rem, 5.2vw, 4.8rem); line-height: 0.9; }
+.hero-sub { margin-top: 1rem; max-width: 36ch; font-size: clamp(0.95rem, 1.15vw, 1.08rem); }
+.hero-acciones { margin-top: 1.4rem; }
+.hero-acciones .btn-grande { font-size: 1rem; padding: 0.95rem 1.9rem; }
+.hero-velo { background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.08) 30%, rgba(0, 0, 0, 0.18) 58%, rgba(0, 0, 0, 0.85) 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.4), transparent 48%); }
+@media (min-width: 721px) and (max-height: 720px) { .hero-titulo { font-size: clamp(2.2rem, 4.4vw, 4rem); } }
+@media (max-width: 720px) { .hero-titulo { font-size: clamp(2.3rem, 10.5vw, 3rem); } .hero-sub { font-size: 0.98rem; } }
+@media (max-width: 380px) { .hero-titulo { font-size: 2.2rem; } }
