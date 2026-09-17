@@ -19,3 +19,6 @@ imagenes/*.mp4
 
 # Originales del archivo de novedades (fotos y vídeos verticales de Instagram): no se publican
 imagenes/novedades/
+
+# Fuente de demostración (la web usa el .woff2): no se publica
+fuentes/UT Bagh Display Demo.otf

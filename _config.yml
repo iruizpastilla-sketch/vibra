@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll): que no publique archivos internos.
+# include vacío quita el .htaccess que Jekyll copia por defecto.
+include: []
+exclude:
+  - vibra-guion-de-arranque.md
+  - tools
+  - "fuentes/UT Bagh Display Demo.otf"
