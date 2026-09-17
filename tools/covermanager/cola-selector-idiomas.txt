@@ -1,0 +1,57 @@
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const langOptions = {
+    spanish: "ES",
+    english: "EN",
+    french: "FR",
+    portuguese: "PT",
+    italian: "IT",
+    german: "DE",  
+  };
+
+  const url = window.location.href;
+
+  // Detectar idioma actual a partir de los idiomas disponibles
+  const currentLang = Object.keys(langOptions).find(lang => url.includes(`/${lang}`)) || "";
+
+  const container = document.createElement("div");
+  container.id = "lang_switch_container";
+
+  const select = document.createElement("select");
+  select.id = "lang_select";
+
+  Object.entries(langOptions).forEach(([key, label]) => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = label;
+    if (key === currentLang) {
+      option.selected = true;
+    }
+    select.appendChild(option);
+  });
+
+  select.addEventListener("change", function () {
+    const newLang = this.value;
+    let newUrl;
+
+    if (currentLang) {
+      newUrl = url.replace(`/${currentLang}`, `/${newLang}`);
+    } else {
+      const parts = url.split(window.location.origin);
+      newUrl = `${window.location.origin}/${newLang}${parts[1] || ""}`;
+    }
+
+    window.location.href = newUrl;
+  });
+
+  container.appendChild(select);
+
+  const targetNode = document.getElementById("datos_reserva") || document.body;
+  targetNode.parentNode.insertBefore(container, targetNode);
+});
+</script>
+
+<style>

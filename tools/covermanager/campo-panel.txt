@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Vibra Street Food - modulo de reservas (motor clasico de CoverManager) a juego con la web - 17/9/2026 */
+
+body { background: #000000 !important; color: #F5F2EE; font-family: 'Poppins', Arial, sans-serif !important; }
+body * { font-family: 'Poppins', Arial, sans-serif; }
+a, a:hover { color: #F38F1C; }
+
+/* Sin logo dentro del modulo: la pagina de reservas de la web ya lo lleva en la cabecera */
+div#datos_reserva:before { content: none !important; display: none !important; }
+
+/* Aviso de grupos al pie */
+body[language="spanish"] div#datos_reserva:after {
+  content: 'Para reservas de más de 25 comensales, por favor, contacten directamente con el restaurante.';
+  display: block;
+  padding: 2.2em .5em .6em;
+  max-width: 100%;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: rgba(245, 242, 238, 0.72);
+  white-space: pre-wrap;
+}
+
+/* Etiquetas y textos */
+label { color: #F5F2EE !important; font-weight: 600; letter-spacing: .03em; }
+label[for="extra-box-select"] { text-transform: none; }
+
+/* Campos: oscuros, con borde fino y esquinas suaves */
+select,
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+textarea, textarea#commentary,
+button.btn.dropdown-toggle.btn-default {
+  background: #1E1A1C !important;
+  color: #F5F2EE !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+input.form-control:not([type="button"]):not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not(.reservarButton),
+.intl-tel-input input, input#user_phone {
+  background: #1E1A1C !important;
+  color: #F5F2EE !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 14px !important;
+  box-shadow: none !important;
+}
+input[type="button"]:not(.reservarButton):not(.step1), button.btn:not(.dropdown-toggle):not(#btn-validate):not(#volver_commentary) {
+  background: transparent !important;
+  color: #F5F2EE !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+}
+select { margin-bottom: 15px; }
+select:focus, input:focus, textarea:focus, button.btn.dropdown-toggle.btn-default:focus { border-color: #E83085 !important; outline: none !important; }
+input::placeholder, textarea::placeholder,
+#user_first_name::placeholder, #user_last_name::placeholder, #user_email::placeholder, #user_phone::placeholder { color: rgba(245, 242, 238, 0.55) !important; font-weight: 500; }
+.bootstrap-select .dropdown-menu { background: #1E1A1C !important; border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 14px; }
+.bootstrap-select .dropdown-menu li a { color: #F5F2EE !important; }
+.bootstrap-select .dropdown-menu li a:hover, .bootstrap-select .dropdown-menu li.selected a { background: #2A2427 !important; }
+.bootstrap-select .filter-option, .bootstrap-select .caret { color: #F5F2EE !important; }
+
+/* Boton principal: el degradado de la marca */
+input.form-control.reservarButton,
+input.form-control.reservarButton.step1,
+button#btn-validate {
+  background: linear-gradient(90deg, #F38F1C 0%, #E83085 100%) !important;
+  color: #000000 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  height: 50px;
+  font-family: 'Anton', 'Poppins', Arial, sans-serif !important;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  box-shadow: 0 8px 26px rgba(232, 48, 133, 0.35) !important;
+}
+/* Botones secundarios: con borde, como los de la web */
+input.form-control.step1:not(.reservarButton),
+button#volver_commentary {
+  background: transparent !important;
+  color: #F5F2EE !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 999px !important;
+  height: 46px;
+  box-shadow: none !important;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+input.form-control.step1:not(.reservarButton):hover, button#volver_commentary:hover { border-color: #E83085 !important; }
+
+/* Calendario oscuro */
+.ui-datepicker-inline.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all {
+  background: #141112 !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 20px;
+  padding: 10px;
+  zoom: 105%;
+  box-shadow: none;
+}
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all {
+  background: transparent !important;
+  border: 0 !important;
+  color: #F5F2EE !important;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  box-shadow: none !important;
+}
+.ui-datepicker .ui-datepicker-title { color: #F5F2EE; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { filter: invert(1) brightness(2); }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { background: transparent !important; border: 0 !important; }
+.ui-datepicker-calendar thead th, .ui-datepicker-calendar thead th.ui-datepicker-week-end {
+  background: transparent;
+  color: #F38F1C;
+  font-weight: 600;
+  text-align: center;
+  padding: 10px 0;
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  background: #1E1A1C !important;
+  color: #F5F2EE !important;
+  border: 1px solid transparent !important;
+  border-radius: 10px;
+  text-align: center;
+}
+.ui-datepicker td.ui-state-disabled { opacity: 1 !important; }
+.ui-datepicker td.ui-state-disabled span { background: transparent !important; color: rgba(245, 242, 238, 0.22) !important; border-radius: 10px; display: block; }
+.ui-state-default:hover { background: #1E1A1C !important; color: #FFFFFF !important; border-color: #E83085 !important; }
+.ui-datepicker td.ui-datepicker-current-day a, .ui-datepicker td a.ui-state-active {
+  background: linear-gradient(90deg, #F38F1C 0%, #E83085 100%) !important;
+  color: #000000 !important;
+  font-weight: 700;
+}
+
+/* Boton de canjear codigo */
+[id^="btn-validate_ticket"] { background: transparent !important; color: #F5F2EE !important; border: 1px solid rgba(255, 255, 255, 0.3) !important; border-radius: 999px !important; box-shadow: none !important; }
+
+/* ESPACIOS */
+#container_module_reserv { max-width: 1000px; margin: 0 auto !important; padding: 0 6px; }
+#container_module_reserv > br { display: none; }
+/* selector de idioma: pequeno y arriba a la derecha */
+#lang_switch_container { display: flex; justify-content: flex-end; padding: 10px 15px 0; height: auto !important; min-height: 0; }
+select#lang_select { width: auto !important; min-width: 58px; height: 32px; padding: 4px 10px !important; margin: 0 !important; font-size: 12px; border-radius: 999px !important; }
+/* las dos columnas arrancan a la misma altura */
+#datos_reserva > .row { margin-top: 18px !important; display: flex; flex-wrap: wrap; align-items: flex-start; }
+#date_box, #datos_reserva > .row > .mt10 { margin-top: 0 !important; }
+/* el calendario ocupa toda su columna, igual de ancho que los botones en el movil */
+#datepicker .ui-datepicker-inline { width: 100% !important; zoom: 100% !important; padding: 14px 14px 12px !important; box-sizing: border-box; }
+#datepicker .ui-datepicker-calendar { width: 100%; margin: 0; }
+#datepicker .ui-datepicker-calendar td { padding: 3px; }
+#datepicker .ui-datepicker-calendar td a, #datepicker .ui-datepicker-calendar td span { padding: 9px 0 !important; font-size: 15px; }
+#datepicker .ui-datepicker-header { padding: 6px 0 10px !important; }
+/* ritmo vertical de la columna derecha */
+#personas_box, #hour_box { margin-bottom: 6px; }
+#hour_box, #hour_box * { font-weight: 500; }
+#hour_box label, #personas_box label { font-weight: 600; margin-bottom: 8px; display: block; }
+#reservar_button { margin-top: 18px !important; }
+/* Sin lista de espera: Vibra no la usa. Para recuperarla basta con borrar esta regla. */
+#waiting_button_list { display: none !important; }
+#group_request_button { margin-top: 26px !important; }
+body[language="spanish"] div#datos_reserva:after { padding: 30px 15px 8px; }
+@media (max-width: 767px) {
+  #datos_reserva > .row { display: block; margin-top: 14px !important; }
+  #datos_reserva > .row > .mt10 { margin-top: 22px !important; }
+}
+/* el boton de grupos lleva una frase larga: que salte de linea en vez de cortarse */
+#group_request_button input { white-space: normal !important; height: auto !important; min-height: 46px; padding: 10px 18px !important; line-height: 1.35; font-size: 13px; }
+@media (max-width: 767px) {
+  /* en el movil, calendario y botones con el mismo ancho */
+  #datos_reserva > .row > .mt10 { padding-left: 0 !important; padding-right: 0 !important; }
+}
+
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const langOptions = {
+    spanish: "ES",
+    english: "EN",
+    french: "FR",
+    portuguese: "PT",
+    italian: "IT",
+    german: "DE",  
+  };
+
+  const url = window.location.href;
+
+  // Detectar idioma actual a partir de los idiomas disponibles
+  const currentLang = Object.keys(langOptions).find(lang => url.includes(`/${lang}`)) || "";
+
+  const container = document.createElement("div");
+  container.id = "lang_switch_container";
+
+  const select = document.createElement("select");
+  select.id = "lang_select";
+
+  Object.entries(langOptions).forEach(([key, label]) => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = label;
+    if (key === currentLang) {
+      option.selected = true;
+    }
+    select.appendChild(option);
+  });
+
+  select.addEventListener("change", function () {
+    const newLang = this.value;
+    let newUrl;
+
+    if (currentLang) {
+      newUrl = url.replace(`/${currentLang}`, `/${newLang}`);
+    } else {
+      const parts = url.split(window.location.origin);
+      newUrl = `${window.location.origin}/${newLang}${parts[1] || ""}`;
+    }
+
+    window.location.href = newUrl;
+  });
+
+  container.appendChild(select);
+
+  const targetNode = document.getElementById("datos_reserva") || document.body;
+  targetNode.parentNode.insertBefore(container, targetNode);
+});
+</script>
+
+<style>
