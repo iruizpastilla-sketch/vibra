@@ -1,6 +1,9 @@
 # Publicación automática de la web en vibrastreetfood.com (hosting de FastComet, por FTPS).
 #
-# Activa desde el 18/9/2026. Cada cambio que llega a la rama main se sube solo (solo los archivos que cambian).
+# Activa desde el 18/9/2026. Dos ramas:
+#   main        → dirección de pruebas (GitHub Pages: iruizpastilla-sketch.github.io/vibra). Ahí se revisa todo primero.
+#   produccion  → la web real. Cada cambio que llega a esta rama se sube solo (solo los archivos que cambian).
+# Publicar = pasar main a produccion:   git push origin main:produccion
 # No borra nada que no haya subido ella misma y nunca vacía la carpeta (dangerous-clean-slate está apagado).
 #
 # Usa tres secretos del repositorio (Settings → Secrets and variables → Actions):
@@ -16,7 +19,7 @@ name: Publicar en vibrastreetfood.com
 
 on:
   push:
-    branches: [main]
+    branches: [produccion]
   workflow_dispatch:
 
 concurrency:
