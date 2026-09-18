@@ -549,7 +549,7 @@
       m.appendChild(l);
     });
     var partesDe = function (slide) {
-      return [".hero-kicker", ".hero-sub", ".hero-acciones", ".hero-estado"].map(function (s) { return $(s, slide); }).filter(Boolean);
+      return [".hero-kicker", ".hero-sub", ".hero-acciones", ".hero-nota", ".hero-estado"].map(function (s) { return $(s, slide); }).filter(Boolean);
     };
     var entrar = function (slide, retraso) {
       if (!animar) return;
@@ -589,7 +589,7 @@
       var prev = slides[actual], next = slides[siguiente];
       actual = siguiente;
       if (animar) {
-        var salen = $$(".hero-linea, .hero-kicker, .hero-sub, .hero-acciones, .hero-estado", prev);
+        var salen = $$(".hero-linea, .hero-kicker, .hero-sub, .hero-acciones, .hero-nota, .hero-estado", prev);
         g.to(salen, { opacity: 0, y: -14, duration: 0.4, ease: "power2.in", onComplete: function () { g.set(salen, { clearProps: "opacity,y" }); } });
       }
       prev.classList.remove("is-activa");

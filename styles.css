@@ -2315,3 +2315,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 /* Titular de Reservar en una sola línea, también en el móvil (Ivan y Víctor, 17/9/2026) */
 .carta-hero h1.una-linea { max-width: none; white-space: nowrap; font-size: clamp(2.1rem, 10.2vw, 5.6rem); }
 .carta-hero h1.una-linea:lang(ca) { font-size: clamp(1.6rem, 7.6vw, 5.6rem); }
+
+/* Letra pequeña de la diapositiva de la burger del mes, al estilo de las promociones con fecha (Ivan, 18/9/2026) */
+.hero-nota { margin-top: 1.1rem; max-width: 44ch; font-size: 0.72rem; line-height: 1.4; letter-spacing: 0.02em; color: rgba(245, 242, 238, 0.68); }
+@media (max-width: 720px) { .hero-nota { margin-top: 0.9rem; font-size: 0.68rem; } }
