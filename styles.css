@@ -2164,16 +2164,16 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .claro .musica-marco { background: #000000; }
 
 /* Aviso de cookies (15/9/2026): tarjeta abajo a la izquierda; en móvil, por encima de la barra de acciones */
-.cookies { position: fixed; left: var(--pad); right: var(--pad); bottom: 1rem; z-index: 90; max-width: 440px; background: #0F0D0E; color: #F5F2EE; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 1.1rem 1.2rem; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); opacity: 0; transform: translateY(12px); transition: opacity 0.35s var(--ease-soft), transform 0.35s var(--ease-soft); }
+.cookies { position: fixed; left: var(--pad); right: var(--pad); bottom: 1rem; z-index: 90; max-width: 440px; background: #0F0D0E; color: #F5F2EE; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 0.85rem 1rem; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45); opacity: 0; transform: translateY(12px); transition: opacity 0.35s var(--ease-soft), transform 0.35s var(--ease-soft); }
 .cookies.is-visible { opacity: 1; transform: none; }
-.cookies-texto { font-size: 0.88rem; line-height: 1.45; color: rgba(245, 242, 238, 0.85); }
+.cookies-texto { font-size: 0.8rem; line-height: 1.35; color: rgba(245, 242, 238, 0.85); }
 .cookies-texto a { color: #F5F2EE; text-decoration: underline; text-underline-offset: 3px; }
 .cookies-config { margin: 0.9rem 0 0; display: grid; gap: 0.45rem; }
 .cookies-opcion { display: flex; gap: 0.55rem; align-items: flex-start; font-size: 0.84rem; color: rgba(245, 242, 238, 0.85); }
 .cookies-opcion input { margin-top: 0.2rem; accent-color: var(--rosa); }
-.cookies-botones { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
-.cookies-botones .btn { padding: 0.7rem 1.1rem; font-size: 0.8rem; }
-.cookies-enlace { background: none; border: 0; color: rgba(245, 242, 238, 0.75); font: 600 0.8rem var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0.4rem 0.2rem; }
+.cookies-botones { margin-top: 0.7rem; display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.cookies-botones .btn { padding: 0.6rem 0.8rem; font-size: 0.78rem; }
+.cookies-enlace { background: none; border: 0; color: rgba(245, 242, 238, 0.75); font: 600 0.8rem var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0.6rem 0.3rem; min-height: 44px; }
 .cookies-enlace:hover { color: #F5F2EE; }
 @media (max-width: 720px) { .cookies { left: 0.75rem; right: 0.75rem; max-width: none; bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); } }
 @media (prefers-reduced-motion: reduce) { .cookies { transition: none; } }
@@ -2318,3 +2318,12 @@ a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--r
 .gigante.is-visible { background-image: url("imagenes/web/jack-dream-hero-1200.webp"); }
 .hero-estado { min-height: 1.3em; }
 .hero-estado:empty { visibility: hidden; }
+
+/* Aviso de cookies en el móvil: más bajo y por encima de la barra de acciones (P1, 19/9/2026) */
+@media (max-width: 720px) {
+  .cookies { left: 0.5rem; right: 0.5rem; max-width: none; bottom: calc(0.5rem + env(safe-area-inset-bottom, 0px)); padding: 0.75rem 0.85rem; }
+  .cookies-botones .btn { padding: 0.55rem 0.7rem; font-size: 0.75rem; }
+  .cookies-enlace { padding: 0.55rem 0.15rem; font-size: 0.76rem; }
+  /* cuando aparece la barra de acciones (al bajar), el aviso sube para no taparla */
+  body:has(.barra-acciones.is-visible) .cookies { bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); }
+}

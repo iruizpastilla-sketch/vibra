@@ -430,14 +430,23 @@
         if (extra) el.setAttribute("data-umami-event-" + extra.nombre, extra.valor(el));
       });
     };
-    marcar('a[href$="reservar.html"]', "reservar");
+    // El orden importa: marcar() no sobreescribe, así el conmutador de idioma de reservar.html cuenta como "idioma"
+    marcar(".cabecera-idioma, .menu-movil-idioma", "idioma", { nombre: "destino", valor: function (el) { return el.getAttribute("hreflang") || el.getAttribute("lang") || ""; } });
+    marcar('a[href$="reservar.html"]:not(.cabecera-idioma):not(.menu-movil-idioma)', "reservar");
     marcar("[data-pedir-abrir]", "pedir-abrir");
     marcar(".pedir-opcion", "pedir-app", { nombre: "app", valor: function (el) { return /glovo/i.test(el.href) ? "glovo" : "uber"; } });
     marcar('a[href*="squareup.com"]', "puntos");
     marcar('a[href^="tel:"]', "llamar");
+    marcar('a[href*="wa.me"]', "whatsapp");
+    marcar('a[href^="mailto:"]', "email");
+    marcar('a[href*="google.com/maps"], a[href*="maps.google.com"]', "como-llegar");
+    marcar('a[href*="g.page"], a[href*="search.google.com/local"]', "resenas-google");
     marcar('a[href*="instagram.com"]', "instagram");
+    marcar('a[href*="facebook.com"]', "facebook");
     marcar('a[href*="open.spotify.com"]', "spotify");
     marcar("[data-embed-cargar]", "embed-cargar");
+    // Los enlaces a la propia página (p. ej. "Reservar" dentro de reservar.html) no cuentan como clic de reserva
+    $$('a[data-umami-event="reservar"]').forEach(function (a) { if (a.pathname === location.pathname) a.removeAttribute("data-umami-event"); });
   }
 
   // =============================================================
@@ -684,15 +693,15 @@
     var base = /\/ca\//.test(location.pathname) ? "../" : "";
     var T = ca ? {
       titulo: "Avís de galetes",
-      texto: "Fem servir galetes tècniques perquè la web funcioni. Si acceptes, també carreguem contingut de tercers (Spotify i Google Maps) i galetes de publicitat per mesurar els nostres anuncis. Ho pots canviar quan vulguis.",
+      texto: "Galetes tècniques sempre. Spotify i Google Maps només si ho acceptes.",
       enlace: "Política de galetes",
       necesarias: "Necessàries (sempre actives)",
       terceros: "Contingut de tercers: Spotify i Google Maps",
       publicidad: "Publicitat i mesura: Meta (Facebook i Instagram)",
-      aceptar: "Acceptar-les totes", rechazar: "Només les necessàries", configurar: "Configurar", guardar: "Desar l'elecció"
+      aceptar: "Acceptar totes", rechazar: "Només necessàries", configurar: "Configurar", guardar: "Desar l'elecció"
     } : {
       titulo: "Aviso de cookies",
-      texto: "Usamos cookies técnicas para que la web funcione. Si aceptas, también cargamos contenido de terceros (Spotify y Google Maps) y cookies de publicidad para medir nuestros anuncios. Puedes cambiarlo cuando quieras.",
+      texto: "Cookies técnicas siempre. Spotify y Google Maps solo si aceptas.",
       enlace: "Política de cookies",
       necesarias: "Necesarias (siempre activas)",
       terceros: "Contenido de terceros: Spotify y Google Maps",
@@ -719,7 +728,7 @@
 
     var aviso = document.createElement("div");
     aviso.className = "cookies";
-    aviso.setAttribute("role", "dialog");
+    aviso.setAttribute("role", "region");
     aviso.setAttribute("aria-label", T.titulo);
     aviso.hidden = true;
     aviso.innerHTML =
@@ -727,7 +736,7 @@
       '<form class="cookies-config" hidden>' +
         '<label class="cookies-opcion"><input type="checkbox" checked disabled> <span>' + T.necesarias + '</span></label>' +
         '<label class="cookies-opcion"><input type="checkbox" name="terceros"> <span>' + T.terceros + '</span></label>' +
-        '<label class="cookies-opcion"><input type="checkbox" name="publicidad"> <span>' + T.publicidad + '</span></label>' +
+        '<label class="cookies-opcion" hidden><input type="checkbox" name="publicidad"> <span>' + T.publicidad + '</span></label>' +
       '</form>' +
       '<div class="cookies-botones">' +
         '<button type="button" class="btn btn-degradado" data-cookies-todas>' + T.aceptar + '</button>' +
@@ -735,7 +744,8 @@
         '<button type="button" class="cookies-enlace" data-cookies-config>' + T.configurar + '</button>' +
         '<button type="button" class="btn btn-fantasma" data-cookies-guardar hidden>' + T.guardar + '</button>' +
       '</div>';
-    document.body.appendChild(aviso);
+    var salto = $(".salto-contenido");
+    if (salto && salto.parentNode) salto.parentNode.insertBefore(aviso, salto.nextSibling); else document.body.insertBefore(aviso, document.body.firstChild);
 
     var form = $(".cookies-config", aviso);
     var btnConfig = $("[data-cookies-config]", aviso);
@@ -753,7 +763,8 @@
       cerrar();
       aplicar();
     };
-    $("[data-cookies-todas]", aviso).addEventListener("click", function () { guardar(true, true); });
+    // Mientras no haya píxel de Meta instalado, "aceptar todas" solo concede el contenido de terceros
+    $("[data-cookies-todas]", aviso).addEventListener("click", function () { guardar(true, false); });
     $("[data-cookies-necesarias]", aviso).addEventListener("click", function () { guardar(false, false); });
     btnConfig.addEventListener("click", function () {
       form.hidden = false; btnConfig.hidden = true; btnGuardar.hidden = false;
