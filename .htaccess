@@ -92,9 +92,9 @@ ErrorDocument 410 /404.html
   </FilesMatch>
 
   # Seguridad (higiene, no posicionamiento). "always" para que tambien vayan en los 301 y los 404.
-  # HSTS por fases: 300 s el dia del lanzamiento, 86400 al dia siguiente, 31536000 a los 30 dias.
+  # HSTS por fases: 300 s el dia del lanzamiento (18/9/2026), 86400 desde el 19/9/2026, 31536000 a partir del 18/10/2026.
   # Sin includeSubDomains ni preload.
-  Header always set Strict-Transport-Security "max-age=300"
+  Header always set Strict-Transport-Security "max-age=86400"
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Content-Security-Policy "frame-ancestors 'self'"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
