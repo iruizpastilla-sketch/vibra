@@ -27,58 +27,169 @@
   <link rel="preload" as="font" type="font/woff2" href="../fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../fuentes/poppins-400.woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css?v=20260918a">
-  <!-- Horario para buscadores. Los tramos llevan fechas de validez para que no se
-       solapen con el de verano. HAY QUE RENOVARLAS cada temporada: al terminar el
-       verano de 2027, mover las fechas un ano. Fuente de verdad: lib/manifest.js -->
+  <!-- Datos estructurados (schema.org): el mismo restaurante (@id) en portada y contacto, ES y CA.
+       Horario habitual sin fechas; el tramo de verano lleva fechas del año en curso: renovarlas cada primavera. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Vibra Street Food",
-    "url": "https://vibrastreetfood.com/",
-    "menu": "https://vibrastreetfood.com/ca/carta.html",
-    "acceptsReservations": "https://vibrastreetfood.com/ca/reservar.html",
-    "servesCuisine": ["Hamburgueses", "Street food"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Carrer de Jaume II, 77",
-      "postalCode": "25001",
-      "addressLocality": "Lleida",
-      "addressCountry": "ES"
-    },
-    "telephone": "+34973208727",
-    "email": "ruizruiz.bu@gmail.com",
-    "sameAs": ["https://www.instagram.com/vibrastreetfood"],
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Monday",
-        "opens": "00:00",
-        "closes": "00:00"
+        "@type": "Restaurant",
+        "@id": "https://vibrastreetfood.com/#restaurante",
+        "name": "Vibra Street Food",
+        "alternateName": [
+          "Vibra",
+          "Bar Tremola",
+          "Tremola Lleida"
+        ],
+        "legalName": "Ruiz & Ruiz Business S.L.",
+        "taxID": "B44743631",
+        "description": "Hamburgueseria i street food a Cappont, Lleida: hamburgueses de vaca madurada, de pollastre i vegana, entrepans, milaneses i postres casolans. Dues plantes, terrassa i taula gran per a grups de 12 a 25 persones. Reserva en línia o demana a domicili per Glovo i Uber Eats.",
+        "url": "https://vibrastreetfood.com/",
+        "logo": "https://vibrastreetfood.com/imagenes/web/logo.webp",
+        "image": [
+          "https://vibrastreetfood.com/imagenes/web/og.jpg",
+          "https://vibrastreetfood.com/imagenes/web/burger-abierta.webp",
+          "https://vibrastreetfood.com/imagenes/web/local-terraza-calle-1600.webp"
+        ],
+        "telephone": "+34973208727",
+        "email": "ruizruiz.bu@gmail.com",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "reservations",
+          "telephone": "+34636216896",
+          "url": "https://wa.me/34636216896",
+          "availableLanguage": [
+            "es",
+            "ca"
+          ]
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Carrer de Jaume II, 77",
+          "addressLocality": "Lleida",
+          "addressRegion": "Lleida",
+          "postalCode": "25001",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 41.6064907,
+          "longitude": 0.6211929
+        },
+        "hasMap": "https://maps.google.com/?cid=17943929483623453960",
+        "areaServed": {
+          "@type": "City",
+          "name": "Lleida"
+        },
+        "priceRange": "€€",
+        "currenciesAccepted": "EUR",
+        "servesCuisine": [
+          "Hamburgueses",
+          "Street food",
+          "Entrepans",
+          "Milaneses"
+        ],
+        "menu": "https://vibrastreetfood.com/ca/carta.html",
+        "acceptsReservations": "https://vibrastreetfood.com/ca/reservar.html",
+        "foundingDate": "2026-05",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Monday",
+            "opens": "00:00",
+            "closes": "00:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "17:00",
+            "closes": "00:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "12:00",
+            "closes": "00:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "18:00",
+            "closes": "00:00",
+            "validFrom": "2027-06-29",
+            "validThrough": "2027-09-14"
+          }
+        ],
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Terrassa",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Espai per a grups de 12 a 25 persones",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Opció vegana",
+            "value": true
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/vibrastreetfood",
+          "https://maps.google.com/?cid=17943929483623453960",
+          "https://glovoapp.com/es/es/lleida/stores/tremola-lleida",
+          "https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ"
+        ]
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "17:00",
-        "closes": "00:00",
-        "validFrom": "2026-09-15",
-        "validThrough": "2027-06-28"
+        "@type": "WebSite",
+        "@id": "https://vibrastreetfood.com/#website",
+        "url": "https://vibrastreetfood.com/",
+        "name": "Vibra Street Food",
+        "inLanguage": [
+          "es",
+          "ca"
+        ],
+        "publisher": {
+          "@id": "https://vibrastreetfood.com/#restaurante"
+        }
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "12:00",
-        "closes": "00:00",
-        "validFrom": "2026-09-15",
-        "validThrough": "2027-06-28"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "18:00",
-        "closes": "00:00",
-        "validFrom": "2026-06-29",
-        "validThrough": "2026-09-14"
+        "@type": "WebPage",
+        "@id": "https://vibrastreetfood.com/ca/contacto.html#webpage",
+        "url": "https://vibrastreetfood.com/ca/contacto.html",
+        "name": "Horari, telèfon i com arribar — Vibra Street Food, Lleida",
+        "description": "Vibra Street Food, Carrer de Jaume II, 77 (Cappont, Lleida). Horari, telèfon, WhatsApp i com arribar a la hamburgueseria. Dilluns tancat.",
+        "inLanguage": "ca",
+        "isPartOf": {
+          "@id": "https://vibrastreetfood.com/#website"
+        },
+        "about": {
+          "@id": "https://vibrastreetfood.com/#restaurante"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://vibrastreetfood.com/imagenes/web/og.jpg"
+        }
       }
     ]
   }
