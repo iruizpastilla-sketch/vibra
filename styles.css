@@ -2319,3 +2319,9 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 /* Letra pequeña de la diapositiva de la burger del mes, al estilo de las promociones con fecha (Ivan, 18/9/2026) */
 .hero-nota { margin-top: 1.1rem; max-width: 44ch; font-size: 0.72rem; line-height: 1.4; letter-spacing: 0.02em; color: rgba(245, 242, 238, 0.68); }
 @media (max-width: 720px) { .hero-nota { margin-top: 0.9rem; font-size: 0.68rem; } }
+
+/* Reseñas: botón para dejar reseña + ver la ficha (P1, 19/9/2026); chips de contacto pulsables */
+.resenas-acciones { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.4rem; }
+.resenas-resumen .resenas-acciones .btn { margin-top: 0; }
+a.carta-nota-chip { text-decoration: none; transition: border-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft); }
+a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--rosa); color: var(--rosa); }
