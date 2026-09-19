@@ -2325,3 +2325,7 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
 .resenas-resumen .resenas-acciones .btn { margin-top: 0; }
 a.carta-nota-chip { text-decoration: none; transition: border-color 0.3s var(--ease-soft), color 0.3s var(--ease-soft); }
 a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--rosa); color: var(--rosa); }
+
+/* Carta: descripción de cada burger a la vista, bajo el nombre (prueba pedida por Ivan, 19/9/2026) */
+.burger-shot-texto { margin-top: 0.45rem; font-size: 0.88rem; line-height: 1.5; color: var(--texto-2); }
+.burger-shot .plato-precio { margin-top: 0.7rem; }

@@ -278,7 +278,7 @@
       abrir.addEventListener("click", function () {
         var img = $(".burger-shot-media img", tarjeta);
         var titulo = $("h3", tarjeta);
-        var desc = $(".burger-shot-desc", tarjeta);
+        var desc = $(".burger-shot-texto, .burger-shot-desc", tarjeta);
         var precio = $(".precio-cifra", tarjeta);
         if (mImg && img) { mImg.src = img.src; mImg.alt = img.alt; }
         if (mTitulo && titulo) { mTitulo.innerHTML = titulo.innerHTML; }
