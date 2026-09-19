@@ -282,7 +282,7 @@ h1, h2, h3, h4 {
 .menu-movil::before {
   content: "";
   position: absolute; inset: 0;
-  background: url("imagenes/web/patron.webp") repeat;
+  background: url("imagenes/web/patron-300.webp") repeat;
   background-size: 150px;
   opacity: 0.03;
   pointer-events: none;
@@ -499,14 +499,6 @@ body.sin-scroll { overflow: hidden; }
   padding-top: var(--nav-h);
   text-align: left;
 }
-.obra::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: url("imagenes/web/patron.webp") repeat;
-  background-size: 150px;
-  opacity: 0.02;
-  pointer-events: none;
-}
 .obra-int { position: relative; z-index: 1; }
 .obra h1 { font-size: clamp(2.6rem, 7.5vw, 5.4rem); max-width: 12ch; }
 .obra p { margin-top: 1.6rem; max-width: 50ch; color: var(--texto-2); font-size: 1.05rem; }
@@ -539,14 +531,6 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
   position: relative;
   padding: calc(var(--nav-h) + clamp(3rem, 7vw, 5rem)) 0 clamp(2.2rem, 5vw, 3.5rem);
   overflow: clip;
-}
-.carta-hero::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: url("imagenes/web/patron.webp") repeat;
-  background-size: 150px;
-  opacity: 0.02;
-  pointer-events: none;
 }
 .carta-hero .contenedor { position: relative; z-index: 1; }
 .carta-hero h1 { font-size: clamp(2.7rem, 7.5vw, 5.6rem); max-width: 14ch; }
@@ -1082,7 +1066,7 @@ a.contacto-dato:hover { color: var(--rosa); }
   content: "";
   position: absolute;
   inset: 0;
-  background: url("imagenes/web/patron.webp") repeat;
+  background: url("imagenes/web/patron-300.webp") repeat;
   background-size: 150px;
   opacity: 0.03;
   pointer-events: none;
@@ -1811,7 +1795,7 @@ a.contacto-dato:hover { color: var(--rosa); }
   content: "";
   position: absolute;
   inset: 0;
-  background: url("imagenes/web/patron.webp") repeat;
+  background: url("imagenes/web/patron-300.webp") repeat;
   background-size: 150px;
   opacity: 0.14;
   mix-blend-mode: multiply;
@@ -1939,7 +1923,7 @@ a.contacto-dato:hover { color: var(--rosa); }
   content: "";
   position: absolute;
   inset: 0;
-  background: url("imagenes/web/patron.webp") repeat;
+  background: url("imagenes/web/patron-300.webp") repeat;
   background-size: 140px;
   opacity: 0.12;
   mix-blend-mode: multiply;
@@ -2097,7 +2081,6 @@ p.hero-titulo { margin-bottom: 0; font-family: var(--display); font-weight: 400;
   line-height: 0.8;
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  background-image: url("imagenes/web/jack-dream-hero.webp");
   background-size: 118% auto;
   background-position: 50% 40%;
   -webkit-background-clip: text;
@@ -2329,3 +2312,9 @@ a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--r
 /* Carta: descripción de cada burger a la vista, bajo el nombre (prueba pedida por Ivan, 19/9/2026) */
 .burger-shot-texto { margin-top: 0.45rem; font-size: 0.88rem; line-height: 1.5; color: var(--texto-2); }
 .burger-shot .plato-precio { margin-top: 0.7rem; }
+
+/* Velocidad (P1, 19/9/2026): el fondo de "Burgers." se carga al acercarse (main.js pone is-visible) y en 1200 px;
+   el horario del hero reserva su hueco para no mover el texto al aparecer */
+.gigante.is-visible { background-image: url("imagenes/web/jack-dream-hero-1200.webp"); }
+.hero-estado { min-height: 1.3em; }
+.hero-estado:empty { visibility: hidden; }

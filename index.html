@@ -40,7 +40,7 @@
         "taxID": "B44743631",
         "description": "Hamburguesería y street food en Cappont, Lleida: hamburguesas de vaca madurada, de pollo y vegana, bocadillos, milanesas y postres caseros. Dos plantas, terraza y mesa grande para grupos de 12 a 25 personas. Reserva online o pide a domicilio por Glovo y Uber Eats.",
         "url": "https://vibrastreetfood.com/",
-        "logo": "https://vibrastreetfood.com/imagenes/web/logo.webp",
+        "logo": "https://vibrastreetfood.com/imagenes/web/logo-516.webp",
         "image": [
           "https://vibrastreetfood.com/imagenes/web/og.jpg",
           "https://vibrastreetfood.com/imagenes/web/burger-abierta.webp",
@@ -154,6 +154,7 @@
         ],
         "sameAs": [
           "https://www.instagram.com/vibrastreetfood",
+          "https://www.facebook.com/vibrastreetfood",
           "https://maps.google.com/?cid=17943929483623453960",
           "https://glovoapp.com/es/es/lleida/stores/tremola-lleida",
           "https://www.ubereats.com/es/store/vibra-street-food/WP0HFCpOVDeJAS2pDlGrjQ"
@@ -194,22 +195,23 @@
   }
   </script>
 
-  <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <link rel="preload" as="font" type="font/woff2" href="fuentes/ut-bagh-display.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-400.woff2" crossorigin>
+  <link rel="preload" as="font" type="font/woff2" href="fuentes/poppins-600.woff2" crossorigin>
   <link rel="preload" as="image" href="imagenes/web/burger-abierta.webp" fetchpriority="high">
 
-  <link rel="stylesheet" href="styles.css?v=20260919b">
+  <link rel="stylesheet" href="styles.css?v=20260919c">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
   <script defer src="https://cloud.umami.is/script.js" data-website-id="fc84f6c0-e986-4f75-be10-222ac8fc00f7" data-domains="vibrastreetfood.com,www.vibrastreetfood.com"></script>
 </head>
 <body>
   <div class="intro" id="intro" aria-hidden="true">
-    <img class="intro-onda intro-onda--naranja" src="imagenes/web/onda-naranja.png" alt="">
-    <img class="intro-onda intro-onda--rosa" src="imagenes/web/onda-rosa.png" alt="">
+    <img class="intro-onda intro-onda--naranja" data-src="imagenes/web/onda-naranja.webp" alt="">
+    <img class="intro-onda intro-onda--rosa" data-src="imagenes/web/onda-rosa.webp" alt="">
     <div class="intro-palabra">Vibra</div>
   </div>
   <a class="salto-contenido" href="#contenido">Saltar al contenido</a>
@@ -226,7 +228,7 @@
   <header class="cabecera" data-cabecera>
     <div class="cabecera-int">
       <a class="cabecera-logo" href="index.html" aria-label="Vibra Street Food — Inicio">
-        <img src="imagenes/web/logo.webp" alt="Vibra Street Food" width="129" height="36">
+        <img src="imagenes/web/logo-516.webp" alt="Vibra Street Food" width="129" height="36">
       </a>
       <nav class="cabecera-nav" aria-label="Navegación principal">
         <a href="carta.html">Carta</a>
@@ -293,11 +295,11 @@
           <a class="btn btn-degradado btn-grande" href="reservar.html">Reservar mesa</a>
           <a class="btn btn-fantasma btn-grande" href="carta.html">Ver la carta</a>
         </div>
-        <p class="hero-estado" data-horario-hoy hidden></p>
+        <p class="hero-estado" data-horario-hoy></p>
       </div>
     </article>
     <article class="hero-slide" data-slide>
-      <div class="hero-media"><img src="imagenes/web/local-mesa-grande-hero-1600.webp" srcset="imagenes/web/local-mesa-grande-hero-960.webp 960w, imagenes/web/local-mesa-grande-hero-1200.webp 1200w, imagenes/web/local-mesa-grande-hero-1440.webp 1440w, imagenes/web/local-mesa-grande-hero-1600.webp 1600w, imagenes/web/local-mesa-grande-hero-1920.webp 1920w, imagenes/web/local-mesa-grande-hero-2400.webp 2400w" sizes="max(100vw, 178vh)" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-media"><img data-src="imagenes/web/local-mesa-grande-hero-1600.webp" data-srcset="imagenes/web/local-mesa-grande-hero-960.webp 960w, imagenes/web/local-mesa-grande-hero-1200.webp 1200w, imagenes/web/local-mesa-grande-hero-1440.webp 1440w, imagenes/web/local-mesa-grande-hero-1600.webp 1600w, imagenes/web/local-mesa-grande-hero-1920.webp 1920w, imagenes/web/local-mesa-grande-hero-2400.webp 2400w" sizes="max(100vw, 178vh)" alt="" decoding="async"></div>
       <div class="hero-velo" aria-hidden="true"></div>
       <div class="contenedor hero-int">
         <p class="kicker hero-kicker">Grupos y eventos</p>
@@ -307,7 +309,7 @@
       </div>
     </article>
     <article class="hero-slide" data-slide>
-      <div class="hero-media"><img src="imagenes/web/burgers-apiladas.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-media"><img data-src="imagenes/web/burgers-apiladas.webp" alt="" decoding="async"></div>
       <div class="hero-velo" aria-hidden="true"></div>
       <div class="contenedor hero-int">
         <p class="kicker hero-kicker">La carta</p>
@@ -317,7 +319,7 @@
       </div>
     </article>
     <article class="hero-slide" data-slide>
-      <div class="hero-media"><picture><source media="(orientation: portrait)" srcset="imagenes/web/novedades/2026-08-la-campeona-1080.webp"><img src="imagenes/web/novedades/2026-08-la-campeona-hero-imagen.webp" alt="" loading="lazy" decoding="async"></picture></div>
+      <div class="hero-media"><picture><source media="(orientation: portrait)" data-srcset="imagenes/web/novedades/2026-08-la-campeona-1080.webp"><img data-src="imagenes/web/novedades/2026-08-la-campeona-hero-imagen.webp" alt="" decoding="async"></picture></div>
       <div class="hero-velo" aria-hidden="true"></div>
       <div class="contenedor hero-int">
         <p class="kicker hero-kicker">Novedades</p>
@@ -328,7 +330,7 @@
       </div>
     </article>
     <article class="hero-slide" data-slide>
-      <div class="hero-media"><img src="imagenes/web/equipo-ancha.webp" alt="" loading="lazy" decoding="async"></div>
+      <div class="hero-media"><img data-src="imagenes/web/equipo-ancha.webp" alt="" decoding="async"></div>
       <div class="hero-velo" aria-hidden="true"></div>
       <div class="contenedor hero-int">
         <p class="kicker hero-kicker">Nosotros</p>
@@ -547,7 +549,7 @@
         <p class="musica-nota reveal" data-retraso="2">Dos listas propias. Las mismas que ponemos en el local.</p>
         <div class="musica-grid">
           <article class="musica-tarjeta reveal">
-            <h3><img class="musica-titulo-onda" src="imagenes/web/onda-naranja.png" alt="" aria-hidden="true"> Vibra Rumbeo</h3>
+            <h3><img class="musica-titulo-onda" src="imagenes/web/onda-naranja.webp" alt="" aria-hidden="true" loading="lazy"> Vibra Rumbeo</h3>
             <div class="musica-marco" data-embed data-embed-src="https://open.spotify.com/embed/playlist/6oaw4KtT0CgVAW5fAzOBH1?theme=0" data-embed-title="Reproductor de Spotify: Vibra Rumbeo" data-embed-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
               <div class="embed-placeholder">
                 <span class="mapa-pin" aria-hidden="true">▶</span>
@@ -561,7 +563,7 @@
             </div>
           </article>
           <article class="musica-tarjeta reveal" data-retraso="1">
-            <h3><img class="musica-titulo-onda" src="imagenes/web/onda-rosa.png" alt="" aria-hidden="true"> Lista Vibra</h3>
+            <h3><img class="musica-titulo-onda" src="imagenes/web/onda-rosa.webp" alt="" aria-hidden="true" loading="lazy"> Lista Vibra</h3>
             <div class="musica-marco" data-embed data-embed-src="https://open.spotify.com/embed/playlist/3stxpFi4hbrxezvpgwJnvX?theme=0" data-embed-title="Reproductor de Spotify: Lista Vibra" data-embed-allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
               <div class="embed-placeholder">
                 <span class="mapa-pin" aria-hidden="true">▶</span>
@@ -621,7 +623,7 @@
     <div class="contenedor">
       <div class="pie-grid">
         <div class="pie-marca">
-          <img src="imagenes/web/logo.webp" alt="Vibra Street Food" width="121" height="34" loading="lazy">
+          <img src="imagenes/web/logo-516.webp" alt="Vibra Street Food" width="121" height="34" loading="lazy">
           <p>Street food en Lleida. Siente la Vibra.</p>
         </div>
         <div>
@@ -700,6 +702,6 @@
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
   <script defer src="lib/manifest.js"></script>
-  <script defer src="main.js?v=20260919b"></script>
+  <script defer src="main.js?v=20260919c"></script>
 </body>
 </html>

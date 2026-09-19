@@ -525,6 +525,7 @@
     var g = window.gsap;
     var palabra = $(".intro-palabra", intro);
     var ondas = $$(".intro-onda", intro);
+    ondas.forEach(function (o) { if (o.dataset.src) { o.src = o.dataset.src; o.removeAttribute("data-src"); } });
     g.timeline({ onComplete: function () { intro.remove(); document.body.classList.remove("sin-scroll"); } })
       .fromTo(palabra, { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 0)
       .fromTo(palabra, { backgroundPosition: "50% 22%" }, { backgroundPosition: "50% 62%", duration: 1.6, ease: "none" }, 0)
@@ -572,6 +573,14 @@
     var control = $("[data-hero-control]", hero);
     var puntos = $$(".hero-punto", control);
     var actual = 0, temporizador = null, pausado = false;
+    // Las fotos de las diapositivas 2-5 van en data-src para no descargar 600 KB que no se ven al abrir
+    var cargarMedia = function (slide) {
+      if (!slide) return;
+      $$("source[data-srcset], img[data-srcset], img[data-src]", slide).forEach(function (el) {
+        if (el.dataset.srcset) { el.srcset = el.dataset.srcset; el.removeAttribute("data-srcset"); }
+        if (el.dataset.src) { el.src = el.dataset.src; el.removeAttribute("data-src"); }
+      });
+    };
 
     var reiniciar = function () {
       clearTimeout(temporizador);
@@ -587,6 +596,7 @@
       var siguiente = (i + slides.length) % slides.length;
       if (siguiente === actual) return;
       var prev = slides[actual], next = slides[siguiente];
+      cargarMedia(next);
       actual = siguiente;
       if (animar) {
         var salen = $$(".hero-linea, .hero-kicker, .hero-sub, .hero-acciones, .hero-nota, .hero-estado", prev);
@@ -601,6 +611,7 @@
       });
       barra();
       reiniciar();
+      cargarMedia(slides[(actual + 1) % slides.length]);
     };
 
     puntos.forEach(function (p, j) { p.addEventListener("click", function () { ir(j); }); });
@@ -632,6 +643,20 @@
     // Con intro, el reloj arranca cuando la intro se va, para que la primera diapositiva se vea entera
     var arranque = document.documentElement.classList.contains("con-intro") ? 1600 : 0;
     setTimeout(function () { barra(); reiniciar(); }, arranque);
+    // La segunda foto se pide con calma, 1,5 s después de cargar la página
+    var precargar = function () { setTimeout(function () { cargarMedia(slides[1]); }, 1500); };
+    if (document.readyState === "complete") precargar(); else window.addEventListener("load", precargar);
+  }
+
+  // ---------- NUEVE gigante: el fondo se pide al acercarse (también sin GSAP) ----------
+  function initGiganteFondo() {
+    var el = $(".gigante");
+    if (!el) return;
+    if (!("IntersectionObserver" in window)) { el.classList.add("is-visible"); return; }
+    var io = new IntersectionObserver(function (entradas) {
+      if (entradas.some(function (e) { return e.isIntersecting; })) { el.classList.add("is-visible"); io.disconnect(); }
+    }, { rootMargin: "600px 0px" });
+    io.observe(el);
   }
 
   // ---------- NUEVE gigante: la foto se desplaza dentro de las letras al bajar ----------
@@ -758,6 +783,8 @@
     safe(initIntro, "initIntro");
     safe(initPortada, "initPortada");
     safe(initGigante, "initGigante");
+
+    safe(initGiganteFondo, "initGiganteFondo");
     safe(initManifiesto, "initManifiesto");
     safe(initParallax, "initParallax");
     safe(initReveals, "initReveals");
