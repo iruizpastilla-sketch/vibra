@@ -680,7 +680,35 @@
   // Guarda la elección 12 meses en localStorage. Con "contenido de terceros" aceptado, Spotify y el
   // mapa se cargan solos al acercarse; si no, siguen esperando al botón. "Publicidad" queda listo
   // para el píxel de Meta: escuchar el evento "vibra:cookies" o leer window.vibraConsent. ----------
-  var CLAVE_COOKIES = "vibra-cookies";
+  // ---------- Píxel de Meta (20/9/2026): solo se carga cuando hay consentimiento de publicidad.
+  // Conjunto de datos "Web Vibra" del porfolio vibrastreetfood. Eventos estándar a partir de los clics ya marcados para Umami.
+  var PIXEL_META = "28730407539928957";
+  var pixelCargado = false;
+  function cargarPixelMeta() {
+    if (pixelCargado || !window.vibraConsent || !window.vibraConsent.publicidad) return;
+    pixelCargado = true;
+    (function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = true; n.version = "2.0"; n.queue = [];
+      t = b.createElement(e); t.async = true; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    })(window, document, "script", "https://connect.facebook.net/en_US/fbevents.js");
+    window.fbq("init", PIXEL_META);
+    window.fbq("track", "PageView");
+    if (/carta\.html$/.test(location.pathname)) window.fbq("track", "ViewContent", { content_name: "carta" });
+    if (/reservar\.html$/.test(location.pathname)) window.fbq("track", "Schedule");
+    document.addEventListener("click", function (e) {
+      var el = e.target.closest ? e.target.closest("[data-umami-event]") : null;
+      if (!el || !window.fbq) return;
+      var ev = el.getAttribute("data-umami-event");
+      if (ev === "reservar") window.fbq("track", "Lead", { content_name: "reservar" });
+      else if (ev === "llamar" || ev === "whatsapp" || ev === "email") window.fbq("track", "Contact", { content_name: ev });
+      else if (ev === "como-llegar") window.fbq("track", "FindLocation");
+      else if (ev === "pedir-app") window.fbq("trackCustom", "PedirDomicilio", { app: el.getAttribute("data-umami-event-app") || "" });
+    }, true);
+  }
+
+  // Clave nueva (v2): al aparecer el píxel de Meta se vuelve a pedir el consentimiento a todo el mundo
+  var CLAVE_COOKIES = "vibra-cookies-v2";
   function leerConsentimiento() {
     try {
       var d = JSON.parse(localStorage.getItem(CLAVE_COOKIES) || "null");
@@ -693,7 +721,7 @@
     var base = /\/ca\//.test(location.pathname) ? "../" : "";
     var T = ca ? {
       titulo: "Avís de galetes",
-      texto: "Galetes tècniques sempre. Spotify i Google Maps només si ho acceptes.",
+      texto: "Galetes tècniques sempre. Spotify, Google Maps i la mesura d'anuncis (Meta) només si ho acceptes.",
       enlace: "Política de galetes",
       necesarias: "Necessàries (sempre actives)",
       terceros: "Contingut de tercers: Spotify i Google Maps",
@@ -701,7 +729,7 @@
       aceptar: "Acceptar totes", rechazar: "Només necessàries", configurar: "Configurar", guardar: "Desar l'elecció"
     } : {
       titulo: "Aviso de cookies",
-      texto: "Cookies técnicas siempre. Spotify y Google Maps solo si aceptas.",
+      texto: "Cookies técnicas siempre. Spotify, Google Maps y la medición de anuncios (Meta) solo si aceptas.",
       enlace: "Política de cookies",
       necesarias: "Necesarias (siempre activas)",
       terceros: "Contenido de terceros: Spotify y Google Maps",
@@ -724,6 +752,7 @@
     var aplicar = function () {
       try { document.dispatchEvent(new CustomEvent("vibra:cookies", { detail: window.vibraConsent })); } catch (e) {}
       if (window.vibraConsent.terceros) autoCargar();
+      if (window.vibraConsent.publicidad) cargarPixelMeta();
     };
 
     var aviso = document.createElement("div");
@@ -736,7 +765,7 @@
       '<form class="cookies-config" hidden>' +
         '<label class="cookies-opcion"><input type="checkbox" checked disabled> <span>' + T.necesarias + '</span></label>' +
         '<label class="cookies-opcion"><input type="checkbox" name="terceros"> <span>' + T.terceros + '</span></label>' +
-        '<label class="cookies-opcion" hidden><input type="checkbox" name="publicidad"> <span>' + T.publicidad + '</span></label>' +
+        '<label class="cookies-opcion"><input type="checkbox" name="publicidad"> <span>' + T.publicidad + '</span></label>' +
       '</form>' +
       '<div class="cookies-botones">' +
         '<button type="button" class="btn btn-degradado" data-cookies-todas>' + T.aceptar + '</button>' +
@@ -763,8 +792,7 @@
       cerrar();
       aplicar();
     };
-    // Mientras no haya píxel de Meta instalado, "aceptar todas" solo concede el contenido de terceros
-    $("[data-cookies-todas]", aviso).addEventListener("click", function () { guardar(true, false); });
+    $("[data-cookies-todas]", aviso).addEventListener("click", function () { guardar(true, true); });
     $("[data-cookies-necesarias]", aviso).addEventListener("click", function () { guardar(false, false); });
     btnConfig.addEventListener("click", function () {
       form.hidden = false; btnConfig.hidden = true; btnGuardar.hidden = false;
