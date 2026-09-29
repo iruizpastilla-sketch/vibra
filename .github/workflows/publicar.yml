@@ -14,6 +14,8 @@
 #
 # Si se cambia la contraseña de esa cuenta en cPanel, hay que actualizar FTP_PASSWORD aquí o dejará de publicar.
 # Para publicar a mano sin cambiar nada: pestaña Actions → "Publicar en vibrastreetfood.com" → Run workflow.
+# Sube siempre la rama produccion, aunque el botón proponga main (el checkout va fijado a produccion, desde el 29/9/2026:
+# antes, pulsar el botón con main marcado habría subido la dirección de pruebas a la web real sin el visto bueno).
 
 name: Publicar en vibrastreetfood.com
 
@@ -31,8 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Descargar el repositorio
+      - name: Descargar la rama produccion
         uses: actions/checkout@v4
+        with:
+          ref: produccion
 
       - name: Subir a FastComet por FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
