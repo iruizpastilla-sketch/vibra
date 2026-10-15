@@ -202,7 +202,8 @@
   <link rel="preload" as="font" type="font/woff2" href="../fuentes/anton-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../fuentes/poppins-400.woff2" crossorigin>
   <link rel="preload" as="font" type="font/woff2" href="../fuentes/poppins-600.woff2" crossorigin>
-  <link rel="preload" as="image" href="../imagenes/web/burger-abierta.webp" fetchpriority="high">
+  <link rel="preload" as="image" href="../imagenes/web/novedades/2026-10-la-txula-hero-imagen.webp" media="(orientation: landscape)" fetchpriority="high">
+  <link rel="preload" as="image" href="../imagenes/web/novedades/2026-10-la-txula-1080.webp" media="(orientation: portrait)" fetchpriority="high">
 
   <link rel="stylesheet" href="../styles.css?v=20260920a">
   <!-- Analitica sin cookies (Umami Cloud). data-domains hace que solo cuente visitas en el dominio real, no en local -->
@@ -278,8 +279,19 @@
     <section class="hero" id="portada">
     <div class="hero-slides" data-hero-slides>
     <article class="hero-slide is-activa" data-slide>
+      <div class="hero-media"><picture><source media="(orientation: portrait)" srcset="../imagenes/web/novedades/2026-10-la-txula-1080.webp"><img src="../imagenes/web/novedades/2026-10-la-txula-hero-imagen.webp" alt="" fetchpriority="high" decoding="async"></picture></div>
+      <div class="hero-velo" aria-hidden="true"></div>
+      <div class="contenedor hero-int">
+        <p class="kicker hero-kicker">Burger del mes</p>
+        <p class="hero-titulo"><span class="hero-linea">La</span><span class="hero-linea"><span class="txt-degradado">Txula</span></span></p>
+        <p class="hero-sub">Txuletó de vaca madurat, shiitake i parmesà cruixent en pa High Bun artesà.</p>
+        <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="novedades.html">Veure la burger</a></div>
+        <p class="hero-nota">*La Txula: edició limitada, disponible per temps limitat.</p>
+      </div>
+    </article>
+    <article class="hero-slide" data-slide>
       <div class="hero-media" data-media-slot><!-- cuando exista el vídeo de portada, volver a poner data-video-h="../imagenes/video/portada.mp4" y data-video-v="../imagenes/video/portada-vertical.mp4" -->
-        <img class="hero-poster" src="../imagenes/web/burger-abierta.webp" alt="" fetchpriority="high" decoding="async">
+        <img class="hero-poster" data-src="../imagenes/web/burger-abierta.webp" alt="" decoding="async">
       </div>
       <div class="hero-velo" aria-hidden="true"></div>
       <div class="contenedor hero-int">
@@ -311,17 +323,6 @@
         <p class="hero-titulo"><span class="hero-linea">Tot el</span><span class="hero-linea"><span class="txt-degradado">que hi ha</span></span></p>
         <p class="hero-sub">Nou burgers, entrepans, milaneses, dips i postres casolans. Totes les burgers amb patates.</p>
         <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="carta.html">Veure la carta</a></div>
-      </div>
-    </article>
-    <article class="hero-slide" data-slide>
-      <div class="hero-media"><picture><source media="(orientation: portrait)" data-srcset="../imagenes/web/novedades/2026-10-la-txula-1080.webp"><img data-src="../imagenes/web/novedades/2026-10-la-txula-hero-imagen.webp" alt="" decoding="async"></picture></div>
-      <div class="hero-velo" aria-hidden="true"></div>
-      <div class="contenedor hero-int">
-        <p class="kicker hero-kicker">Burger del mes</p>
-        <p class="hero-titulo"><span class="hero-linea">La</span><span class="hero-linea"><span class="txt-degradado">Txula</span></span></p>
-        <p class="hero-sub">Txuletó de vaca madurat, shiitake i parmesà cruixent en pa High Bun artesà.</p>
-        <div class="hero-acciones"><a class="btn btn-degradado btn-grande" href="novedades.html">Veure la burger</a></div>
-        <p class="hero-nota">*La Txula: edició limitada, disponible per temps limitat.</p>
       </div>
     </article>
     <article class="hero-slide" data-slide>
