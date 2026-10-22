@@ -435,7 +435,6 @@
     marcar('a[href$="reservar.html"]:not(.cabecera-idioma):not(.menu-movil-idioma)', "reservar");
     marcar("[data-pedir-abrir]", "pedir-abrir");
     marcar(".pedir-opcion", "pedir-app", { nombre: "app", valor: function (el) { return /glovo/i.test(el.href) ? "glovo" : "uber"; } });
-    marcar('a[href*="squareup.com"]', "puntos");
     marcar('a[href^="tel:"]', "llamar");
     marcar('a[href*="wa.me"]', "whatsapp");
     marcar('a[href^="mailto:"]', "email");
