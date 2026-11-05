@@ -664,6 +664,7 @@ html.js .reveal[data-retraso="3"] { transition-delay: 0.24s; }
 }
 .badge-pica { color: var(--rosa); border: 1px solid rgba(232, 48, 133, 0.55); }
 .badge-vegana { color: #7BC96F; border: 1px solid rgba(123, 201, 111, 0.5); }
+.badge-mes { color: var(--amarillo); border: 1px solid rgba(243, 143, 28, 0.6); }
 
 /* Salsas y extras */
 .salsas-lista { display: flex; flex-wrap: wrap; gap: 0.7rem; }
