@@ -109,6 +109,12 @@
     var tramoDe = function (dia) {
       return tramos.filter(function (t) { return t.dias.indexOf(dia) !== -1; })[0];
     };
+    // Días sueltos cerrados (diasCerrados de manifest.js, AAAA-MM-DD): cuentan como día sin tramo
+    var cerrados = Array.isArray(marca.horarios.diasCerrados) ? marca.horarios.diasCerrados : [];
+    var tramoDelDia = function (fecha) {
+      var iso = fecha.getFullYear() + "-" + dos(fecha.getMonth() + 1) + "-" + dos(fecha.getDate());
+      return cerrados.indexOf(iso) !== -1 ? undefined : tramoDe(fecha.getDay());
+    };
     var aMinutos = function (hhmm) {
       var p = hhmm.split(":");
       return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
@@ -136,13 +142,13 @@
     // "Aún llegas" solo en la última parte de la noche: desde las 21:00 y nunca más tarde de las 22:30
     var LLEGAS_DESDE = 21 * 60, LLEGAS_HASTA = 22 * 60 + 30;
 
-    var hoy = tramoDe(ahora.getDay());
+    var hoy = tramoDelDia(ahora);
     var minutos = ahora.getHours() * 60 + ahora.getMinutes();
     var texto = "";
     var abierto = false;
 
     if (!hoy) {
-      var manana = tramoDe((ahora.getDay() + 1) % 7);
+      var manana = tramoDelDia(new Date(ahora.getFullYear(), ahora.getMonth(), ahora.getDate() + 1));
       texto = manana ? t.cerradoManana + manana.abre : t.cerrado;
     } else if (minutos < aMinutos(hoy.abre)) {
       var faltan = aMinutos(hoy.abre) - minutos;
