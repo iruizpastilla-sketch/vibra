@@ -16,8 +16,8 @@ celebraciones. Nada que no tenga relación con lo que hacemos (sartenes, harinas
 | Qué hacer en Lleida un domingo | qué hacer en Lleida domingo | Abre el domingo a las 12:00 | |
 | Dónde cenar tarde en Lleida | cenar tarde Lleida | La cocina cierra a las 23:00 | |
 | Patatas bravas: de dónde vienen y cómo se hacen | patatas bravas origen / salsa brava | Bravas clásicas y Bravas Tremola | 19/11/2026 · `2026-11-19-patatas-bravas` |
-| Cheesecake al horno: el truco para que quede cremosa | tarta de queso cremosa | La cheesecake de la carta | 19/11/2026 · `2026-11-19-tarta-de-queso-cremosa` (guardado para la semana del 24/11/2026, sin publicar: Iván, 19/11) |
-| Tequeños: qué son | qué son los tequeños | Están en la carta | 19/11/2026 · `2026-11-19-tequenos` (guardado para la semana del 24/11/2026, sin publicar: Iván, 19/11) |
+| Cheesecake al horno: el truco para que quede cremosa | tarta de queso cremosa | La cheesecake de la carta | |
+| Tequeños: qué son | qué son los tequeños | Están en la carta | |
 | Milanesa: qué es y en qué se diferencia del escalope | milanesa qué es | Las tres milanesas de la carta | |
 | Hamburguesa vegetariana: cómo elegirla | hamburguesa vegetariana Lleida | La Veggie (solo «Vegetariana» y «Pídela con pan vegano y es vegana») | |
 | Salsas para hamburguesa: las clásicas y cómo combinarlas | salsas para hamburguesa | Las salsas para mojar | |
