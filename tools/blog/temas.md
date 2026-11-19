@@ -9,13 +9,13 @@ celebraciones. Nada que no tenga relación con lo que hacemos (sartenes, harinas
 
 | Tema | Búsqueda a la que apunta | Cómo sale Vibra | Hecho |
 |---|---|---|---|
-| Cómo organizar una cena de empresa | cena de empresa Lleida | Menús de grupo (`grupos.html`) | 19/11/2026 · `2026-11-19-cena-de-empresa` |
+| Cómo organizar una cena de empresa | cena de empresa Lleida | Menús de grupo (`grupos.html`) | Quitado el 19/11/2026: a Iván no le gustó («muy artificial»). Si se repite, en prosa y con datos contrastados |
 | Smash burger: qué es y cómo hacerla | smash burger qué es / receta | La carne va así a la plancha | 19/11/2026 · `2026-11-19-smash-burger` |
-| Qué hacer en Lleida en Navidad (luces, mercados, cabalgata) | qué hacer en Lleida en Navidad | Horario y cierres de Navidad | |
+| Qué hacer en Lleida en Navidad (luces, mercados, cabalgata) | qué hacer en Lleida en Navidad | Horario y cierres de Navidad | Esperando: el 19/11/2026 la Paeria aún no había publicado el programa de 2026 (paeria.cat) |
 | Ideas para celebrar un cumpleaños en Lleida | celebrar cumpleaños Lleida | `grupos.html` | |
 | Qué hacer en Lleida un domingo | qué hacer en Lleida domingo | Abre el domingo a las 12:00 | |
 | Dónde cenar tarde en Lleida | cenar tarde Lleida | La cocina cierra a las 23:00 | |
-| Patatas bravas: de dónde vienen y cómo se hacen | patatas bravas receta / origen | Bravas clásicas y Bravas Tremola | |
+| Patatas bravas: de dónde vienen y cómo se hacen | patatas bravas origen / salsa brava | Bravas clásicas y Bravas Tremola | 19/11/2026 · `2026-11-19-patatas-bravas` |
 | Cheesecake al horno: el truco para que quede cremosa | tarta de queso cremosa | La cheesecake de la carta | |
 | Tequeños: qué son | qué son los tequeños | Están en la carta | |
 | Milanesa: qué es y en qué se diferencia del escalope | milanesa qué es | Las tres milanesas de la carta | |

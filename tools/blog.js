@@ -76,7 +76,9 @@ function leer(fichero) {
     const src = (attrs.match(/src="([^"]+)"/) || [])[1];
     if (!src) throw new Error(fichero + ": una <img> sin src");
     if (!/\salt="[^"]+"/.test(" " + attrs)) throw new Error(fichero + ": la foto " + src + " necesita alt (qué se ve en ella)");
-    if (!/\bwidth=/.test(attrs)) { const md = medidas(src.replace(/^(\.\.\/)+/, ""), fichero); attrs += ` width="${md.w}" height="${md.h}"`; }
+    const md = medidas(src.replace(/^(\.\.\/)+/, ""), fichero);
+    if (!/\bwidth=/.test(attrs)) attrs += ` width="${md.w}" height="${md.h}"`;
+    if (md.h / md.w > 0.8 && !/\bclass=/.test(attrs)) attrs += ' class="es-recorte"'; // foto cuadrada (un plato recortado): se ve entera
     if (!/\bloading=/.test(attrs)) attrs += ' loading="lazy" decoding="async"';
     return "<img " + attrs + ">";
   });
@@ -163,7 +165,7 @@ const ORG = { "@type": "Restaurant", "@id": WEB + "#restaurante", name: "Vibra S
 function rutaArt(l, a) { return (l === "es" ? "blog/" : "ca/blog/") + a.slug + ".html"; }
 
 // Las páginas del blog están en blog/ o ca/blog/: la foto de la raíz se llama con "../" o "../../".
-const img = (l, a, extra) => `<img src="${(l === "es" ? "../" : "../../") + a.imagen}" width="${a.medidas.w}" height="${a.medidas.h}" alt="${esc(a.alt)}"${extra}>`;
+const img = (l, a, extra) => `<img src="${(l === "es" ? "../" : "../../") + a.imagen}" width="${a.medidas.w}" height="${a.medidas.h}" alt="${esc(a.alt)}"${a.medidas.h / a.medidas.w > 0.8 ? ' class="es-recorte"' : ""}${extra}>`;
 
 function tarjeta(l, a) {
   // El enlace es el nombre del fichero: la tarjeta siempre está en la misma carpeta que el artículo.

@@ -2387,3 +2387,11 @@ a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--r
 .blog-leer { margin-top: auto; padding-top: 0.3rem; font-weight: 600; font-size: 0.92rem; color: #B81E63; }
 /* En el blog la cabecera va siempre en negro: transparente, sobre el papel, no se leería el menú */
 body:has(.blog-papel) .cabecera { background: rgba(0, 0, 0, 0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom-color: transparent; }
+/* Fotos cuadradas (platos recortados sobre fondo transparente): enteras, sin cortar, sobre blanco */
+.articulo-portada img.es-recorte, .blog-tarjeta-foto img.es-recorte { object-fit: contain; background: #FFFFFF; padding: 4%; }
+.articulo figure img.es-recorte { max-width: 26rem; margin-inline: auto; background: transparent; }
+/* Las fuentes, al final de cada artículo: discretas, pero a la vista */
+.articulo .fuentes { margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid var(--linea); font-size: 0.88rem; }
+.articulo .fuentes h2 { font-size: 1rem; letter-spacing: 0.06em; margin: 0 0 0.6em; }
+.articulo .fuentes li { color: var(--texto-3); margin-bottom: 0.35em; line-height: 1.5; }
+.articulo .fuentes a:not(.btn) { color: var(--texto-2); border-bottom-width: 1px; }
