@@ -2330,30 +2330,60 @@ a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--r
 }
 
 /* =============================================================
-   31. Blog (19/11/2026). Páginas generadas por tools/blog.js.
+   31. Blog (19/11/2026, en papel desde el mismo día: «el blog en blanco, que se ve más natural», Iván).
+   Páginas generadas por tools/blog.js. La cabecera y el pie siguen en negro, como toda la web;
+   el contenido va en papel, con letra de lectura y fotos grandes.
    ============================================================= */
-.blog-portada { padding-top: clamp(1rem, 3vw, 2rem); }
-.blog-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: 1.4rem; }
-.blog-tarjeta { position: relative; display: flex; flex-direction: column; gap: 0.7rem; padding: clamp(1.3rem, 3vw, 1.8rem); background: var(--negro-3); border: 1px solid var(--linea); border-radius: 18px; transition: border-color 0.3s, transform 0.3s; }
-.blog-tarjeta:hover { border-color: var(--rosa); transform: translateY(-3px); }
-.blog-tarjeta p { color: var(--texto-2); margin: 0; }
-.blog-tarjeta-titulo { font-size: clamp(1.45rem, 2.6vw, 1.8rem); line-height: 1.08; margin: 0; }
-.blog-tarjeta-titulo a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* toda la tarjeta es el enlace */
-.blog-meta { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-3); }
-.blog-meta-hero { margin-top: 1.2rem; }
-.blog-leer { margin-top: auto; padding-top: 0.4rem; font-weight: 600; color: var(--texto); }
-.articulo { max-width: 46rem; padding-block: clamp(1rem, 3vw, 2rem) clamp(4rem, 8vw, 6rem); font-size: 1.06rem; }
-.articulo h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.05; margin: 2.2em 0 0.6em; }
-.articulo h2:first-child { margin-top: 0.4em; }
+.blog-papel {
+  --negro: #FAF8F5; --negro-2: #FAF8F5; --negro-3: #FFFFFF;
+  --texto: #171215; --texto-2: rgba(23, 18, 21, 0.78); --texto-3: rgba(23, 18, 21, 0.55);
+  --linea: rgba(23, 18, 21, 0.12); --blanco: #171215;
+  background: var(--negro); color: var(--texto);
+  padding-bottom: clamp(3rem, 8vw, 6rem);
+}
+.blog-papel h1, .blog-papel h2, .blog-papel h3 { color: var(--texto); }
+.articulo-cabeza { max-width: 52rem; padding-top: calc(var(--nav-h) + clamp(2rem, 5vw, 3.5rem)); padding-bottom: clamp(1.4rem, 3vw, 2.2rem); }
+.articulo-cabeza h1 { font-size: clamp(2.3rem, 6vw, 4.2rem); line-height: 1; margin: 0.35em 0 0.4em; }
+.articulo-entradilla { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.5; color: var(--texto-2); margin: 0 0 1.1rem; max-width: 40em; }
+.blog-migas { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rosa-oscuro, #B81E63); margin: 0; }
+.blog-migas a { color: inherit; border-bottom: 1px solid currentColor; }
+.blog-meta { font-size: 0.82rem; color: var(--texto-3); margin: 0; }
+.articulo-portada { max-width: 64rem; margin: 0 auto clamp(1.8rem, 4vw, 3rem); }
+.articulo-portada img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; display: block; background: #e9e4de; }
+.articulo { max-width: 46rem; font-size: 1.08rem; }
+.articulo h2 { font-size: clamp(1.55rem, 3.2vw, 2.1rem); line-height: 1.08; margin: 2.1em 0 0.6em; }
+.articulo h2:first-child { margin-top: 0.3em; }
 .articulo h3 { font-size: 1.2rem; letter-spacing: 0.03em; margin: 1.7em 0 0.5em; }
-.articulo p, .articulo li { color: var(--texto-2); margin: 0 0 1em; line-height: 1.65; }
+.articulo p, .articulo li { color: var(--texto-2); margin: 0 0 1em; line-height: 1.7; }
 .articulo strong { color: var(--texto); font-weight: 600; }
 .articulo ul, .articulo ol { padding-left: 1.3em; }
-.articulo li::marker { color: var(--rosa); }
-.articulo a:not(.btn) { color: var(--texto); border-bottom: 1px solid var(--rosa); transition: color 0.3s; }
-.articulo a:not(.btn):hover { color: var(--rosa); }
-.articulo .resumen { list-style: none; padding: 1.2rem 1.4rem; margin: 0 0 1.6em; background: var(--negro-3); border: 1px solid var(--linea); border-left: 3px solid var(--rosa); border-radius: 12px; }
+.articulo li::marker { color: var(--rosa); font-weight: 600; }
+.articulo a:not(.btn) { color: var(--texto); border-bottom: 2px solid var(--rosa); transition: color 0.2s; }
+.articulo a:not(.btn):hover { color: #B81E63; }
+.articulo figure { margin: 2em 0; }
+.articulo figure img { width: 100%; height: auto; border-radius: 12px; display: block; background: #e9e4de; }
+.articulo figcaption { font-size: 0.85rem; color: var(--texto-3); margin-top: 0.6em; }
+.articulo .resumen, .articulo .destacado { list-style: none; padding: 1.2rem 1.4rem; margin: 0 0 1.8em; background: #FFFFFF; border: 1px solid var(--linea); border-left: 4px solid var(--rosa); border-radius: 12px; }
 .articulo .resumen li { margin-bottom: 0.4em; }
-.articulo .resumen li:last-child { margin-bottom: 0; }
+.articulo .resumen li:last-child, .articulo .destacado p:last-child { margin-bottom: 0; }
 .articulo-acciones { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.6rem; padding-top: 1.8rem; border-top: 1px solid var(--linea); }
+.btn-borde { border: 2px solid var(--texto); color: var(--texto); background: transparent; }
+.btn-borde:hover { background: var(--texto); color: #FFFFFF; }
 .articulo-volver { margin-top: 1.6rem; font-size: 0.95rem; }
+.blog-mas { margin-top: clamp(3rem, 7vw, 5rem); padding-top: clamp(2.2rem, 5vw, 3.5rem); border-top: 1px solid var(--linea); }
+.blog-mas-titulo { font-size: clamp(1.5rem, 3vw, 2rem); margin: 0 0 1.2rem; }
+.blog-portada-cabeza { padding-bottom: clamp(1.8rem, 4vw, 2.8rem); }
+.blog-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: clamp(1.1rem, 2.5vw, 1.8rem); }
+.blog-tarjeta { position: relative; display: flex; flex-direction: column; background: #FFFFFF; border: 1px solid var(--linea); border-radius: 16px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; }
+.blog-tarjeta:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(23, 18, 21, 0.12); }
+.blog-tarjeta-foto { aspect-ratio: 16 / 10; background: #e9e4de; overflow: hidden; }
+.blog-tarjeta-foto img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+.blog-tarjeta:hover .blog-tarjeta-foto img { transform: scale(1.04); }
+.blog-tarjeta-texto { display: flex; flex-direction: column; gap: 0.6rem; padding: 1.2rem 1.3rem 1.4rem; flex: 1; }
+.blog-tarjeta-texto p { color: var(--texto-2); margin: 0; line-height: 1.55; }
+.blog-tarjeta-titulo { font-size: clamp(1.3rem, 2.3vw, 1.6rem); line-height: 1.08; margin: 0; }
+.blog-tarjeta-titulo a { color: var(--texto); }
+.blog-tarjeta-titulo a::after { content: ""; position: absolute; inset: 0; } /* toda la tarjeta es el enlace */
+.blog-leer { margin-top: auto; padding-top: 0.3rem; font-weight: 600; font-size: 0.92rem; color: #B81E63; }
+/* En el blog la cabecera va siempre en negro: transparente, sobre el papel, no se leería el menú */
+body:has(.blog-papel) .cabecera { background: rgba(0, 0, 0, 0.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom-color: transparent; }

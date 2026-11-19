@@ -13,6 +13,8 @@
 //   h1: Cena de empresa en <span class="txt-degradado">Lleida</span>.
 //   descripcion: ...                         (lo que sale debajo en Google; unas 150 letras)
 //   entradilla: ...                          (la frase grande de arriba y la de la tarjeta del listado)
+//   imagen: imagenes/web/x.webp              (la foto de portada y de la tarjeta; solo fotos nuestras de imagenes/web/)
+//   alt: Qué se ve en la foto
 //   -->
 //   <h2>...</h2><p>...</p>
 //
@@ -32,18 +34,18 @@ const MESES = {
 };
 const T = {
   es: {
-    kicker: "Blog", h1: 'Lo que pasa en la <span class="txt-degradado">barra</span>.',
-    entradilla: "Planes en Lleida, cómo hacemos las cosas y lo que hay que saber antes de venir.",
-    titulo: "Blog — Vibra Street Food, hamburguesería en Lleida",
-    descripcion: "Planes en Lleida, grupos, la carta y cómo hacemos las cosas en Vibra Street Food, hamburguesería en Cappont.",
+    kicker: "Blog", h1: 'Planes, comida y <span class="txt-degradado">Lleida</span>.',
+    entradilla: "Ideas para salir por Lleida, trucos de cocina que vale la pena saber y, de vez en cuando, lo que pasa en Vibra.",
+    titulo: "Blog de Vibra Street Food: planes en Lleida y cocina",
+    descripcion: "Ideas para salir por Lleida, cenas de grupo, trucos de cocina y hamburguesas, del blog de Vibra Street Food, en Cappont.",
     leer: "Leer", volver: "← Todos los artículos", publicado: "Publicado el", otros: "Más del blog",
     reservar: "Reservar mesa", carta: "Ver la carta",
   },
   ca: {
-    kicker: "Blog", h1: 'El que passa a la <span class="txt-degradado">barra</span>.',
-    entradilla: "Plans a Lleida, com fem les coses i el que cal saber abans de venir.",
-    titulo: "Blog — Vibra Street Food, hamburgueseria a Lleida",
-    descripcion: "Plans a Lleida, grups, la carta i com fem les coses a Vibra Street Food, hamburgueseria a Cappont.",
+    kicker: "Blog", h1: 'Plans, menjar i <span class="txt-degradado">Lleida</span>.',
+    entradilla: "Idees per sortir per Lleida, trucs de cuina que val la pena saber i, de tant en tant, el que passa a Vibra.",
+    titulo: "Blog de Vibra Street Food: plans a Lleida i cuina",
+    descripcion: "Idees per sortir per Lleida, sopars de grup, trucs de cuina i hamburgueses, del blog de Vibra Street Food, a Cappont.",
     leer: "Llegir", volver: "← Tots els articles", publicado: "Publicat el", otros: "Més del blog",
     reservar: "Reservar taula", carta: "Veure la carta",
   },
@@ -63,13 +65,44 @@ function leer(fichero) {
     const k = linea.match(/^\s*([a-z0-9]+)\s*:\s*(.*?)\s*$/);
     if (k) datos[k[1]] = k[2];
   }
-  for (const c of ["slug", "fecha", "etiqueta", "titulo", "h1", "descripcion", "entradilla"]) {
+  for (const c of ["slug", "fecha", "etiqueta", "titulo", "h1", "descripcion", "entradilla", "imagen", "alt"]) {
     if (!datos[c]) throw new Error(fichero + ": falta «" + c + "»");
   }
   if (!/^[a-z0-9-]+$/.test(datos.slug)) throw new Error(fichero + ": el slug solo puede llevar minúsculas, números y guiones");
   if (!/^\d{4}-\d{2}-\d{2}$/.test(datos.fecha)) throw new Error(fichero + ": la fecha va como AAAA-MM-DD");
-  datos.cuerpo = txt.slice(m[0].length).trim();
+  datos.medidas = medidas(datos.imagen, fichero);
+  // Las fotos del cuerpo: se les ponen las medidas y la carga diferida si no las llevan.
+  datos.cuerpo = txt.slice(m[0].length).trim().replace(/<img\s([^>]*?)\s*\/?>/g, (t, attrs) => {
+    const src = (attrs.match(/src="([^"]+)"/) || [])[1];
+    if (!src) throw new Error(fichero + ": una <img> sin src");
+    if (!/\salt="[^"]+"/.test(" " + attrs)) throw new Error(fichero + ": la foto " + src + " necesita alt (qué se ve en ella)");
+    if (!/\bwidth=/.test(attrs)) { const md = medidas(src.replace(/^(\.\.\/)+/, ""), fichero); attrs += ` width="${md.w}" height="${md.h}"`; }
+    if (!/\bloading=/.test(attrs)) attrs += ' loading="lazy" decoding="async"';
+    return "<img " + attrs + ">";
+  });
   return datos;
+}
+
+// Ancho y alto de una foto .webp (o .jpg) de la web, leídos de su cabecera. La ruta va desde la raíz: imagenes/web/x.webp
+function medidas(ruta, fichero) {
+  const abs = path.join(RAIZ, ruta);
+  if (!fs.existsSync(abs)) throw new Error(fichero + ": no existe la foto " + ruta);
+  const b = fs.readFileSync(abs);
+  if (b.toString("ascii", 0, 4) === "RIFF" && b.toString("ascii", 8, 12) === "WEBP") {
+    const tipo = b.toString("ascii", 12, 16);
+    if (tipo === "VP8X") return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+    if (tipo === "VP8 ") return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+    if (tipo === "VP8L") return { w: 1 + (((b[22] & 0x3f) << 8) | b[21]), h: 1 + (((b[24] & 0xf) << 10) | (b[23] << 2) | ((b[22] & 0xc0) >> 6)) };
+  }
+  if (b[0] === 0xff && b[1] === 0xd8) {
+    let i = 2;
+    while (i < b.length) {
+      const marca = b[i + 1], largo = b.readUInt16BE(i + 2);
+      if (marca >= 0xc0 && marca <= 0xc3) return { w: b.readUInt16BE(i + 7), h: b.readUInt16BE(i + 5) };
+      i += 2 + largo;
+    }
+  }
+  throw new Error(fichero + ": no sé leer las medidas de " + ruta + " (usa .webp o .jpg)");
 }
 const articulos = (fs.existsSync(FUENTES) ? fs.readdirSync(FUENTES) : [])
   .filter((d) => fs.statSync(path.join(FUENTES, d)).isDirectory())
@@ -118,6 +151,8 @@ function pagina(l, o) {
     .replace(/<meta property="og:title" content="[^"]*">/, '<meta property="og:title" content="' + esc(o.titulo) + '">')
     .replace(/<meta property="og:description" content="[^"]*">/, '<meta property="og:description" content="' + esc(o.descripcion) + '">')
     .replace(/<meta property="og:type" content="[^"]*">/, '<meta property="og:type" content="' + o.tipo + '">')
+    .replace(/<meta property="og:image" content="[^"]*">\s*<meta property="og:image:width" content="[^"]*">\s*<meta property="og:image:height" content="[^"]*">/,
+      (t) => (o.imagen ? `<meta property="og:image" content="${WEB + o.imagen.imagen}">\n  <meta property="og:image:width" content="${o.imagen.medidas.w}">\n  <meta property="og:image:height" content="${o.imagen.medidas.h}">` : t))
     .replace("</head>", '  <script type="application/ld+json">' + JSON.stringify(o.jsonld) + "</script>\n</head>");
   const cabecera = "<!-- Página generada por tools/blog.js: no se edita a mano (se cambia el artículo en tools/blog/articulos/ y se vuelve a generar). -->\n";
   return antes.replace("<!DOCTYPE html>\n", "<!DOCTYPE html>\n" + cabecera) + o.main + despues;
@@ -127,13 +162,19 @@ const ORG = { "@type": "Restaurant", "@id": WEB + "#restaurante", name: "Vibra S
 
 function rutaArt(l, a) { return (l === "es" ? "blog/" : "ca/blog/") + a.slug + ".html"; }
 
-function tarjeta(l, a, desde) {
-  // desde: "lista" (en blog/index.html) o "articulo" (en blog/x.html): en los dos casos el enlace es el nombre del fichero.
-  return `          <article class="blog-tarjeta reveal">
-            <p class="blog-meta"><time datetime="${a.fecha}">${fechaLarga(a.fecha, l)}</time> · ${esc(a.etiqueta)}</p>
-            <h2 class="blog-tarjeta-titulo"><a href="${a.slug}.html">${sinEtiquetas(a.h1)}</a></h2>
-            <p>${a.entradilla}</p>
-            <a class="blog-leer" href="${a.slug}.html" aria-hidden="true" tabindex="-1">${T[l].leer} →</a>
+// Las páginas del blog están en blog/ o ca/blog/: la foto de la raíz se llama con "../" o "../../".
+const img = (l, a, extra) => `<img src="${(l === "es" ? "../" : "../../") + a.imagen}" width="${a.medidas.w}" height="${a.medidas.h}" alt="${esc(a.alt)}"${extra}>`;
+
+function tarjeta(l, a) {
+  // El enlace es el nombre del fichero: la tarjeta siempre está en la misma carpeta que el artículo.
+  return `          <article class="blog-tarjeta">
+            <div class="blog-tarjeta-foto">${img(l, a, ' loading="lazy" decoding="async"')}</div>
+            <div class="blog-tarjeta-texto">
+              <p class="blog-meta"><time datetime="${a.fecha}">${fechaLarga(a.fecha, l)}</time> · ${esc(a.etiqueta)}</p>
+              <h2 class="blog-tarjeta-titulo"><a href="${a.slug}.html">${sinEtiquetas(a.h1)}</a></h2>
+              <p>${a.entradilla}</p>
+              <span class="blog-leer" aria-hidden="true">${T[l].leer} →</span>
+            </div>
           </article>`;
 }
 
@@ -154,30 +195,32 @@ for (const l of ["es", "ca"]) {
     const ruta = rutaArt(l, a);
     const rutaOtra = rutaArt(otra, b);
     const otros = articulos.filter((x) => x !== par).slice(0, 3).map((x) => tarjeta(l, x[l])).join("\n");
-    const main = `<main id="contenido" tabindex="-1">
+    const main = `<main id="contenido" class="blog-papel" tabindex="-1">
 
-    <section class="carta-hero">
-      <div class="contenedor">
-        <p class="kicker">${esc(a.etiqueta)}</p>
-        <h1 class="larga">${a.h1}</h1>
-        <p class="nos-entradilla">${a.entradilla}</p>
-        <p class="blog-meta blog-meta-hero">${t.publicado} <time datetime="${a.fecha}">${fechaLarga(a.fecha, l)}</time></p>
-      </div>
-    </section>
+    <header class="contenedor articulo-cabeza">
+      <p class="blog-migas"><a href="./">Blog</a> <span aria-hidden="true">/</span> ${esc(a.etiqueta)}</p>
+      <h1>${a.h1}</h1>
+      <p class="articulo-entradilla">${a.entradilla}</p>
+      <p class="blog-meta">${t.publicado} <time datetime="${a.fecha}">${fechaLarga(a.fecha, l)}</time> · Vibra Street Food</p>
+    </header>
+
+    <figure class="contenedor articulo-portada">
+      ${img(l, a, ' fetchpriority="high"')}
+    </figure>
 
     <article class="contenedor articulo">
 ${a.cuerpo.split(/\r?\n/).map((x) => (x ? "      " + x : x)).join("\n")}
 
       <div class="articulo-acciones">
         <a class="btn btn-degradado" href="../reservar.html">${t.reservar}</a>
-        <a class="btn btn-fantasma" href="../carta.html">${t.carta}</a>
+        <a class="btn btn-borde" href="../carta.html">${t.carta}</a>
       </div>
       <p class="articulo-volver"><a href="./">${t.volver}</a></p>
     </article>
 ${otros ? `
-    <section class="seccion nos-alterna claro">
+    <section class="blog-mas">
       <div class="contenedor">
-        <p class="kicker reveal">${t.otros}</p>
+        <h2 class="blog-mas-titulo">${t.otros}</h2>
         <div class="blog-lista">
 ${otros}
         </div>
@@ -190,27 +233,24 @@ ${otros}
       jsonld: {
         "@context": "https://schema.org", "@type": "BlogPosting", headline: sinEtiquetas(a.h1).replace(/\.$/, ""),
         description: a.descripcion, datePublished: a.fecha, dateModified: a.fecha, inLanguage: l,
-        mainEntityOfPage: WEB + ruta, image: WEB + "imagenes/web/og.jpg", author: ORG, publisher: ORG,
+        mainEntityOfPage: WEB + ruta, image: WEB + a.imagen, author: ORG, publisher: ORG,
       },
+      imagen: a,
     }));
   });
   // ---- La portada del blog ----
   const lista = articulos.map((p) => tarjeta(l, p[l])).join("\n");
-  const main = `<main id="contenido" tabindex="-1">
+  const main = `<main id="contenido" class="blog-papel" tabindex="-1">
 
-    <section class="carta-hero">
-      <div class="contenedor">
-        <p class="kicker">${t.kicker}</p>
-        <h1>${t.h1}</h1>
-        <p class="nos-entradilla">${t.entradilla}</p>
-      </div>
-    </section>
+    <header class="contenedor articulo-cabeza blog-portada-cabeza">
+      <p class="blog-migas">${t.kicker}</p>
+      <h1>${t.h1}</h1>
+      <p class="articulo-entradilla">${t.entradilla}</p>
+    </header>
 
-    <section class="seccion blog-portada">
-      <div class="contenedor">
-        <div class="blog-lista">
+    <section class="contenedor blog-portada">
+      <div class="blog-lista">
 ${lista}
-        </div>
       </div>
     </section>
 

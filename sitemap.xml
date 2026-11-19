@@ -134,5 +134,19 @@
     <xhtml:link rel="alternate" hreflang="ca" href="https://vibrastreetfood.com/ca/blog/sopar-d-empresa-a-lleida.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://vibrastreetfood.com/blog/cena-de-empresa-en-lleida.html"/>
   </url>
+  <url>
+    <loc>https://vibrastreetfood.com/blog/smash-burger-que-es-y-como-se-hace.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vibrastreetfood.com/blog/smash-burger-que-es-y-como-se-hace.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://vibrastreetfood.com/ca/blog/smash-burger-que-es-i-com-es-fa.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vibrastreetfood.com/blog/smash-burger-que-es-y-como-se-hace.html"/>
+  </url>
+  <url>
+    <loc>https://vibrastreetfood.com/ca/blog/smash-burger-que-es-i-com-es-fa.html</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://vibrastreetfood.com/blog/smash-burger-que-es-y-como-se-hace.html"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://vibrastreetfood.com/ca/blog/smash-burger-que-es-i-com-es-fa.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://vibrastreetfood.com/blog/smash-burger-que-es-y-como-se-hace.html"/>
+  </url>
   <!-- /BLOG -->
 </urlset>
