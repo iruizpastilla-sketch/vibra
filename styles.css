@@ -2328,3 +2328,32 @@ a.carta-nota-chip:hover, a.carta-nota-chip:focus-visible { border-color: var(--r
   /* cuando aparece la barra de acciones (al bajar), el aviso sube para no taparla */
   body:has(.barra-acciones.is-visible) .cookies { bottom: calc(5.2rem + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* =============================================================
+   31. Blog (19/11/2026). Páginas generadas por tools/blog.js.
+   ============================================================= */
+.blog-portada { padding-top: clamp(1rem, 3vw, 2rem); }
+.blog-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: clamp(1rem, 2.5vw, 1.6rem); margin-top: 1.4rem; }
+.blog-tarjeta { position: relative; display: flex; flex-direction: column; gap: 0.7rem; padding: clamp(1.3rem, 3vw, 1.8rem); background: var(--negro-3); border: 1px solid var(--linea); border-radius: 18px; transition: border-color 0.3s, transform 0.3s; }
+.blog-tarjeta:hover { border-color: var(--rosa); transform: translateY(-3px); }
+.blog-tarjeta p { color: var(--texto-2); margin: 0; }
+.blog-tarjeta-titulo { font-size: clamp(1.45rem, 2.6vw, 1.8rem); line-height: 1.08; margin: 0; }
+.blog-tarjeta-titulo a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; } /* toda la tarjeta es el enlace */
+.blog-meta { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-3); }
+.blog-meta-hero { margin-top: 1.2rem; }
+.blog-leer { margin-top: auto; padding-top: 0.4rem; font-weight: 600; color: var(--texto); }
+.articulo { max-width: 46rem; padding-block: clamp(1rem, 3vw, 2rem) clamp(4rem, 8vw, 6rem); font-size: 1.06rem; }
+.articulo h2 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); line-height: 1.05; margin: 2.2em 0 0.6em; }
+.articulo h2:first-child { margin-top: 0.4em; }
+.articulo h3 { font-size: 1.2rem; letter-spacing: 0.03em; margin: 1.7em 0 0.5em; }
+.articulo p, .articulo li { color: var(--texto-2); margin: 0 0 1em; line-height: 1.65; }
+.articulo strong { color: var(--texto); font-weight: 600; }
+.articulo ul, .articulo ol { padding-left: 1.3em; }
+.articulo li::marker { color: var(--rosa); }
+.articulo a:not(.btn) { color: var(--texto); border-bottom: 1px solid var(--rosa); transition: color 0.3s; }
+.articulo a:not(.btn):hover { color: var(--rosa); }
+.articulo .resumen { list-style: none; padding: 1.2rem 1.4rem; margin: 0 0 1.6em; background: var(--negro-3); border: 1px solid var(--linea); border-left: 3px solid var(--rosa); border-radius: 12px; }
+.articulo .resumen li { margin-bottom: 0.4em; }
+.articulo .resumen li:last-child { margin-bottom: 0; }
+.articulo-acciones { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 2.6rem; padding-top: 1.8rem; border-top: 1px solid var(--linea); }
+.articulo-volver { margin-top: 1.6rem; font-size: 0.95rem; }

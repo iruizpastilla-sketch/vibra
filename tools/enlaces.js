@@ -6,8 +6,10 @@
 const fs = require("fs");
 const path = require("path");
 const RAIZ = path.resolve(__dirname, "..");
-const paginas = fs.readdirSync(RAIZ).filter((f) => f.endsWith(".html"))
-  .concat(fs.readdirSync(path.join(RAIZ, "ca")).filter((f) => f.endsWith(".html")).map((f) => "ca/" + f));
+// La raíz, ca/, blog/ y ca/blog/ (las carpetas de la web que llevan páginas).
+const paginas = ["", "ca/", "blog/", "ca/blog/"]
+  .filter((d) => fs.existsSync(path.join(RAIZ, d)))
+  .flatMap((d) => fs.readdirSync(path.join(RAIZ, d)).filter((f) => f.endsWith(".html")).map((f) => d + f));
 const externo = /^(https?:|mailto:|tel:|data:|javascript:|\/\/)/i;
 const ids = {};
 const idsDe = (rel) => {

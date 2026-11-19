@@ -723,7 +723,10 @@
   }
   function initCookies() {
     var ca = (document.documentElement.lang || "es").indexOf("ca") === 0;
-    var base = /\/ca\//.test(location.pathname) ? "../" : "";
+    // La raíz de la web, sacada de cómo se cargó este fichero ("main.js", "../main.js", "../../main.js"):
+    // vale para la raíz, ca/, blog/ y ca/blog/.
+    var yo = document.querySelector('script[src*="main.js"]');
+    var base = yo ? (yo.getAttribute("src") || "").split("main.js")[0] : "";
     var T = ca ? {
       titulo: "Avís de galetes",
       texto: "Galetes tècniques sempre. Spotify, Google Maps i la mesura d'anuncis (Meta) només si ho acceptes.",
